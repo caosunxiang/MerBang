@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.LabelToOfficeBuildingMapper">
+<select id="selectBuildLabel" resultType="java.util.Map">
+    SELECT
+	IFNULL(l.id,'')id,
+	IFNULL(l.`name`,'')`name`,
+	IFNULL(l.hot,'')hot,
+	IFNULL(l.creation_time,'')creation_time,
+	IFNULL(l.state,'')state,
+	IFNULL(o.id,'')oid
+FROM
+	t_office_building_label l
+	LEFT JOIN ( SELECT * FROM t_label_to_office_building WHERE office_building_id = #{id} ) o ON o.office_building_label_id = l.id
+</select>
+</mapper>

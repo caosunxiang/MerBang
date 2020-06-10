@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.LabelToSharedOfficeMapper">
+    <select id="selectSharedLabel" resultType="java.util.Map">
+   SELECT
+	IFNULL(l.id,'')id,
+	IFNULL(l.`name`,'')`name`,
+	IFNULL(l.hot,'')hot,
+	IFNULL(l.creation_time,'')creation_time,
+	IFNULL(l.state,'')state,
+	IFNULL(o.id,'')oid
+FROM
+	t_shared_office_label l
+	LEFT JOIN ( SELECT * FROM t_label_to_shared_office WHERE shared_office_id = #{id} ) o ON o.shared_office_id = l.id
+	</select>
+</mapper>

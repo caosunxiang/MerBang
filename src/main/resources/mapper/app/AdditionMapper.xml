@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.AdditionMapper">
+<select id="selectAdditionByCostId" resultType="java.util.Map">
+    SELECT
+IFNULL(a.id,'')ID,
+	IFNULL( a.price, '' ) price,
+	IFNULL(cost.`name`,'')`name`,
+	IFNULL(a.start_time,'')`start`,
+	IFNULL(a.end_time,'')`end`
+FROM
+	t_cost c
+	LEFT JOIN t_addition a ON a.cost = c.cost_id
+	LEFT JOIN t_cost_addition cost ON cost.cost_addition_id = a.cost_addition
+WHERE
+	c.cost_id =#{id}
+</select>
+</mapper>

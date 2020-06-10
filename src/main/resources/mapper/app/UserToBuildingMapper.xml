@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.UserToBuildingMapper">
+
+    <select id="selectBuildingInLessee" resultType="java.util.Map">
+        SELECT
+	IFNULL( b.id, '' ) `id`,
+	IFNULL( b.`name`, '' ) `name`,
+	IFNULL( b.area, '' ) area
+FROM
+	t_office_building b
+	LEFT JOIN t_user_to_building utb ON b.id = utb.office_building_id
+	LEFT JOIN a_user u ON u.user_id = utb.user_id
+WHERE
+     1=1
+	<if test="name !=null and name !=''">
+      and  b.`name` LIKE CONCAT('%',#{name},'%')
+    </if>
+    </select>
+</mapper>

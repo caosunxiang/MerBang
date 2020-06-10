@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.ContractMapper">
+    <select id="selectContract" resultType="java.util.Map">
+        SELECT
+        IFNULL( o.door, '' ) door,
+        IFNULL( con.contract_id, '' ) id,
+        IFNULL( l.`name`, '' ) `name`,
+        IFNULL( r.pay_type, '' ) payTime,
+        IFNULL( con.price, '' ) price,
+        IFNULL( r.start_time, '' ) `start`,
+        IFNULL( r.end_time, '' ) `end`,
+        IFNULL( ord.paid_in_price, '' ) paid,
+        IFNULL( con.state, '' ) state
+        FROM
+        t_contract con
+        LEFT JOIN t_lessee l ON con.lessee_id = l.id
+        LEFT JOIN t_rule r ON r.id = con.rule_id
+        LEFT JOIN t_office o ON o.id = con.room
+        LEFT JOIN t_shared_office so ON so.id = o.shared_office_id
+        LEFT JOIN t_office_building ob ON ob.id = o.office_building
+        LEFT JOIN t_order ord ON ord.contract_id=con.contract_id
+        WHERE
+        1=1
+        <if test="condition !=null  and condition!=''">
+            AND ( so.`name` LIKE CONCAT('%',#{condition},'%') OR ob.`name` LIKE CONCAT('%',#{condition},'%') )
+        </if>
+        <if test="id !=null and id!=''">
+            AND ( o.shared_office_id = #{id} OR o.office_building = #{id} )
+        </if>
+        <if test="door !=null and door!=''">
+            AND o.door=#{door}
+        </if>
+        AND DATE_FORMAT(now(), '%Y%m' ) =DATE_FORMAT(con.time,'%Y%m')
+        ORDER BY con.time DESC;
+    </select>
+    <select id="selectContractByConIdAndDoor" resultType="java.util.Map">
+        SELECT
+        IFNULL(r.start_time,'')`start`,
+        IFNULL(r.end_time,'')`end`,
+        IFNULL(con.contract_id,'')id,
+        IFNULL( l.`name`, '' ) `name`,
+        IFNULL( o.door, '' ) door,
+        IFNULL( con.state, '' ) state,
+        IFNULL( r.pay_time, '' ) time,
+        IFNULL( r.price, '' ) price,
+        IFNULL( ord.paid_in_date, '' ) `date`,
+        IFNULL( ord.paid_in_price, '' ) paidPrice,
+        IFNULL( ord.remark, '' ) ramark,
+        IFNULL( ord.invoice, '' ) invoice
+        FROM
+        t_contract con
+        LEFT JOIN t_lessee l ON l.id = con.lessee_id
+        LEFT JOIN t_rule r ON r.id = con.rule_id
+        LEFT JOIN t_user_to_office uto ON uto.user_id = l.user_id
+        LEFT JOIN t_office o ON o.id = uto.ofiice_id
+        LEFT JOIN t_order ord ON ord.contract_id=con.contract_id
+        WHERE
+        1=1
+        <if test="id !=null and id !=''">
+            AND con.contract_id = #{id}
+        </if>
+    </select>
+    <select id="selectLatelyContract" resultType="java.lang.Integer">
+       SELECT
+	COUNT(*)
+FROM
+	t_attention a
+	LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_contract c ON c.room=o.id
+        WHERE
+        a.attention_user = #{id}
+        AND a.attention_type = 'C'
+        AND c.state='A'
+        AND DATE_SUB( NOW(), INTERVAL 7 DAY ) <![CDATA[ <= ]]> DATE( c.time );
+    </select>
+
+    <select id="selectPassContract" resultType="java.lang.Integer">
+SELECT
+	COUNT(*)
+FROM
+	t_attention a
+	LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_contract c ON c.room=o.id
+WHERE
+	a.attention_type = 'C'
+	AND a.attention_user = #{id}
+		AND c.state='A'
+	AND PERIOD_DIFF(
+	date_format(now(), '%Y%m'),
+	date_format(c.time, '%Y%m')
+) = #{month};
+    </select>
+</mapper>

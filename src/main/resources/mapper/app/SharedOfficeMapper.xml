@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.SharedOfficeMapper">
+    <select id="selectSharedOffice" resultType="java.util.Map">
+        SELECT
+        so.*,
+        IFNULL( mp.position, '' ) position,
+        IFNULL( bd.`name`, '' ) `business_district_name`,
+        IFNULL( mp.latitude, '' ) mp_latitude,
+        IFNULL( mp.longitude, '' ) mp_longitude,
+        IFNULL(so.picture,'') photo
+        FROM
+        t_shared_office so
+        LEFT JOIN t_metro_to_shared_office mtso ON so.id = mtso.shared_office_id
+        LEFT JOIN t_metro_position mp ON mp.id = mtso.metro_id
+        LEFT JOIN t_district_to_shared_office dtoso ON dtoso.shared_office_id = so.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id = dtoso.district_id
+        LEFT JOIN t_collect_shared_office cso ON cso.collect_shared_office_id = so.id
+        LEFT JOIN a_user u ON u.user_id = cso.collect_user
+        WHERE
+        1 =1
+        <if test="condition !=null and condition!=''">
+            AND (so.`name` LIKE CONCAT('%',#{condition},'%')
+            or so.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="id !=null and id != ''">
+            AND so.office_building = #{id}
+        </if>
+        <if test="areaLow !=null and areaLow!='' and areaHigh !=null and areaHigh!=''">
+            AND so.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' and priceHigh !=null and priceHigh!=''">
+            AND so.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="type != null and type!=''">
+            AND so.type = #{type}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address!=''">
+            and so.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by so.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by so.price desc
+        </if>
+
+    </select>
+    <select id="selectSharedOfficeMyId" resultType="java.util.Map">
+        SELECT
+        so.*,
+        IFNULL( mp.position, '' ) position,
+        IFNULL( bd.`name`, '' ) `business_district_name`,
+        IFNULL( mp.latitude, '' ) mp_latitude,
+        IFNULL( mp.longitude, '' ) mp_longitude,
+        IFNULL(so.picture,'') photo
+        FROM
+        t_shared_office so
+        LEFT JOIN t_metro_to_shared_office mtso ON so.id = mtso.shared_office_id
+        LEFT JOIN t_metro_position mp ON mp.id = mtso.metro_id
+        LEFT JOIN t_district_to_shared_office dtoso ON dtoso.shared_office_id = so.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id = dtoso.district_id
+        LEFT JOIN t_collect_shared_office cso ON cso.collect_shared_office_id = so.id
+        LEFT JOIN a_user u ON u.user_id = cso.collect_user
+        WHERE
+        1 =1
+        AND cso.collect_user= #{myId}
+        <if test="condition !=null and condition!=''">
+            AND (so.`name` LIKE CONCAT('%',#{condition},'%')
+            or so.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="id !=null and id != ''">
+            AND so.office_building = #{id}
+        </if>
+        <if test="areaLow !=null and areaLow!='' and areaHigh !=null and areaHigh!=''">
+            AND so.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' and priceHigh !=null and priceHigh!=''">
+            AND so.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="type != null and type!=''">
+            AND so.type = #{type}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address!=''">
+            and so.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by so.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by so.price desc
+        </if>
+
+    </select>
+    <select id="selectSharedOfficeUserId" resultType="java.util.Map">
+        SELECT
+        so.*,
+        IFNULL( mp.position, '' ) position,
+        IFNULL( bd.`name`, '' ) `business_district_name`,
+        IFNULL( mp.latitude, '' ) mp_latitude,
+        IFNULL( mp.longitude, '' ) mp_longitude,
+        IFNULL(so.picture,'') photo
+        FROM
+        t_shared_office so
+        LEFT JOIN t_metro_to_shared_office mtso ON so.id = mtso.shared_office_id
+        LEFT JOIN t_metro_position mp ON mp.id = mtso.metro_id
+        LEFT JOIN t_district_to_shared_office dtoso ON dtoso.shared_office_id = so.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id = dtoso.district_id
+        LEFT JOIN t_attention t ON t.attention_label = so.id
+        LEFT JOIN a_user u ON u.user_id = t.attention_user
+        WHERE
+        1 =1
+        AND t.attention_user = #{userId}
+        AND t.attention_type='B'
+        <if test="condition !=null and condition!=''">
+            AND (so.`name` LIKE CONCAT('%',#{condition},'%')
+            or so.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="areaLow !=null and areaLow!='' and areaHigh !=null and areaHigh!=''">
+            AND so.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="id !=null and id != ''">
+            AND so.office_building = #{id}
+        </if>
+        <if test="priceLow !=null and priceLow!='' and priceHigh !=null and priceHigh!=''">
+            AND so.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="type != null and type!=''">
+            AND so.type = #{type}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address!=''">
+            and so.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by so.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by so.price desc
+        </if>
+
+    </select>
+</mapper>

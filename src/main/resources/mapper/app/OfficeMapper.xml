@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.OfficeMapper">
+    <select id="selectCountByBuildingId" resultType="java.lang.Integer">
+         select count(*)  FROM t_office WHERE office_building = #{officeBuildingId}
+    </select>
+    <select id="selectCountByBuildingForA" resultType="java.lang.Integer">
+         select count(*)  FROM t_office WHERE office_building = #{officeBuildingId} and type='B'
+    </select>
+    <select id="selectCountBySharedId" resultType="java.lang.Integer">
+         select count(*)  FROM t_office WHERE shared_office_id = #{sharedOfficeId}
+    </select>
+    <select id="selectCountBySharedForA" resultType="java.lang.Integer">
+         select count(*)  FROM t_office WHERE shared_office_id = #{sharedOfficeId} and type='B'
+    </select>
+    <select id="selectOffice" resultType="java.util.Map">
+        SELECT
+        o.*,
+        IFNULL(mp.position,'') position,
+        IFNULL(bd.`name`,'') `business_district_name`,
+        IFNULL(mp.latitude,'') mp_latitude,
+        IFNULL(mp.longitude,'') mp_longitude,
+        IFNULL(o.picture,'') photo
+        FROM
+        t_office o
+        LEFT JOIN t_metro_to_office mto ON o.id = mto.office_id
+        LEFT JOIN t_metro_position mp ON mp.id = mto.metro_id
+        LEFT JOIN t_district_to_office dto ON dto.office_id=o.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id=dto.district_id
+        WHERE
+        1=1
+        <if test="condition !=null and condition!=''">
+            AND (o.`name` LIKE CONCAT('%',#{condition},'%')
+            or o.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="id !=null and id != ''">
+            AND ( o.shared_office_id = #{id} OR o.office_building = #{id} )
+        </if>
+        <if test="areaLow !=null and areaLow!='' and areaHigh !=null and areaHigh!=''">
+            AND o.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' and priceHigh !=null and priceHigh!=''">
+            AND o.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="fitment != null and fitment!=''">
+            AND o.fitment = #{fitment}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address!=''">
+            and o.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by o.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by o.price desc
+        </if>
+        <!--        <if test="myId !=null and myId!=''">-->
+        <!--            AND o.create_user= #{myId}-->
+        <!--        </if>-->
+
+    </select>
+    <select id="selectOfficeUserId" resultType="java.util.Map">
+        SELECT
+        o.*,
+        IFNULL(mp.position,'') position,
+        IFNULL(bd.`name`,'') `business_district_name`,
+        IFNULL(mp.latitude,'') mp_latitude,
+        IFNULL(mp.longitude,'') mp_longitude,
+        IFNULL(o.picture,'') photo
+        FROM
+        t_office o
+        LEFT JOIN t_metro_to_office mto ON o.id = mto.office_id
+        LEFT JOIN t_metro_position mp ON mp.id = mto.metro_id
+        LEFT JOIN t_district_to_office dto ON dto.office_id=o.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id=dto.district_id
+        LEFT JOIN t_attention t ON t.attention_label = o.id
+        LEFT JOIN a_user u ON u.user_id = t.attention_user
+        WHERE
+        1=1
+        AND t.attention_user = #{userId}
+        AND t.attention_type='C'
+        <if test="condition !=null and condition!=''">
+            AND (o.`name` LIKE CONCAT('%',#{condition},'%')
+            or o.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="areaLow !=null and areaLow!='' and areaHigh !=null and areaHigh!=''">
+            AND o.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' and priceHigh !=null and priceHigh!=''">
+            AND o.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="id !=null and id != ''">
+            AND ( o.shared_office_id = #{id} OR o.office_building = #{id} )
+        </if>
+        <if test="fitment != null and fitment!=''">
+            AND o.fitment = #{fitment}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address!=''">
+            and o.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by o.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by o.price desc
+        </if>
+        <!--        <if test="myId !=null and myId!=''">-->
+        <!--            AND o.create_user= #{myId}-->
+        <!--        </if>-->
+
+    </select>
+    <select id="selectOfficeMyId" resultType="java.util.Map">
+        SELECT
+        o.*,
+        IFNULL(mp.position,'') position,
+        IFNULL(bd.`name`,'') `business_district_name`,
+        IFNULL(mp.latitude,'') mp_latitude,
+        IFNULL(mp.longitude,'') mp_longitude,
+        IFNULL(o.picture,'') photo
+        FROM
+        t_office o
+        LEFT JOIN t_metro_to_office mto ON o.id = mto.office_id
+        LEFT JOIN t_metro_position mp ON mp.id = mto.metro_id
+        LEFT JOIN t_district_to_office dto ON dto.office_id=o.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id=dto.district_id
+        LEFT JOIN t_collect_office co ON co.collect_office_id = o.id
+        LEFT JOIN a_user u ON u.user_id = co.collect_user
+        WHERE
+        1=1
+        AND co.collect_user= #{myId}
+        <if test="condition !=null and condition!=''">
+            AND (o.`name` LIKE CONCAT('%',#{condition},'%')
+            or o.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="areaLow !=null and areaLow!='' and areaHigh !=null and areaHigh!=''">
+            AND o.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="id !=null and id != ''">
+            AND ( o.shared_office_id = #{id} OR o.office_building = #{id} )
+        </if>
+        <if test="priceLow !=null and priceLow!='' and priceHigh !=null and priceHigh!=''">
+            AND o.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="fitment != null and fitment!=''">
+            AND o.fitment = #{fitment}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address!=''">
+            and o.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by o.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by o.price desc
+        </if>
+        <!--        <if test="myId !=null and myId!=''">-->
+        <!--            AND o.create_user= #{myId}-->
+        <!--        </if>-->
+
+    </select>
+    <select id="officeDown" resultType="java.util.Map">
+( SELECT
+	IFNULL(b.id,'') id,
+		IFNULL(b.`name`,'')`name`,
+		IFNULL(a.attention_type,'') type
+	FROM
+		t_office_building b
+		LEFT JOIN t_attention a ON a.attention_label = b.id
+	WHERE
+		a.attention_user = #{id}
+		AND a.attention_type='A'
+	) UNION
+	(
+	SELECT
+	IFNULL(b.id,'') id,
+		IFNULL(b.`name`,'')`name`,
+		IFNULL(a.attention_type,'') type
+	FROM
+		t_shared_office b
+		LEFT JOIN t_attention a ON a.attention_label = b.id
+WHERE
+	a.attention_user =  #{id}
+	AND a.attention_type='B')
+    </select>
+    <select id="selectOfficeDetails" resultType="java.util.Map">
+        SELECT
+   IFNULL(o.id,'') id,
+	IFNULL(o.floor,'') floor,
+	IFNULL(o.door,'')door,
+	IFNULL(o.area,'')area,
+	IFNULL(o.state,'')state,
+	IFNULL(f.`name`,'')`name`,
+	IFNULL(fo.floor_id,'')fid
+FROM
+	t_office o
+	LEFT JOIN t_floor_to_office fo ON fo.office_id = o.id
+	LEFT JOIN t_floor f ON f.id = fo.floor_id
+	where
+	o.id=#{id}
+    </select>
+    <select id="selectOfficeInPrice" resultType="java.util.Map">
+        SELECT
+        IFNULL(o.area,'')area,
+        IFNULL(o.door,'')door,
+        IFNULL(f.`name`,'')`name`,
+        IFNULL(o.price,'')price,
+        IFNULL(o.commission,'')commission,
+        IFNULL(o.id,'')id
+        FROM
+        t_office o
+        LEFT JOIN t_floor_to_office fto ON o.id = fto.office_id
+        LEFT JOIN t_floor f ON f.id = fto.floor_id LEFT JOIN t_attention a
+        ON a.attention_label =o.id
+        WHERE
+        1=1
+        AND a.attention_type='C'
+        AND a.attention_user=#{id}
+        <if test="pid !=null and pid !=''">
+            and (
+            o.office_building = #{pid}
+            OR o.shared_office_id = #{pid})
+        </if>
+        <if test="door !=null and door !=''">
+            AND o.door
+            =#{door}
+        </if>
+    </select>
+    <select id="selectOfficeInCost" resultType="java.util.Map">
+        SELECT
+        IFNULL( o.id, '' ) id,
+        IFNULL( o.`name`, '' ) `name`,
+        IFNULL( o.door, '' ) door
+        FROM
+        t_office o
+        LEFT JOIN t_attention a ON a.attention_label = o.id
+        WHERE
+        1=1
+        <if test="type!=null and type=='A'.toString()">
+            AND o.office_building = #{id}
+        </if>
+        <if test="type!=null and type=='B'.toString()">
+            AND o.shared_office_id = #{id}
+        </if>
+        AND a.attention_user =#{uid}
+    </select>
+</mapper>

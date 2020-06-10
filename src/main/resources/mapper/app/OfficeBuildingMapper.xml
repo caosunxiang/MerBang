@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.OfficeBuildingMapper">
+
+    <select id="selectOfficeBuildingMyId" resultType="java.util.Map">
+        SELECT
+        b.*,
+        IFNULL(mp.position,'') position,
+        IFNULL(bd.`name`,'') `business_district_name`,
+        IFNULL(mp.latitude,'') mp_latitude,
+        IFNULL(mp.longitude,'') mp_longitude,
+        IFNULL(b.picture,'') photo
+        FROM
+        t_office_building b
+        LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
+        LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
+        LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id=b.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id=dtob.business_district_id
+        LEFT JOIN t_collect c ON c.collect_office_building_id=b.id
+        LEFT JOIN a_user u ON u.user_id=c.collect_user
+        WHERE
+        1=1
+        AND c.collect_user= #{myId}
+        <if test="condition !=null and condition!=''">
+            AND (b.`name` LIKE CONCAT('%',#{condition},'%')
+            or b.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="areaLow !=null and areaLow!='' or areaHigh !=null and areaHigh!=''">
+            AND b.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' or priceHigh !=null and priceHigh!=''">
+            AND b.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="fitment != null and fitment!=''">
+            AND b.fitment = #{fitment}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address !=''">
+            AND  b.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+                order by b.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by b.price desc
+        </if>
+
+    </select>
+    <select id="selectOfficeBuildingUserId" resultType="java.util.Map">
+        SELECT
+	b.*,
+	IFNULL( mp.position, '' ) position,
+	IFNULL( bd.`name`, '' ) `business_district_name`,
+	IFNULL( mp.latitude, '' ) mp_latitude,
+	IFNULL( mp.longitude, '' ) mp_longitude,
+	IFNULL( b.picture, '' ) photo
+FROM
+	t_office_building b
+	LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
+	LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
+	LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id = b.id
+	LEFT JOIN t_business_district bd ON bd.business_district_id = dtob.business_district_id
+	LEFT JOIN t_attention t ON t.attention_label = b.id
+	LEFT JOIN a_user u ON u.user_id = t.attention_user
+WHERE
+	1 = 1
+	AND t.attention_user = #{userId}
+	AND t.attention_type='A'
+        <if test="condition !=null and condition!=''">
+            AND (b.`name` LIKE CONCAT('%',#{condition},'%')
+            or b.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="areaLow !=null and areaLow!='' or areaHigh !=null and areaHigh!=''">
+            AND b.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' or priceHigh !=null and priceHigh!=''">
+            AND b.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="fitment != null and fitment!=''">
+            AND b.fitment = #{fitment}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address !=''">
+            AND  b.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by b.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by b.price desc
+        </if>
+
+    </select>
+    <select id="selectOfficeBuilding" resultType="java.util.Map">
+        SELECT
+	b.*,
+	IFNULL( mp.position, '' ) position,
+	IFNULL( bd.`name`, '' ) `business_district_name`,
+	IFNULL( mp.latitude, '' ) mp_latitude,
+	IFNULL( mp.longitude, '' ) mp_longitude,
+	IFNULL( b.picture, '' ) photo
+FROM
+	t_office_building b
+	LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
+	LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
+	LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id = b.id
+	LEFT JOIN t_business_district bd ON bd.business_district_id = dtob.business_district_id
+WHERE
+	1 = 1
+        <if test="condition !=null and condition!=''">
+            AND (b.`name` LIKE CONCAT('%',#{condition},'%')
+            or b.address LIKE CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="areaLow !=null and areaLow!='' or areaHigh !=null and areaHigh!=''">
+            AND b.area BETWEEN #{areaLow}
+            AND #{areaHigh}
+        </if>
+        <if test="priceLow !=null and priceLow!='' or priceHigh !=null and priceHigh!=''">
+            AND b.price BETWEEN #{priceLow}
+            AND #{priceHigh}
+        </if>
+        <if test="fitment != null and fitment!=''">
+            AND b.fitment = #{fitment}
+        </if>
+        <if test="name !=null and name!=''">
+            AND bd.`name`= #{name}
+        </if>
+        <if test="position !=null and position!=''">
+            AND mp.position= #{position}
+        </if>
+        <if test="address !=null and address !=''">
+            AND  b.address LIKE CONCAT('%',#{address},'%')
+        </if>
+        <if test="order != null and order == 'A'.toString()">
+            order by b.price ASC
+        </if>
+        <if test="order != null and order == 'B'.toString()">
+            order by b.price desc
+        </if>
+
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.app.mapper.ApplyMapper">
+<select id="selectApplyCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM t_apply a WHERE a.office_id =( SELECT o.id FROM t_office o WHERE o.office_building = #{id} ) AND a.state='C';
+</select>
+<select id="selectApplyByOffice" resultType="java.util.Map">
+    SELECT
+	IFNULL(a.id,'')`id`,
+	IFNULL(u.head,'')`head`,
+	IFNULL(u.user_name,'')username,
+	IFNULL(u.phone,'')phone
+FROM
+	t_apply a
+	LEFT JOIN a_user u ON a.user_id = u.user_id
+WHERE
+	a.office_id = #{id} AND a.state='C'
+</select>
+</mapper>
