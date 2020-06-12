@@ -181,9 +181,12 @@ public class OfficeBuildingServiceImpl extends ServiceImpl<OfficeBuildingMapper,
 
     @Override
     public Body uploadOfficeBuilding(MultipartFile file) {
-        String picture = FileUploadUtils.fileUpload(file, "officeBuilding");
-        System.out.println(picture);
-        return Body.newInstance(picture);
+        if (FileUploadUtils.checkFileSize(file,500,"K")){
+            String picture = FileUploadUtils.fileUpload(file, "officeBuilding");
+            System.out.println(picture);
+            return Body.newInstance(picture);
+        }
+       return Body.newInstance(201,"图片超出限制");
     }
 
     @Override
