@@ -48,6 +48,7 @@ spring:
     # 连接超时时间（毫秒）
     timeout: 5000
 
+
 upload:
   mapping: upload/ #文件上传映射地址
   address: C:/Users/Administrator/Pictures/ #文件上传映射绝对地址
