@@ -70,5 +70,5 @@ public interface IOfficeBuildingLabelService extends IService<OfficeBuildingLabe
      * @Author: 冷酷的苹果
      * @Date: 2020/5/13 13:29
      */
-    Body insertOfficeBuildingLabel(String name,Integer userId);
+    Body insertOfficeBuildingLabel(String name, Integer userId);
 }

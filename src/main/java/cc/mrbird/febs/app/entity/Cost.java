@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 16:18:21
@@ -70,7 +70,7 @@ public class Cost {
      * 总价
      */
     @TableField(" total_prices")
-    private BigDecimal  totalPrices;
+    private BigDecimal totalPrices;
     /**
      * 上次结余
      */

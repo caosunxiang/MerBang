@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:05
@@ -39,7 +39,7 @@ public class HistoryToSharedOfficeController extends BaseController {
     private final IHistoryToSharedOfficeService historyToSharedOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "historyToSharedOffice")
-    public String historyToSharedOfficeIndex(){
+    public String historyToSharedOfficeIndex() {
         return FebsUtil.view("historyToSharedOffice/historyToSharedOffice");
     }
 
@@ -54,7 +54,9 @@ public class HistoryToSharedOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("historyToSharedOffice:list")
     public FebsResponse historyToSharedOfficeList(QueryRequest request, HistoryToSharedOffice historyToSharedOffice) {
-        Map<String, Object> dataTable = getDataTable(this.historyToSharedOfficeService.findHistoryToSharedOffices(request, historyToSharedOffice));
+        Map<String, Object> dataTable =
+                getDataTable(this.historyToSharedOfficeService.findHistoryToSharedOffices(request,
+                        historyToSharedOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +91,10 @@ public class HistoryToSharedOfficeController extends BaseController {
     @PostMapping("historyToSharedOffice/excel")
     @ResponseBody
     @RequiresPermissions("historyToSharedOffice:export")
-    public void export(QueryRequest queryRequest, HistoryToSharedOffice historyToSharedOffice, HttpServletResponse response) {
-        List<HistoryToSharedOffice> historyToSharedOffices = this.historyToSharedOfficeService.findHistoryToSharedOffices(queryRequest, historyToSharedOffice).getRecords();
+    public void export(QueryRequest queryRequest, HistoryToSharedOffice historyToSharedOffice,
+                       HttpServletResponse response) {
+        List<HistoryToSharedOffice> historyToSharedOffices =
+                this.historyToSharedOfficeService.findHistoryToSharedOffices(queryRequest, historyToSharedOffice).getRecords();
         ExcelKit.$Export(HistoryToSharedOffice.class, response).downXlsx(historyToSharedOffices, false);
     }
 }

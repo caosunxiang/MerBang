@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:02
@@ -38,9 +38,9 @@ public class HistoryToOfficeServiceImpl extends ServiceImpl<HistoryToOfficeMappe
 
     @Override
     public List<HistoryToOffice> findHistoryToOffices(HistoryToOffice historyToOffice) {
-	    LambdaQueryWrapper<HistoryToOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<HistoryToOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class HistoryToOfficeServiceImpl extends ServiceImpl<HistoryToOfficeMappe
     @Transactional(rollbackFor = Exception.class)
     public void deleteHistoryToOffice(HistoryToOffice historyToOffice) {
         LambdaQueryWrapper<HistoryToOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

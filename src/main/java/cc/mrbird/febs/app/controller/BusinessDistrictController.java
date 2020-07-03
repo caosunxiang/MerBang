@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 11:24:48
@@ -40,7 +40,7 @@ public class BusinessDistrictController extends BaseController {
     private final IBusinessDistrictService businessDistrictService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "businessDistrict")
-    public String businessDistrictIndex(){
+    public String businessDistrictIndex() {
         return FebsUtil.view("businessDistrict/businessDistrict");
     }
 
@@ -55,7 +55,8 @@ public class BusinessDistrictController extends BaseController {
     @ResponseBody
     @RequiresPermissions("businessDistrict:list")
     public FebsResponse businessDistrictList(QueryRequest request, BusinessDistrict businessDistrict) {
-        Map<String, Object> dataTable = getDataTable(this.businessDistrictService.findBusinessDistricts(request, businessDistrict));
+        Map<String, Object> dataTable = getDataTable(this.businessDistrictService.findBusinessDistricts(request,
+                businessDistrict));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -91,7 +92,8 @@ public class BusinessDistrictController extends BaseController {
     @ResponseBody
     @RequiresPermissions("businessDistrict:export")
     public void export(QueryRequest queryRequest, BusinessDistrict businessDistrict, HttpServletResponse response) {
-        List<BusinessDistrict> businessDistricts = this.businessDistrictService.findBusinessDistricts(queryRequest, businessDistrict).getRecords();
+        List<BusinessDistrict> businessDistricts = this.businessDistrictService.findBusinessDistricts(queryRequest,
+                businessDistrict).getRecords();
         ExcelKit.$Export(BusinessDistrict.class, response).downXlsx(businessDistricts, false);
     }
 

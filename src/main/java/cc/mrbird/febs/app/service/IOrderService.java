@@ -62,7 +62,8 @@ public interface IOrderService extends IService<Order> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/19 13:24
      */
-    Body insertOrderDetails(String payer, String date, BigDecimal peice, String picture, String remark, Integer id,Integer contractId);
+    Body insertOrderDetails(String payer, String date, BigDecimal peice, String picture, String remark, Integer id,
+                            Integer contractId);
 
     /**
      * @Description: 查找账单的支付记录
@@ -83,7 +84,7 @@ public interface IOrderService extends IService<Order> {
     Body selectByOrderId(Integer id);
 
     /**
-     * @Description:  首页折线图
+     * @Description: 首页折线图
      * @Param: [id]
      * @return: cc.mrbird.febs.common.utils.json.Body
      * @Author: 冷酷的苹果

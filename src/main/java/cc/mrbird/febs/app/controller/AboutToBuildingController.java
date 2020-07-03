@@ -100,8 +100,8 @@ public class AboutToBuildingController extends BaseController {
     @ControllerEndpoint(operation = "添加写字楼详情", exceptionMessage = "添加写字楼详情失败")
     @PostMapping("insertAbout")
     @ResponseBody
-    public Body insertAbout(AboutToBuilding aboutToBuilding,Integer userId) {
-        return this.aboutToBuildingService.insertAbout(aboutToBuilding,userId);
+    public Body insertAbout(AboutToBuilding aboutToBuilding, Integer userId) {
+        return this.aboutToBuildingService.insertAbout(aboutToBuilding, userId);
     }
 
     @ControllerEndpoint(operation = "查看写字楼详情", exceptionMessage = "查看写字楼详情失败")
@@ -114,8 +114,8 @@ public class AboutToBuildingController extends BaseController {
     @ControllerEndpoint(operation = "修改写字楼详情", exceptionMessage = "修改写字楼详情失败")
     @PostMapping("updateBuildingDetails")
     @ResponseBody
-    public Body updateDetails(AboutToBuilding aboutToBuilding,Integer userid) {
-        return this.aboutToBuildingService.updateDetails(aboutToBuilding,userid);
+    public Body updateDetails(AboutToBuilding aboutToBuilding, Integer userid) {
+        return this.aboutToBuildingService.updateDetails(aboutToBuilding, userid);
     }
 
 

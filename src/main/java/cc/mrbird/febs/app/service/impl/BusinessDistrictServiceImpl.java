@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 11:24:48
@@ -43,9 +43,9 @@ public class BusinessDistrictServiceImpl extends ServiceImpl<BusinessDistrictMap
 
     @Override
     public List<BusinessDistrict> findBusinessDistricts(BusinessDistrict businessDistrict) {
-	    LambdaQueryWrapper<BusinessDistrict> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<BusinessDistrict> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -64,19 +64,19 @@ public class BusinessDistrictServiceImpl extends ServiceImpl<BusinessDistrictMap
     @Transactional(rollbackFor = Exception.class)
     public void deleteBusinessDistrict(BusinessDistrict businessDistrict) {
         LambdaQueryWrapper<BusinessDistrict> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectBusinessDistrict(String city) {
-        LambdaQueryWrapper<BusinessDistrict> wrapper=new LambdaQueryWrapper<>();
-        wrapper.eq(BusinessDistrict::getCity,city);
-        List<BusinessDistrict> list=this.businessDistrictMapper.selectList(wrapper);
-        if (list.size()>0){
+        LambdaQueryWrapper<BusinessDistrict> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(BusinessDistrict::getCity, city);
+        List<BusinessDistrict> list = this.businessDistrictMapper.selectList(wrapper);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有查询到商圈信息");
+            return Body.newInstance(201, "没有查询到商圈信息");
         }
     }
 
@@ -84,10 +84,10 @@ public class BusinessDistrictServiceImpl extends ServiceImpl<BusinessDistrictMap
     public Body insertBusinessDistrict(BusinessDistrict businessDistrict) {
         businessDistrict.setCreationTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
         businessDistrict.setState("A");
-        int count=this.businessDistrictMapper.insert(businessDistrict);
-        if (count==1){
+        int count = this.businessDistrictMapper.insert(businessDistrict);
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"添加失败");
+        return Body.newInstance(201, "添加失败");
     }
 }

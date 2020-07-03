@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:16:37
@@ -39,7 +39,7 @@ public class OfficeLabelController extends BaseController {
     private final IOfficeLabelService officeLabelService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "officeLabel")
-    public String officeLabelIndex(){
+    public String officeLabelIndex() {
         return FebsUtil.view("officeLabel/officeLabel");
     }
 
@@ -90,7 +90,8 @@ public class OfficeLabelController extends BaseController {
     @ResponseBody
     @RequiresPermissions("officeLabel:export")
     public void export(QueryRequest queryRequest, OfficeLabel officeLabel, HttpServletResponse response) {
-        List<OfficeLabel> officeLabels = this.officeLabelService.findOfficeLabels(queryRequest, officeLabel).getRecords();
+        List<OfficeLabel> officeLabels =
+                this.officeLabelService.findOfficeLabels(queryRequest, officeLabel).getRecords();
         ExcelKit.$Export(OfficeLabel.class, response).downXlsx(officeLabels, false);
     }
 }

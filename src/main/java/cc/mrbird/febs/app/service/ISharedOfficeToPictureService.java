@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:58
@@ -18,7 +18,7 @@ public interface ISharedOfficeToPictureService extends IService<SharedOfficeToPi
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request               QueryRequest
      * @param sharedOfficeToPicture sharedOfficeToPicture
      * @return IPage<SharedOfficeToPicture>
      */

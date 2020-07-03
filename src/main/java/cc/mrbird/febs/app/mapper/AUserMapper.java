@@ -8,17 +8,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Mapper
+ * Mapper
  *
  * @author MrBird
  * @date 2020-04-21 16:52:25
  */
 public interface AUserMapper extends BaseMapper<AUser> {
-    public Map<String,Object> selectAllAreaByUid(@Param("uId") Integer uId);
+    public Map<String, Object> selectAllAreaByUid(@Param("uId") Integer uId);
 
-    public Map<String,Object> selectAllCountByUid(@Param("uId") Integer uId);
+    public Map<String, Object> selectAllCountByUid(@Param("uId") Integer uId);
 
-    public List<Map<String,Object>> selectAllRateByUid(@Param("uId") Integer uId);
+    public List<Map<String, Object>> selectAllRateByUid(@Param("uId") Integer uId);
 
-    public Map<String,Object> selectAllPriceByUid(@Param("uId") Integer uId);
+    public Map<String, Object> selectAllPriceByUid(@Param("uId") Integer uId);
 }

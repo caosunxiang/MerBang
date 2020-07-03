@@ -123,7 +123,8 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, SystemLog> implements
                         Class<?> aClass = args[i].getClass();
                         try {
                             aClass.getDeclaredMethod("toString", new Class[]{null});
-                            // 如果不抛出 NoSuchMethodException 异常则存在 toString 方法 ，安全的 writeValueAsString ，否则 走 Object的 toString方法
+                            // 如果不抛出 NoSuchMethodException 异常则存在 toString 方法 ，安全的 writeValueAsString ，否则 走 Object的
+                            // toString方法
                             params.append(" ").append(paramNames.get(i)).append(": ").append(objectMapper.writeValueAsString(args[i]));
                         } catch (NoSuchMethodException e) {
                             params.append(" ").append(paramNames.get(i)).append(": ").append(objectMapper.writeValueAsString(args[i].toString()));

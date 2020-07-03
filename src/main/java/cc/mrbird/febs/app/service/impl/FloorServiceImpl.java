@@ -71,32 +71,32 @@ public class FloorServiceImpl extends ServiceImpl<FloorMapper, Floor> implements
         LambdaQueryWrapper<Floor> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Floor::getFloorToBuildingId, buildingId);
         List<Floor> list = this.floorMapper.selectList(wrapper);
-        if (list.size()>0) {
+        if (list.size() > 0) {
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有查询到信息");
+            return Body.newInstance(201, "没有查询到信息");
         }
     }
 
     @Override
     public Body insertFloor(Floor floor) {
-        Integer count=this.floorMapper.insert(floor);
-        if (count==1){
+        Integer count = this.floorMapper.insert(floor);
+        if (count == 1) {
             return Body.newInstance(floor);
         }
-        return Body.newInstance(201,"添加楼层失败");
+        return Body.newInstance(201, "添加楼层失败");
     }
 
     @Override
     public Body selectFloorToId(Integer pid, String state) {
-        LambdaQueryWrapper<Floor> wrapper=new LambdaQueryWrapper();
-        wrapper.eq(Floor::getFloorToBuildingId,pid);
-        wrapper.eq(Floor::getState,state);
-        List<Floor>list=this.floorMapper.selectList(wrapper);
-        if (list.size()>0){
+        LambdaQueryWrapper<Floor> wrapper = new LambdaQueryWrapper();
+        wrapper.eq(Floor::getFloorToBuildingId, pid);
+        wrapper.eq(Floor::getState, state);
+        List<Floor> list = this.floorMapper.selectList(wrapper);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有添加楼栋");
+        return Body.newInstance(201, "没有添加楼栋");
     }
 
 }

@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Mapper
+ * Mapper
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:12
  */
 public interface LabelToOfficeMapper extends BaseMapper<LabelToOffice> {
 
-    List<Map<String,Object>> selectOfficeLabel(@Param("id")Integer id);
+    List<Map<String, Object>> selectOfficeLabel(@Param("id") Integer id);
 }

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈租户页面租控图〉
  *
  * @author 冷酷的苹果
@@ -26,8 +26,8 @@ import java.util.Map;
 @Data
 public class LesseeUtil {
 
-private String floor;
-private String area;
+    private String floor;
+    private String area;
 
-private List<Map<String,Object>> list;
+    private List<Map<String, Object>> list;
 }

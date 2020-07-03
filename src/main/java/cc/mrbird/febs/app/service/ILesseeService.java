@@ -64,20 +64,21 @@ public interface ILesseeService extends IService<Lessee> {
      */
     Body selectLesseeByOffice(Integer id);
 
-    /** 
-    * @Description: 添加租户信息
-    * @Param: [lessee]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/18 9:19
-    */
-    Body insertLessee(Lessee lessee,Integer officeId);
-/** 
-* @Description: 修改租户信息
-* @Param: [lessee]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/28 8:43
-*/
+    /**
+     * @Description: 添加租户信息
+     * @Param: [lessee]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 9:19
+     */
+    Body insertLessee(Lessee lessee, Integer officeId);
+
+    /**
+     * @Description: 修改租户信息
+     * @Param: [lessee]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/28 8:43
+     */
     Body updateLesseeDetails(Lessee lessee);
 }

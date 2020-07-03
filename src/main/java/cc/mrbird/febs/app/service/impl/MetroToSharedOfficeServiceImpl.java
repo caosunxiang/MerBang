@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:14
@@ -30,7 +30,8 @@ public class MetroToSharedOfficeServiceImpl extends ServiceImpl<MetroToSharedOff
     private final MetroToSharedOfficeMapper metroToSharedOfficeMapper;
 
     @Override
-    public IPage<MetroToSharedOffice> findMetroToSharedOffices(QueryRequest request, MetroToSharedOffice metroToSharedOffice) {
+    public IPage<MetroToSharedOffice> findMetroToSharedOffices(QueryRequest request,
+                                                               MetroToSharedOffice metroToSharedOffice) {
         LambdaQueryWrapper<MetroToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<MetroToSharedOffice> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -39,9 +40,9 @@ public class MetroToSharedOfficeServiceImpl extends ServiceImpl<MetroToSharedOff
 
     @Override
     public List<MetroToSharedOffice> findMetroToSharedOffices(MetroToSharedOffice metroToSharedOffice) {
-	    LambdaQueryWrapper<MetroToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<MetroToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class MetroToSharedOfficeServiceImpl extends ServiceImpl<MetroToSharedOff
     @Transactional(rollbackFor = Exception.class)
     public void deleteMetroToSharedOffice(MetroToSharedOffice metroToSharedOffice) {
         LambdaQueryWrapper<MetroToSharedOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

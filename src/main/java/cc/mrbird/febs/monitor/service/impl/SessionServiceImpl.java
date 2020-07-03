@@ -48,8 +48,10 @@ public class SessionServiceImpl implements ISessionService {
             }
             activeUser.setId((String) session.getId());
             activeUser.setHost(session.getHost());
-            activeUser.setStartTimestamp(DateUtil.getDateFormat(session.getStartTimestamp(), DateUtil.FULL_TIME_SPLIT_PATTERN));
-            activeUser.setLastAccessTime(DateUtil.getDateFormat(session.getLastAccessTime(), DateUtil.FULL_TIME_SPLIT_PATTERN));
+            activeUser.setStartTimestamp(DateUtil.getDateFormat(session.getStartTimestamp(),
+                    DateUtil.FULL_TIME_SPLIT_PATTERN));
+            activeUser.setLastAccessTime(DateUtil.getDateFormat(session.getLastAccessTime(),
+                    DateUtil.FULL_TIME_SPLIT_PATTERN));
             long timeout = session.getTimeout();
             activeUser.setStatus(timeout == 0L ? "0" : "1");
             String address = AddressUtil.getCityInfo(activeUser.getHost());

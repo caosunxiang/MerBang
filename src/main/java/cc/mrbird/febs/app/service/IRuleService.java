@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-18 09:55:18
@@ -20,7 +20,7 @@ public interface IRuleService extends IService<Rule> {
      * 查询（分页）
      *
      * @param request QueryRequest
-     * @param rule rule
+     * @param rule    rule
      * @return IPage<Rule>
      */
     IPage<Rule> findRules(QueryRequest request, Rule rule);
@@ -54,28 +54,30 @@ public interface IRuleService extends IService<Rule> {
      */
     void deleteRule(Rule rule);
 
-/** 
-* @Description: 查找租户租金规则
-* @Param: [lesseeId]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/18 10:30
-*/
+    /**
+     * @Description: 查找租户租金规则
+     * @Param: [lesseeId]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 10:30
+     */
     Body selectRule(Integer lesseeId);
-/** 
-* @Description: 新增租金规则
-* @Param: [rule]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/18 10:31
-*/
-    Body insertRule(Rule rule,Integer userid,Integer house);
-/** 
-* @Description: 修改租金规则
-* @Param: [rule]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/18 10:33
-*/
-    Body updateRuleDetails(Rule rule,Integer userid,Integer house);
+
+    /**
+     * @Description: 新增租金规则
+     * @Param: [rule]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 10:31
+     */
+    Body insertRule(Rule rule, Integer userid, Integer house);
+
+    /**
+     * @Description: 修改租金规则
+     * @Param: [rule]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 10:33
+     */
+    Body updateRuleDetails(Rule rule, Integer userid, Integer house);
 }

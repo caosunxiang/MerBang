@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:27
@@ -39,9 +39,9 @@ public class UserRecordServiceImpl extends ServiceImpl<UserRecordMapper, UserRec
 
     @Override
     public List<UserRecord> findUserRecords(UserRecord userRecord) {
-	    LambdaQueryWrapper<UserRecord> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<UserRecord> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class UserRecordServiceImpl extends ServiceImpl<UserRecordMapper, UserRec
     @Transactional(rollbackFor = Exception.class)
     public void deleteUserRecord(UserRecord userRecord) {
         LambdaQueryWrapper<UserRecord> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

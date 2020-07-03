@@ -8,17 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Mapper
+ * Mapper
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 16:18:21
  */
 public interface CostMapper extends BaseMapper<Cost> {
-    List<Map<String,Object>>costStatistics(@Param("id")Integer id);
+    List<Map<String, Object>> costStatistics(@Param("id") Integer id);
 
-    List<Map<String,Object>>selectCost(@Param("condition")String condition,@Param("id")Integer id,@Param("door")String door);
+    List<Map<String, Object>> selectCost(@Param("condition") String condition, @Param("id") Integer id,
+                                         @Param("door") String door);
 
-    Integer selectLatelyCost(@Param("id")Integer id);
+    Integer selectLatelyCost(@Param("id") Integer id);
 
-    Integer selectPassCost(@Param("id")Integer id,@Param("month")Integer month);
+    Integer selectPassCost(@Param("id") Integer id, @Param("month") Integer month);
 }

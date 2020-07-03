@@ -16,7 +16,7 @@ import javafx.geometry.Point2D;
 
 
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈经纬度计算位置〉
  *
  * @author 冷酷的苹果
@@ -56,25 +56,26 @@ public class GPSUtil {
     }
 
 
-    /**(米勒投影算法）将经纬度转化为平面坐标 （单位m）
+    /**
+     * (米勒投影算法）将经纬度转化为平面坐标 （单位m）
+     *
      * @param lon 经度
      * @param lat 维度
      * @return
      * @author shaosen
      * @Date 2018年8月24日
      */
-    public static Point2D MillierConvertion(double lon, double lat)
-    {
-        double L = 6381372  * Math.PI * 2;//地球周长
-        double W=L;// 平面展开后，x轴等于周长
-        double H=L/2;// y轴约等于周长一半
-        double mill=2.3;// 米勒投影中的一个常数，范围大约在正负2.3之间
+    public static Point2D MillierConvertion(double lon, double lat) {
+        double L = 6381372 * Math.PI * 2;//地球周长
+        double W = L;// 平面展开后，x轴等于周长
+        double H = L / 2;// y轴约等于周长一半
+        double mill = 2.3;// 米勒投影中的一个常数，范围大约在正负2.3之间
         double x = lon * Math.PI / 180;// 将经度从度数转换为弧度
         double y = lat * Math.PI / 180;// 将纬度从度数转换为弧度
-        y=1.25 * Math.log( Math.tan( 0.25 * Math.PI + 0.4 * y ) );// 米勒投影的转换
+        y = 1.25 * Math.log(Math.tan(0.25 * Math.PI + 0.4 * y));// 米勒投影的转换
         // 弧度转为实际距离
-        x = ( W / 2 ) + ( W / (2 * Math.PI) ) * x;
-        y = ( H / 2 ) - ( H / ( 2 * mill ) ) * y;
+        x = (W / 2) + (W / (2 * Math.PI)) * x;
+        y = (H / 2) - (H / (2 * mill)) * y;
 //         double[] result=new double[2];
 //         result[0]=x;
 //         result[1]=y;

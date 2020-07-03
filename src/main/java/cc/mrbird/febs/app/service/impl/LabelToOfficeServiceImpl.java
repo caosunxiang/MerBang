@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:12
@@ -41,9 +41,9 @@ public class LabelToOfficeServiceImpl extends ServiceImpl<LabelToOfficeMapper, L
 
     @Override
     public List<LabelToOffice> findLabelToOffices(LabelToOffice labelToOffice) {
-	    LambdaQueryWrapper<LabelToOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<LabelToOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -62,21 +62,21 @@ public class LabelToOfficeServiceImpl extends ServiceImpl<LabelToOfficeMapper, L
     @Transactional(rollbackFor = Exception.class)
     public void deleteLabelToOffice(LabelToOffice labelToOffice) {
         LambdaQueryWrapper<LabelToOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectLabelByOfficeId(Integer officeId) {
-        List<Map<String,Object>>list=this.labelToOfficeMapper.selectOfficeLabel(officeId);
-        if (list.size()>0){
+        List<Map<String, Object>> list = this.labelToOfficeMapper.selectOfficeLabel(officeId);
+        if (list.size() > 0) {
             for (Map<String, Object> stringObjectMap : list) {
-                if (!StringUtils.isEmpty(stringObjectMap.get("oid"))){
-                    stringObjectMap.put("oid","bopdd_opp");
+                if (!StringUtils.isEmpty(stringObjectMap.get("oid"))) {
+                    stringObjectMap.put("oid", "bopdd_opp");
                 }
             }
-            return  Body.newInstance(list);
+            return Body.newInstance(list);
         }
-        return Body.newInstance(201,"尚未选择");
+        return Body.newInstance(201, "尚未选择");
     }
 }

@@ -176,11 +176,11 @@ public class FileUploadUtils {
      * 判断文件大小
      *
      * @param :multipartFile:上传的文件
-     * @param size: 限制大小
+     * @param size:                限制大小
      * @param unit:限制单位（B,K,M,G)
      * @return boolean:是否大于
      */
-    public static boolean checkFileSize( MultipartFile multipartFile, int size, String unit) {
+    public static boolean checkFileSize(MultipartFile multipartFile, int size, String unit) {
         long len = multipartFile.getSize();//上传文件的大小, 单位为字节.
         //准备接收换算后文件大小的容器
         double fileSize = 0;

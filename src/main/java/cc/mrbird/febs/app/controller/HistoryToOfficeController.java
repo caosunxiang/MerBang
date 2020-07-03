@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:02
@@ -39,7 +39,7 @@ public class HistoryToOfficeController extends BaseController {
     private final IHistoryToOfficeService historyToOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "historyToOffice")
-    public String historyToOfficeIndex(){
+    public String historyToOfficeIndex() {
         return FebsUtil.view("historyToOffice/historyToOffice");
     }
 
@@ -54,7 +54,8 @@ public class HistoryToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("historyToOffice:list")
     public FebsResponse historyToOfficeList(QueryRequest request, HistoryToOffice historyToOffice) {
-        Map<String, Object> dataTable = getDataTable(this.historyToOfficeService.findHistoryToOffices(request, historyToOffice));
+        Map<String, Object> dataTable = getDataTable(this.historyToOfficeService.findHistoryToOffices(request,
+                historyToOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -90,7 +91,8 @@ public class HistoryToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("historyToOffice:export")
     public void export(QueryRequest queryRequest, HistoryToOffice historyToOffice, HttpServletResponse response) {
-        List<HistoryToOffice> historyToOffices = this.historyToOfficeService.findHistoryToOffices(queryRequest, historyToOffice).getRecords();
+        List<HistoryToOffice> historyToOffices = this.historyToOfficeService.findHistoryToOffices(queryRequest,
+                historyToOffice).getRecords();
         ExcelKit.$Export(HistoryToOffice.class, response).downXlsx(historyToOffices, false);
     }
 }

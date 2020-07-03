@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:33
@@ -39,9 +39,9 @@ public class DistrictToOfficeServiceImpl extends ServiceImpl<DistrictToOfficeMap
 
     @Override
     public List<DistrictToOffice> findDistrictToOffices(DistrictToOffice districtToOffice) {
-	    LambdaQueryWrapper<DistrictToOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<DistrictToOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class DistrictToOfficeServiceImpl extends ServiceImpl<DistrictToOfficeMap
     @Transactional(rollbackFor = Exception.class)
     public void deleteDistrictToOffice(DistrictToOffice districtToOffice) {
         LambdaQueryWrapper<DistrictToOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

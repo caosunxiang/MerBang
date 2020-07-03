@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:21
@@ -20,7 +20,7 @@ public interface IAppLogService extends IService<AppLog> {
      * 查询（分页）
      *
      * @param request QueryRequest
-     * @param appLog appLog
+     * @param appLog  appLog
      * @return IPage<AppLog>
      */
     IPage<AppLog> findAppLogs(QueryRequest request, AppLog appLog);
@@ -54,12 +54,12 @@ public interface IAppLogService extends IService<AppLog> {
      */
     void deleteAppLog(AppLog appLog);
 
-    /** 
-    * @Description: 查找个人操作记录
-    * @Param: [userId]
-    * @return: cc.mrbird.febs.common.entity.FebsResponse
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/6 11:06
-    */
-    Body appLogByUserId(Integer userId,String type,Integer house);
+    /**
+     * @Description: 查找个人操作记录
+     * @Param: [userId]
+     * @return: cc.mrbird.febs.common.entity.FebsResponse
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/6 11:06
+     */
+    Body appLogByUserId(Integer userId, String type, Integer house);
 }

@@ -65,7 +65,8 @@ public class FileUtil {
         if (!fileTypeIsValid(fileType)) {
             throw new Exception("暂不支持该类型文件下载");
         }
-        response.setHeader("Content-Disposition", "attachment;fileName=" + java.net.URLEncoder.encode(fileName, "utf-8"));
+        response.setHeader("Content-Disposition", "attachment;fileName=" + java.net.URLEncoder.encode(fileName, "utf" +
+                "-8"));
         response.setContentType("multipart/form-data");
         response.setCharacterEncoding("utf-8");
         try (InputStream inputStream = new FileInputStream(file); OutputStream os = response.getOutputStream()) {

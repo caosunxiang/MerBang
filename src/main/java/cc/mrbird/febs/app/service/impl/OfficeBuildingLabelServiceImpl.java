@@ -80,25 +80,25 @@ public class OfficeBuildingLabelServiceImpl extends ServiceImpl<OfficeBuildingLa
         if (list.size() > 0) {
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有相关信息");
+            return Body.newInstance(201, "没有相关信息");
         }
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Body insertOfficeBuildingLabel(String name,Integer userId) {
-        OfficeBuildingLabel officeBuildingLabel=new OfficeBuildingLabel();
-        officeBuildingLabel.setCreationTime(DateUtil.getDateFormat(new Date(),DateUtil.FULL_TIME_SPLIT_PATTERN));
+    public Body insertOfficeBuildingLabel(String name, Integer userId) {
+        OfficeBuildingLabel officeBuildingLabel = new OfficeBuildingLabel();
+        officeBuildingLabel.setCreationTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
         officeBuildingLabel.setName(name);
-        Integer count=this.officeBuildingLabelMapper.insert(officeBuildingLabel);
-        if (count==1){
-            AppLog appLog=new AppLog();
+        Integer count = this.officeBuildingLabelMapper.insert(officeBuildingLabel);
+        if (count == 1) {
+            AppLog appLog = new AppLog();
             appLog.setCreateUser(userId);
             appLog.setContent("上传标签");
-            appLog.setCreateTime(DateUtil.getDateFormat(new Date(),DateUtil.FULL_TIME_SPLIT_PATTERN));
+            appLog.setCreateTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
             this.appLogMapper.insert(appLog);
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"添加失败");
+        return Body.newInstance(201, "添加失败");
     }
 }

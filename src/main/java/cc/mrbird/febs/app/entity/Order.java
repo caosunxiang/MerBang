@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 13:56:57

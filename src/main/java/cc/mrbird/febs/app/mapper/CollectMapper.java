@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Mapper
+ * Mapper
  *
  * @author 冷酷的苹果
  * @date 2020-05-26 09:53:12
  */
 public interface CollectMapper extends BaseMapper<Collect> {
-List<Map<String,Object>>selectCollect();
+    List<Map<String, Object>> selectCollect();
 }

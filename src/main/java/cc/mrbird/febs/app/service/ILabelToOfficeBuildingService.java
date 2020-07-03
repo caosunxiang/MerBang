@@ -64,7 +64,7 @@ public interface ILabelToOfficeBuildingService extends IService<LabelToOfficeBui
     Body insertLabelAndOfficeBuilding(Integer officeBuildingId, String labelId, Integer id);
 
     /**
-     * @Description:  查询已经选择的标签
+     * @Description: 查询已经选择的标签
      * @Param: [officeBuildingId]
      * @return: cc.mrbird.febs.common.utils.json.Body
      * @Author: 冷酷的苹果

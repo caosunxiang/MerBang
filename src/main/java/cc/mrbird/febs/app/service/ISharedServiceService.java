@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 15:53:58
@@ -19,7 +19,7 @@ public interface ISharedServiceService extends IService<SharedService> {
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request       QueryRequest
      * @param sharedService sharedService
      * @return IPage<SharedService>
      */
@@ -53,12 +53,13 @@ public interface ISharedServiceService extends IService<SharedService> {
      * @param sharedService sharedService
      */
     void deleteSharedService(SharedService sharedService);
-/** 
-* @Description: 查询共享办公服务
-* @Param: []
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/15 16:05
-*/
+
+    /**
+     * @Description: 查询共享办公服务
+     * @Param: []
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/15 16:05
+     */
     Body selectSharedService();
 }

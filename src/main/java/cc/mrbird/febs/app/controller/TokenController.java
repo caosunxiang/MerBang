@@ -42,13 +42,12 @@ public class TokenController {
     /**
      * 微信消息接收和token验证
      *
-     *
      * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping("Merbang")
-    public void hello( HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void hello(HttpServletRequest request, HttpServletResponse response) throws IOException {
         boolean isGet = request.getMethod().toLowerCase().equals("get");
         PrintWriter print;
         if (isGet) {

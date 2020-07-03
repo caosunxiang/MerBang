@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 10:08:20
@@ -39,9 +39,9 @@ public class UserToOfficeServiceImpl extends ServiceImpl<UserToOfficeMapper, Use
 
     @Override
     public List<UserToOffice> findUserToOffices(UserToOffice userToOffice) {
-	    LambdaQueryWrapper<UserToOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<UserToOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class UserToOfficeServiceImpl extends ServiceImpl<UserToOfficeMapper, Use
     @Transactional(rollbackFor = Exception.class)
     public void deleteUserToOffice(UserToOffice userToOffice) {
         LambdaQueryWrapper<UserToOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

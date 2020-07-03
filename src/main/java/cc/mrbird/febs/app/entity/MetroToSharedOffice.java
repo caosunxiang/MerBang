@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:14
@@ -18,19 +18,19 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class MetroToSharedOffice {
 
     /**
-     * 
+     *
      */
     @TableId(value = "metro_to_shared_id", type = IdType.AUTO)
     private Integer metroToSharedId;
 
     /**
-     * 
+     *
      */
     @TableField("metro_id")
     private Integer metroId;
 
     /**
-     * 
+     *
      */
     @TableField("shared_office_id")
     private Integer sharedOfficeId;

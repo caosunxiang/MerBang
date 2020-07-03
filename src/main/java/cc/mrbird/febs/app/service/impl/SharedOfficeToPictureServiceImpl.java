@@ -111,10 +111,10 @@ public class SharedOfficeToPictureServiceImpl extends ServiceImpl<SharedOfficeTo
 
     @Override
     public Body deleteSharedOfficePicture(Integer Id) {
-        Integer count=this.sharedOfficeToPictureMapper.deleteById(Id);
-        if (count==1){
+        Integer count = this.sharedOfficeToPictureMapper.deleteById(Id);
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"删除失败");
+        return Body.newInstance(201, "删除失败");
     }
 }

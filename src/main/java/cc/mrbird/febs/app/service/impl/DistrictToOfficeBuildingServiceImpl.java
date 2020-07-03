@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:36
@@ -24,12 +24,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class DistrictToOfficeBuildingServiceImpl extends ServiceImpl<DistrictToOfficeBuildingMapper, DistrictToOfficeBuilding> implements IDistrictToOfficeBuildingService {
+public class DistrictToOfficeBuildingServiceImpl extends ServiceImpl<DistrictToOfficeBuildingMapper,
+        DistrictToOfficeBuilding> implements IDistrictToOfficeBuildingService {
 
     private final DistrictToOfficeBuildingMapper districtToOfficeBuildingMapper;
 
     @Override
-    public IPage<DistrictToOfficeBuilding> findDistrictToOfficeBuildings(QueryRequest request, DistrictToOfficeBuilding districtToOfficeBuilding) {
+    public IPage<DistrictToOfficeBuilding> findDistrictToOfficeBuildings(QueryRequest request,
+                                                                         DistrictToOfficeBuilding districtToOfficeBuilding) {
         LambdaQueryWrapper<DistrictToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<DistrictToOfficeBuilding> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -38,9 +40,9 @@ public class DistrictToOfficeBuildingServiceImpl extends ServiceImpl<DistrictToO
 
     @Override
     public List<DistrictToOfficeBuilding> findDistrictToOfficeBuildings(DistrictToOfficeBuilding districtToOfficeBuilding) {
-	    LambdaQueryWrapper<DistrictToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<DistrictToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class DistrictToOfficeBuildingServiceImpl extends ServiceImpl<DistrictToO
     @Transactional(rollbackFor = Exception.class)
     public void deleteDistrictToOfficeBuilding(DistrictToOfficeBuilding districtToOfficeBuilding) {
         LambdaQueryWrapper<DistrictToOfficeBuilding> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

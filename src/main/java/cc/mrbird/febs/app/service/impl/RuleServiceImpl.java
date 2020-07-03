@@ -101,17 +101,17 @@ public class RuleServiceImpl extends ServiceImpl<RuleMapper, Rule> implements IR
         appLog.setRemark("A");
         appLog.setHouse⁯(house);
         this.appLogMapper.insert(appLog);
-        int start=0;
+        int start = 0;
         Date date = new Date();
-        Date date1=new Date();
-        DateFormat fmt =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = new Date();
+        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             date1 = fmt.parse(rule.getPayTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (date.getDay()>date1.getDay()){
-            start=1;
+        if (date.getDay() > date1.getDay()) {
+            start = 1;
         }
         for (int i = start; i < Integer.parseInt(rule.getPayType()); i++) {
             Calendar cal = Calendar.getInstance();

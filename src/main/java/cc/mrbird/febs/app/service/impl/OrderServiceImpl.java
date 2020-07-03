@@ -74,7 +74,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Body insertOrderDetails(String payer, String date, BigDecimal peice, String picture, String remark,
-                                   Integer id,Integer contractId) {
+                                   Integer id, Integer contractId) {
         Order order = new Order();
         order.setContractId(id);
         order.setInvoice(picture);
@@ -96,27 +96,27 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     public Body selectByContractId(Integer id) {
-        LambdaQueryWrapper<Order> wrapper=new LambdaQueryWrapper<>();
-        wrapper.eq(Order::getContractId,id);
-        List<Order> orders=this.orderMapper.selectList(wrapper);
-        if (orders.size()>0){
+        LambdaQueryWrapper<Order> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Order::getContractId, id);
+        List<Order> orders = this.orderMapper.selectList(wrapper);
+        if (orders.size() > 0) {
             return Body.newInstance(orders);
         }
-        return Body.newInstance(201,"查询失败");
+        return Body.newInstance(201, "查询失败");
     }
 
     @Override
     public Body selectByOrderId(Integer id) {
-        Order order=this.orderMapper.selectById(id);
-        if (order!=null){
+        Order order = this.orderMapper.selectById(id);
+        if (order != null) {
             return Body.newInstance(order);
         }
-        return Body.newInstance(201,"查找成功");
+        return Body.newInstance(201, "查找成功");
     }
 
     @Override
     public Body selectLineChart(Integer id) {
-        List<Map<String,Object>>list=this.orderMapper.selectLineChart(id);
+        List<Map<String, Object>> list = this.orderMapper.selectLineChart(id);
         return Body.newInstance(list);
     }
 

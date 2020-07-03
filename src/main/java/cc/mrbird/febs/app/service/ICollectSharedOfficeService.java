@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-26 09:53:33
@@ -18,7 +18,7 @@ public interface ICollectSharedOfficeService extends IService<CollectSharedOffic
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request             QueryRequest
      * @param collectSharedOffice collectSharedOffice
      * @return IPage<CollectSharedOffice>
      */

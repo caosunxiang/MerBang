@@ -64,5 +64,5 @@ public interface IFloorToOfficeService extends IService<FloorToOffice> {
      */
 //    Body selectOfficeByfloor(Integer id);
 
-    Body selectOfficeFloor(Integer pid ,Integer id);
+    Body selectOfficeFloor(Integer pid, Integer id);
 }

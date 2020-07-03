@@ -103,8 +103,8 @@ public class AUserController extends BaseController {
     @ControllerEndpoint(operation = "扫描二维码", exceptionMessage = "扫描失败")
     @PostMapping("scanQRCode")
     @ResponseBody
-    public Body scanQRCode(String code,String userid) {
-        return Body.newInstance(this.aUserService.scanQRCode(code,userid));
+    public Body scanQRCode(String code, String userid) {
+        return Body.newInstance(this.aUserService.scanQRCode(code, userid));
     }
 
 
@@ -115,7 +115,7 @@ public class AUserController extends BaseController {
         return this.aUserService.appGetUser(userid);
     }
 
-//    @ControllerEndpoint(operation = "操作成功", exceptionMessage = "操作失败")
+    //    @ControllerEndpoint(operation = "操作成功", exceptionMessage = "操作失败")
     @PostMapping("insertUserApp")
     @ResponseBody
     public Body signInORLogin(AUser user) {
@@ -241,6 +241,7 @@ public class AUserController extends BaseController {
         response.addCookie(cookie);
 
     }
+
     @ControllerEndpoint(operation = "生成二维码", exceptionMessage = "生成二维码失败")
     @GetMapping("QRCode")
     @ResponseBody

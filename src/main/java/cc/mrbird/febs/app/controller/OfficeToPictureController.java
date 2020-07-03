@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:53
@@ -40,7 +40,7 @@ public class OfficeToPictureController extends BaseController {
     private final IOfficeToPictureService officeToPictureService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "officeToPicture")
-    public String officeToPictureIndex(){
+    public String officeToPictureIndex() {
         return FebsUtil.view("officeToPicture/officeToPicture");
     }
 
@@ -55,7 +55,8 @@ public class OfficeToPictureController extends BaseController {
     @ResponseBody
     @RequiresPermissions("officeToPicture:list")
     public FebsResponse officeToPictureList(QueryRequest request, OfficeToPicture officeToPicture) {
-        Map<String, Object> dataTable = getDataTable(this.officeToPictureService.findOfficeToPictures(request, officeToPicture));
+        Map<String, Object> dataTable = getDataTable(this.officeToPictureService.findOfficeToPictures(request,
+                officeToPicture));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -91,14 +92,16 @@ public class OfficeToPictureController extends BaseController {
     @ResponseBody
     @RequiresPermissions("officeToPicture:export")
     public void export(QueryRequest queryRequest, OfficeToPicture officeToPicture, HttpServletResponse response) {
-        List<OfficeToPicture> officeToPictures = this.officeToPictureService.findOfficeToPictures(queryRequest, officeToPicture).getRecords();
+        List<OfficeToPicture> officeToPictures = this.officeToPictureService.findOfficeToPictures(queryRequest,
+                officeToPicture).getRecords();
         ExcelKit.$Export(OfficeToPicture.class, response).downXlsx(officeToPictures, false);
     }
+
     @ControllerEndpoint(operation = "上传办公室照片", exceptionMessage = "上传办公室照片失败")
     @PostMapping("uploadOfficeIntroduce")
     @ResponseBody
     public Body uploadOfficeIntroduce(String picture, Integer userId, Integer office, String introduce) {
-        return this.officeToPictureService.uploadIntroduce(picture,userId,office,introduce);
+        return this.officeToPictureService.uploadIntroduce(picture, userId, office, introduce);
     }
 
     @ControllerEndpoint(operation = "查询指定楼照片", exceptionMessage = "查询指定办公室照片失败")

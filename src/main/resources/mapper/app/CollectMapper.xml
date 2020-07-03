@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.CollectMapper">
-<select id="selectCollect" resultType="java.util.Map">
- ( SELECT
-	IFNULL( b.id, '' ) id,
-	IFNULL( b.`name`, '' ) `name`,
-	IFNULL( b.create_user, '' ) `user`,
-	IFNULL( c.collect_id, '' ) cid,
-	IFNULL( c.collect_user, '' ) collerct,
-	IFNULL(NULL,'A') type
-	FROM
-		t_office_building b
-		LEFT JOIN t_collect c ON c.collect_office_building_id = b.id
-	) UNION
-	(
-	SELECT
-		IFNULL( b.id, '' ) id,
-		IFNULL( b.`name`, '' ) `name`,
-		IFNULL( b.create_user, '' ) `user`,
-		IFNULL( c.collect_id, '' ) cid,
-		IFNULL( c.collect_user, '' ) collerct,
-		IFNULL(NULL,'B') type
-	FROM
-		t_shared_office b
-	LEFT JOIN t_collect_shared_office c ON c.collect_shared_office_id = b.id
-	)
-</select>
+    <select id="selectCollect" resultType="java.util.Map">
+        ( SELECT
+        IFNULL( b.id, '' ) id,
+        IFNULL( b.`name`, '' ) `name`,
+        IFNULL( b.create_user, '' ) `user`,
+        IFNULL( c.collect_id, '' ) cid,
+        IFNULL( c.collect_user, '' ) collerct,
+        IFNULL(NULL,'A') type
+        FROM
+        t_office_building b
+        LEFT JOIN t_collect c ON c.collect_office_building_id = b.id
+        ) UNION
+        (
+        SELECT
+        IFNULL( b.id, '' ) id,
+        IFNULL( b.`name`, '' ) `name`,
+        IFNULL( b.create_user, '' ) `user`,
+        IFNULL( c.collect_id, '' ) cid,
+        IFNULL( c.collect_user, '' ) collerct,
+        IFNULL(NULL,'B') type
+        FROM
+        t_shared_office b
+        LEFT JOIN t_collect_shared_office c ON c.collect_shared_office_id = b.id
+        )
+    </select>
 </mapper>

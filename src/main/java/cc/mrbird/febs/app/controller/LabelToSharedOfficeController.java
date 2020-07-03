@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:50
@@ -40,7 +40,7 @@ public class LabelToSharedOfficeController extends BaseController {
     private final ILabelToSharedOfficeService labelToSharedOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "labelToSharedOffice")
-    public String labelToSharedOfficeIndex(){
+    public String labelToSharedOfficeIndex() {
         return FebsUtil.view("labelToSharedOffice/labelToSharedOffice");
     }
 
@@ -55,7 +55,8 @@ public class LabelToSharedOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("labelToSharedOffice:list")
     public FebsResponse labelToSharedOfficeList(QueryRequest request, LabelToSharedOffice labelToSharedOffice) {
-        Map<String, Object> dataTable = getDataTable(this.labelToSharedOfficeService.findLabelToSharedOffices(request, labelToSharedOffice));
+        Map<String, Object> dataTable = getDataTable(this.labelToSharedOfficeService.findLabelToSharedOffices(request
+                , labelToSharedOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -90,8 +91,10 @@ public class LabelToSharedOfficeController extends BaseController {
     @PostMapping("labelToSharedOffice/excel")
     @ResponseBody
     @RequiresPermissions("labelToSharedOffice:export")
-    public void export(QueryRequest queryRequest, LabelToSharedOffice labelToSharedOffice, HttpServletResponse response) {
-        List<LabelToSharedOffice> labelToSharedOffices = this.labelToSharedOfficeService.findLabelToSharedOffices(queryRequest, labelToSharedOffice).getRecords();
+    public void export(QueryRequest queryRequest, LabelToSharedOffice labelToSharedOffice,
+                       HttpServletResponse response) {
+        List<LabelToSharedOffice> labelToSharedOffices =
+                this.labelToSharedOfficeService.findLabelToSharedOffices(queryRequest, labelToSharedOffice).getRecords();
         ExcelKit.$Export(LabelToSharedOffice.class, response).downXlsx(labelToSharedOffices, false);
     }
 
@@ -99,7 +102,7 @@ public class LabelToSharedOfficeController extends BaseController {
     @PostMapping("insertLabelAndSharedOffice")
     @ResponseBody
     public Body insertLabelAndSharedOffice(Integer SharedOfficeId, String labelId, Integer id) {
-        return this.labelToSharedOfficeService.insertLabelAndSharedOffice(SharedOfficeId,labelId,id);
+        return this.labelToSharedOfficeService.insertLabelAndSharedOffice(SharedOfficeId, labelId, id);
     }
 
     @ControllerEndpoint(operation = "查找共享办公标签", exceptionMessage = "查找共享办公标签失败")

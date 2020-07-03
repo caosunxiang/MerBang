@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:27
@@ -39,7 +39,7 @@ public class UserRecordController extends BaseController {
     private final IUserRecordService userRecordService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "userRecord")
-    public String userRecordIndex(){
+    public String userRecordIndex() {
         return FebsUtil.view("userRecord/userRecord");
     }
 

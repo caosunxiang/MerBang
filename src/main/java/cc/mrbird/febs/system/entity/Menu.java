@@ -25,7 +25,7 @@ public class Menu implements Serializable {
     private static final long serialVersionUID = 8571011372410167901L;
 
     /**
-     *  菜单
+     * 菜单
      */
     public static final String TYPE_MENU = "0";
     /**

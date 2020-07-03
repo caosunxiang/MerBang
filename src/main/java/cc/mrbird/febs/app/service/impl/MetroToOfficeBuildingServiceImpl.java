@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:18
@@ -30,7 +30,8 @@ public class MetroToOfficeBuildingServiceImpl extends ServiceImpl<MetroToOfficeB
     private final MetroToOfficeBuildingMapper metroToOfficeBuildingMapper;
 
     @Override
-    public IPage<MetroToOfficeBuilding> findMetroToOfficeBuildings(QueryRequest request, MetroToOfficeBuilding metroToOfficeBuilding) {
+    public IPage<MetroToOfficeBuilding> findMetroToOfficeBuildings(QueryRequest request,
+                                                                   MetroToOfficeBuilding metroToOfficeBuilding) {
         LambdaQueryWrapper<MetroToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<MetroToOfficeBuilding> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -39,9 +40,9 @@ public class MetroToOfficeBuildingServiceImpl extends ServiceImpl<MetroToOfficeB
 
     @Override
     public List<MetroToOfficeBuilding> findMetroToOfficeBuildings(MetroToOfficeBuilding metroToOfficeBuilding) {
-	    LambdaQueryWrapper<MetroToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<MetroToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class MetroToOfficeBuildingServiceImpl extends ServiceImpl<MetroToOfficeB
     @Transactional(rollbackFor = Exception.class)
     public void deleteMetroToOfficeBuilding(MetroToOfficeBuilding metroToOfficeBuilding) {
         LambdaQueryWrapper<MetroToOfficeBuilding> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

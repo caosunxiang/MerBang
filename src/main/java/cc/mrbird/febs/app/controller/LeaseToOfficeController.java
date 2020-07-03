@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-14 15:23:01
@@ -41,7 +41,7 @@ public class LeaseToOfficeController extends BaseController {
     private final ILeaseToOfficeService leaseToOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "leaseToOffice")
-    public String leaseToOfficeIndex(){
+    public String leaseToOfficeIndex() {
         return FebsUtil.view("leaseToOffice/leaseToOffice");
     }
 
@@ -56,7 +56,8 @@ public class LeaseToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("leaseToOffice:list")
     public FebsResponse leaseToOfficeList(QueryRequest request, LeaseToOffice leaseToOffice) {
-        Map<String, Object> dataTable = getDataTable(this.leaseToOfficeService.findLeaseToOffices(request, leaseToOffice));
+        Map<String, Object> dataTable = getDataTable(this.leaseToOfficeService.findLeaseToOffices(request,
+                leaseToOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -92,14 +93,16 @@ public class LeaseToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("leaseToOffice:export")
     public void export(QueryRequest queryRequest, LeaseToOffice leaseToOffice, HttpServletResponse response) {
-        List<LeaseToOffice> leaseToOffices = this.leaseToOfficeService.findLeaseToOffices(queryRequest, leaseToOffice).getRecords();
+        List<LeaseToOffice> leaseToOffices = this.leaseToOfficeService.findLeaseToOffices(queryRequest,
+                leaseToOffice).getRecords();
         ExcelKit.$Export(LeaseToOffice.class, response).downXlsx(leaseToOffices, false);
     }
+
     @ControllerEndpoint(operation = "添加办公室租约", exceptionMessage = "添加办公室租约失败")
     @PostMapping("insertLease")
     @ResponseBody
     public Body insertLease(LeaseToOffice LeaseToOffice, Integer userid) {
-        return this.leaseToOfficeService.insertLease(LeaseToOffice,userid);
+        return this.leaseToOfficeService.insertLease(LeaseToOffice, userid);
     }
 
     @ControllerEndpoint(operation = "查看办公室租约", exceptionMessage = "查看办公室租约失败")
@@ -112,7 +115,7 @@ public class LeaseToOfficeController extends BaseController {
     @ControllerEndpoint(operation = "修改办公室详情", exceptionMessage = "修改办公室详情失败")
     @PostMapping("updateLeaseToOffice")
     @ResponseBody
-    public Body updateDetails(LeaseToOffice LeaseToOffice,Integer userid) {
-        return this.leaseToOfficeService.updateDetails(LeaseToOffice,userid);
+    public Body updateDetails(LeaseToOffice LeaseToOffice, Integer userid) {
+        return this.leaseToOfficeService.updateDetails(LeaseToOffice, userid);
     }
 }

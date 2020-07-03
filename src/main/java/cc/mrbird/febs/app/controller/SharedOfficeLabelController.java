@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 14:45:20
@@ -40,7 +40,7 @@ public class SharedOfficeLabelController extends BaseController {
     private final ISharedOfficeLabelService sharedOfficeLabelService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "sharedOfficeLabel")
-    public String sharedOfficeLabelIndex(){
+    public String sharedOfficeLabelIndex() {
         return FebsUtil.view("sharedOfficeLabel/sharedOfficeLabel");
     }
 
@@ -55,7 +55,8 @@ public class SharedOfficeLabelController extends BaseController {
     @ResponseBody
     @RequiresPermissions("sharedOfficeLabel:list")
     public FebsResponse sharedOfficeLabelList(QueryRequest request, SharedOfficeLabel sharedOfficeLabel) {
-        Map<String, Object> dataTable = getDataTable(this.sharedOfficeLabelService.findSharedOfficeLabels(request, sharedOfficeLabel));
+        Map<String, Object> dataTable = getDataTable(this.sharedOfficeLabelService.findSharedOfficeLabels(request,
+                sharedOfficeLabel));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -91,7 +92,8 @@ public class SharedOfficeLabelController extends BaseController {
     @ResponseBody
     @RequiresPermissions("sharedOfficeLabel:export")
     public void export(QueryRequest queryRequest, SharedOfficeLabel sharedOfficeLabel, HttpServletResponse response) {
-        List<SharedOfficeLabel> sharedOfficeLabels = this.sharedOfficeLabelService.findSharedOfficeLabels(queryRequest, sharedOfficeLabel).getRecords();
+        List<SharedOfficeLabel> sharedOfficeLabels =
+                this.sharedOfficeLabelService.findSharedOfficeLabels(queryRequest, sharedOfficeLabel).getRecords();
         ExcelKit.$Export(SharedOfficeLabel.class, response).downXlsx(sharedOfficeLabels, false);
     }
 

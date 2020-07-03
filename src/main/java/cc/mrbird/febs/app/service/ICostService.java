@@ -71,23 +71,23 @@ public interface ICostService extends IService<Cost> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/20 10:23
      */
-    Body selectCostByCostId(Integer id );
+    Body selectCostByCostId(Integer id);
 
-    /** 
-    * @Description: 费用统计
-    * @Param: []
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/20 10:54
-    */
+    /**
+     * @Description: 费用统计
+     * @Param: []
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/20 10:54
+     */
     Body costStatistics(Integer costId);
 
-    /** 
-    * @Description: 查询所有物业费账单
-    * @Param: []
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/20 13:17
-    */
-    Body selectCost(String condition,Integer id,String door);
+    /**
+     * @Description: 查询所有物业费账单
+     * @Param: []
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/20 13:17
+     */
+    Body selectCost(String condition, Integer id, String door);
 }

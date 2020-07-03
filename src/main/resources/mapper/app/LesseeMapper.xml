@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.LesseeMapper">
-<select id="selectLesseeByOffice" resultType="java.util.Map">
-SELECT
-	l.*,
-	IFNULL(u.head,'')`head`,
-	IFNULL(u.user_name,'')username,
-	IFNULL(u.phone,'')phone
-FROM
-	t_lessee l
-	LEFT JOIN a_user u ON l.user_id = u.user_id
-	LEFT JOIN t_office o ON o.user_id=l.id
-WHERE
-o.id = #{id}
-</select>
+    <select id="selectLesseeByOffice" resultType="java.util.Map">
+        SELECT
+        l.*,
+        IFNULL(u.head,'')`head`,
+        IFNULL(u.user_name,'')username,
+        IFNULL(u.phone,'')phone
+        FROM
+        t_lessee l
+        LEFT JOIN a_user u ON l.user_id = u.user_id
+        LEFT JOIN t_office o ON o.user_id=l.id
+        WHERE
+        o.id = #{id}
+    </select>
     <select id="selectVerifyOffice" resultType="java.util.Map">
         SELECT
-	l.*,
-	IFNULL(u.head,'')`head`,
-	IFNULL(u.user_name,'')username,
-	IFNULL(u.phone,'')phone
-FROM
-	t_lessee l
-	LEFT JOIN a_user u ON l.user_id = u.user_id
-	LEFT JOIN t_office o ON o.user_id=l.id LEFT JOIN t_contract c
-	ON c.room=o.id
-WHERE
-o.id = #{id}
-AND
-DATE_FORMAT(now(), '%Y%m' ) =DATE_FORMAT(c.time,'%Y%m')
+        l.*,
+        IFNULL(u.head,'')`head`,
+        IFNULL(u.user_name,'')username,
+        IFNULL(u.phone,'')phone
+        FROM
+        t_lessee l
+        LEFT JOIN a_user u ON l.user_id = u.user_id
+        LEFT JOIN t_office o ON o.user_id=l.id LEFT JOIN t_contract c
+        ON c.room=o.id
+        WHERE
+        o.id = #{id}
+        AND
+        DATE_FORMAT(now(), '%Y%m' ) =DATE_FORMAT(c.time,'%Y%m')
     </select>
 </mapper>

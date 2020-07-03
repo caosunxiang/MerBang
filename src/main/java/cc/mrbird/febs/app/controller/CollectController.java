@@ -106,7 +106,7 @@ public class CollectController extends BaseController {
     @PostMapping("insertCollect")
     @ResponseBody
     public Body insertCollect(Integer collectUser, Integer collectOfficeBuildingId, String type) {
-        return this.collectService.insertCollect(collectUser,collectOfficeBuildingId,type);
+        return this.collectService.insertCollect(collectUser, collectOfficeBuildingId, type);
     }
 
     @ControllerEndpoint(operation = "删除收藏", exceptionMessage = "删除收藏失败")

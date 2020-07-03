@@ -20,9 +20,9 @@ public class FileProperties {
 
     @PostConstruct
     public void readConfig() {
-        mapping=env.getProperty("upload.mapping");
-        address=env.getProperty("upload.address");
-        returnUrl=env.getProperty("upload.returnUrl");
+        mapping = env.getProperty("upload.mapping");
+        address = env.getProperty("upload.address");
+        returnUrl = env.getProperty("upload.returnUrl");
     }
 
 }

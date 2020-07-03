@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.OrderMapper">
-<select id="selectLineChart" resultType="java.util.Map">
-SELECT
-	IFNULL(DATE_FORMAT( o.paid_in_date, '%Y-%m' ) ,'')`date`,
-	IFNULL(o.paid_in_price,'')`price`
-FROM
-	t_order o
-	LEFT JOIN t_contract c ON c.contract_id = o.contract_id
-	LEFT JOIN t_office f ON f.id = c.room
-	WHERE
-	f.create_user = #{id}
-	GROUP BY
-	DATE_FORMAT( o.paid_in_date, '%Y%m' );
-</select>
+    <select id="selectLineChart" resultType="java.util.Map">
+        SELECT
+        IFNULL(DATE_FORMAT( o.paid_in_date, '%Y-%m' ) ,'')`date`,
+        IFNULL(o.paid_in_price,'')`price`
+        FROM
+        t_order o
+        LEFT JOIN t_contract c ON c.contract_id = o.contract_id
+        LEFT JOIN t_office f ON f.id = c.room
+        WHERE
+        f.create_user = #{id}
+        GROUP BY
+        DATE_FORMAT( o.paid_in_date, '%Y%m' );
+    </select>
 </mapper>

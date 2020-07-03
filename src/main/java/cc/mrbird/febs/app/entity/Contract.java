@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-18 14:04:02
@@ -40,7 +40,7 @@ public class Contract {
 
     /**
      * 当前时间
-账单所属时间
+     * 账单所属时间
      */
     @TableField("time")
     private String time;

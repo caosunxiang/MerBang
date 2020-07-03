@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:38
@@ -39,7 +39,7 @@ public class MetroToOfficeController extends BaseController {
     private final IMetroToOfficeService metroToOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "metroToOffice")
-    public String metroToOfficeIndex(){
+    public String metroToOfficeIndex() {
         return FebsUtil.view("metroToOffice/metroToOffice");
     }
 
@@ -54,7 +54,8 @@ public class MetroToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("metroToOffice:list")
     public FebsResponse metroToOfficeList(QueryRequest request, MetroToOffice metroToOffice) {
-        Map<String, Object> dataTable = getDataTable(this.metroToOfficeService.findMetroToOffices(request, metroToOffice));
+        Map<String, Object> dataTable = getDataTable(this.metroToOfficeService.findMetroToOffices(request,
+                metroToOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -90,7 +91,8 @@ public class MetroToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("metroToOffice:export")
     public void export(QueryRequest queryRequest, MetroToOffice metroToOffice, HttpServletResponse response) {
-        List<MetroToOffice> metroToOffices = this.metroToOfficeService.findMetroToOffices(queryRequest, metroToOffice).getRecords();
+        List<MetroToOffice> metroToOffices = this.metroToOfficeService.findMetroToOffices(queryRequest,
+                metroToOffice).getRecords();
         ExcelKit.$Export(MetroToOffice.class, response).downXlsx(metroToOffices, false);
     }
 }

@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-12 13:47:16
@@ -32,35 +32,35 @@ public class AboutToBuilding {
     private Integer officeBuildingId;
 
     /**
-     * 
+     *
      */
     @TableField("end_time")
     private String endTime;
 
     /**
-     * 
+     *
      */
     @TableField("company")
     private String company;
 
     /**
-     * 
+     *
      */
     @TableField("price")
     private String price;
     /**
-     * 
+     *
      */
     @TableField("park")
     private String park;
 
     /**
-     * 
+     *
      */
     @TableField("park_price")
     private String parkPrice;
     /**
-     * 
+     *
      */
     @TableField("about")
     private String about;

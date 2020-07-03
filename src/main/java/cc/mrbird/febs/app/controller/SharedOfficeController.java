@@ -96,21 +96,21 @@ public class SharedOfficeController extends BaseController {
         ExcelKit.$Export(SharedOffice.class, response).downXlsx(sharedOffices, false);
     }
 
-//    @ControllerEndpoint(operation = "高级查找共享办公", exceptionMessage = "高级查找共享办公失败")
+    //    @ControllerEndpoint(operation = "高级查找共享办公", exceptionMessage = "高级查找共享办公失败")
     @GetMapping("selectSharedOffice")
     @ResponseBody
-    public Body selectSharedOffice(String condition,Integer id, Integer areaLow, Integer areaHigh, Integer priceLow,
+    public Body selectSharedOffice(String condition, Integer id, Integer areaLow, Integer areaHigh, Integer priceLow,
                                    Integer priceHigh, String type, String name, String position, String userId
-            , String myId, String address,String order, Integer index, Integer size) {
+            , String myId, String address, String order, Integer index, Integer size) {
         return this.sharedOfficeService.selectSharedOffice(condition, id, areaLow, areaHigh, priceLow, priceHigh, type,
-                name, position, userId, myId, address,order, index, size);
+                name, position, userId, myId, address, order, index, size);
     }
 
     @ControllerEndpoint(operation = "上传共享办公首页图片", exceptionMessage = "上传共享办公首页图片失败")
     @PostMapping("uploadSharedOfficeHomePage")
     @ResponseBody
-    public Body uploadSharedOfficeHomePage(Integer SharedOfficeId,String picture,Integer userId) {
-        return this.sharedOfficeService.uploadOfficeHomePage(SharedOfficeId,picture,userId);
+    public Body uploadSharedOfficeHomePage(Integer SharedOfficeId, String picture, Integer userId) {
+        return this.sharedOfficeService.uploadOfficeHomePage(SharedOfficeId, picture, userId);
     }
 
     @ControllerEndpoint(operation = "添加共享办公", exceptionMessage = "添加共享办公失败")
@@ -123,8 +123,8 @@ public class SharedOfficeController extends BaseController {
     @ControllerEndpoint(operation = "修改共享办公", exceptionMessage = "修改共享办公失败")
     @PostMapping("updateSharedOfficeDetails")
     @ResponseBody
-    public Body updateSharedOfficeDetails(SharedOffice sharedOffice,Integer userid) {
-        return this.sharedOfficeService.updateSharedOfficeDetails(sharedOffice,userid);
+    public Body updateSharedOfficeDetails(SharedOffice sharedOffice, Integer userid) {
+        return this.sharedOfficeService.updateSharedOfficeDetails(sharedOffice, userid);
     }
 
     @ControllerEndpoint(operation = "查询指定共享办公消息", exceptionMessage = "查询指定共享办公消息失败")

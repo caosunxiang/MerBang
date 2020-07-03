@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 13:40:47
@@ -18,19 +18,19 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class FloorToOffice {
 
     /**
-     * 
+     *
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 
+     *
      */
     @TableField("floor_id")
     private Integer floorId;
 
     /**
-     * 
+     *
      */
     @TableField("office_id")
     private Integer officeId;

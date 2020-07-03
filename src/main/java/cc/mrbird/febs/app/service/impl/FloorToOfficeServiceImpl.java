@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 13:40:47
@@ -46,9 +46,9 @@ public class FloorToOfficeServiceImpl extends ServiceImpl<FloorToOfficeMapper, F
 
     @Override
     public List<FloorToOffice> findFloorToOffices(FloorToOffice floorToOffice) {
-	    LambdaQueryWrapper<FloorToOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<FloorToOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -67,9 +67,9 @@ public class FloorToOfficeServiceImpl extends ServiceImpl<FloorToOfficeMapper, F
     @Transactional(rollbackFor = Exception.class)
     public void deleteFloorToOffice(FloorToOffice floorToOffice) {
         LambdaQueryWrapper<FloorToOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
 //    @Override
 //    public Body selectOfficeByfloor(Integer id) {
@@ -83,14 +83,14 @@ public class FloorToOfficeServiceImpl extends ServiceImpl<FloorToOfficeMapper, F
 
     @Override
     public Body selectOfficeFloor(Integer pid, Integer id) {
-        List<LesseeUtil>list=new ArrayList<>();
-        List<Map<String,Object>> flist=this.floorToOfficeMapper.selectOfficeFloor(pid,id);
+        List<LesseeUtil> list = new ArrayList<>();
+        List<Map<String, Object>> flist = this.floorToOfficeMapper.selectOfficeFloor(pid, id);
         for (Map<String, Object> stringObjectMap : flist) {
-            LesseeUtil lesseeUtil=new LesseeUtil();
+            LesseeUtil lesseeUtil = new LesseeUtil();
             lesseeUtil.setFloor(stringObjectMap.get("floor").toString());
-            if (!StringUtils.isEmpty(stringObjectMap.get("area"))){
+            if (!StringUtils.isEmpty(stringObjectMap.get("area"))) {
                 lesseeUtil.setArea(stringObjectMap.get("area").toString());
-            }else {
+            } else {
                 lesseeUtil.setArea(null);
             }
             lesseeUtil.setList(this.floorToOfficeMapper.selectOfficeByfloor(id,

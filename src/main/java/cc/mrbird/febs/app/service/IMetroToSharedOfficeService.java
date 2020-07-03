@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:14
@@ -18,7 +18,7 @@ public interface IMetroToSharedOfficeService extends IService<MetroToSharedOffic
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request             QueryRequest
      * @param metroToSharedOffice metroToSharedOffice
      * @return IPage<MetroToSharedOffice>
      */

@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Mapper
+ * Mapper
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 13:56:57
  */
 public interface OrderMapper extends BaseMapper<Order> {
-List<Map<String,Object>>selectLineChart(@Param("id")Integer id );
+    List<Map<String, Object>> selectLineChart(@Param("id") Integer id);
 }

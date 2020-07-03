@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:09
@@ -44,7 +44,7 @@ public class SharedOffice {
 
     /**
      * 显示状态   A-在用;
-X-删除
+     * X-删除
      */
     @TableField("state")
     private String state;

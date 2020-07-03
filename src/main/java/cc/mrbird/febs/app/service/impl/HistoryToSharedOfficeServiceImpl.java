@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:05
@@ -29,7 +29,8 @@ public class HistoryToSharedOfficeServiceImpl extends ServiceImpl<HistoryToShare
     private final HistoryToSharedOfficeMapper historyToSharedOfficeMapper;
 
     @Override
-    public IPage<HistoryToSharedOffice> findHistoryToSharedOffices(QueryRequest request, HistoryToSharedOffice historyToSharedOffice) {
+    public IPage<HistoryToSharedOffice> findHistoryToSharedOffices(QueryRequest request,
+                                                                   HistoryToSharedOffice historyToSharedOffice) {
         LambdaQueryWrapper<HistoryToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<HistoryToSharedOffice> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -38,9 +39,9 @@ public class HistoryToSharedOfficeServiceImpl extends ServiceImpl<HistoryToShare
 
     @Override
     public List<HistoryToSharedOffice> findHistoryToSharedOffices(HistoryToSharedOffice historyToSharedOffice) {
-	    LambdaQueryWrapper<HistoryToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<HistoryToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class HistoryToSharedOfficeServiceImpl extends ServiceImpl<HistoryToShare
     @Transactional(rollbackFor = Exception.class)
     public void deleteHistoryToSharedOffice(HistoryToSharedOffice historyToSharedOffice) {
         LambdaQueryWrapper<HistoryToSharedOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

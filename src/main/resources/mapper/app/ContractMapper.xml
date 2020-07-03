@@ -62,11 +62,11 @@
         </if>
     </select>
     <select id="selectLatelyContract" resultType="java.lang.Integer">
-       SELECT
-	COUNT(*)
-FROM
-	t_attention a
-	LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_contract c ON c.room=o.id
+        SELECT
+        COUNT(*)
+        FROM
+        t_attention a
+        LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_contract c ON c.room=o.id
         WHERE
         a.attention_user = #{id}
         AND a.attention_type = 'C'
@@ -75,18 +75,18 @@ FROM
     </select>
 
     <select id="selectPassContract" resultType="java.lang.Integer">
-SELECT
-	COUNT(*)
-FROM
-	t_attention a
-	LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_contract c ON c.room=o.id
-WHERE
-	a.attention_type = 'C'
-	AND a.attention_user = #{id}
-		AND c.state='A'
-	AND PERIOD_DIFF(
-	date_format(now(), '%Y%m'),
-	date_format(c.time, '%Y%m')
-) = #{month};
+        SELECT
+        COUNT(*)
+        FROM
+        t_attention a
+        LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_contract c ON c.room=o.id
+        WHERE
+        a.attention_type = 'C'
+        AND a.attention_user = #{id}
+        AND c.state='A'
+        AND PERIOD_DIFF(
+        date_format(now(), '%Y%m'),
+        date_format(c.time, '%Y%m')
+        ) = #{month};
     </select>
 </mapper>

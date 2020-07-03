@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:07
@@ -39,7 +39,7 @@ public class HistoryToOfficeBuildingController extends BaseController {
     private final IHistoryToOfficeBuildingService historyToOfficeBuildingService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "historyToOfficeBuilding")
-    public String historyToOfficeBuildingIndex(){
+    public String historyToOfficeBuildingIndex() {
         return FebsUtil.view("historyToOfficeBuilding/historyToOfficeBuilding");
     }
 
@@ -53,8 +53,11 @@ public class HistoryToOfficeBuildingController extends BaseController {
     @GetMapping("historyToOfficeBuilding/list")
     @ResponseBody
     @RequiresPermissions("historyToOfficeBuilding:list")
-    public FebsResponse historyToOfficeBuildingList(QueryRequest request, HistoryToOfficeBuilding historyToOfficeBuilding) {
-        Map<String, Object> dataTable = getDataTable(this.historyToOfficeBuildingService.findHistoryToOfficeBuildings(request, historyToOfficeBuilding));
+    public FebsResponse historyToOfficeBuildingList(QueryRequest request,
+                                                    HistoryToOfficeBuilding historyToOfficeBuilding) {
+        Map<String, Object> dataTable =
+                getDataTable(this.historyToOfficeBuildingService.findHistoryToOfficeBuildings(request,
+                        historyToOfficeBuilding));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +92,11 @@ public class HistoryToOfficeBuildingController extends BaseController {
     @PostMapping("historyToOfficeBuilding/excel")
     @ResponseBody
     @RequiresPermissions("historyToOfficeBuilding:export")
-    public void export(QueryRequest queryRequest, HistoryToOfficeBuilding historyToOfficeBuilding, HttpServletResponse response) {
-        List<HistoryToOfficeBuilding> historyToOfficeBuildings = this.historyToOfficeBuildingService.findHistoryToOfficeBuildings(queryRequest, historyToOfficeBuilding).getRecords();
+    public void export(QueryRequest queryRequest, HistoryToOfficeBuilding historyToOfficeBuilding,
+                       HttpServletResponse response) {
+        List<HistoryToOfficeBuilding> historyToOfficeBuildings =
+                this.historyToOfficeBuildingService.findHistoryToOfficeBuildings(queryRequest,
+                        historyToOfficeBuilding).getRecords();
         ExcelKit.$Export(HistoryToOfficeBuilding.class, response).downXlsx(historyToOfficeBuildings, false);
     }
 }

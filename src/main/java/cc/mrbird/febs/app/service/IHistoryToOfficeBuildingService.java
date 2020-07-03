@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:07
@@ -17,7 +17,7 @@ public interface IHistoryToOfficeBuildingService extends IService<HistoryToOffic
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request                 QueryRequest
      * @param historyToOfficeBuilding historyToOfficeBuilding
      * @return IPage<HistoryToOfficeBuilding>
      */

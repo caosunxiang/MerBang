@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:10
@@ -19,7 +19,7 @@ public interface IOfficeBuildingNoService extends IService<OfficeBuildingNo> {
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request          QueryRequest
      * @param officeBuildingNo officeBuildingNo
      * @return IPage<OfficeBuildingNo>
      */
@@ -52,15 +52,15 @@ public interface IOfficeBuildingNoService extends IService<OfficeBuildingNo> {
      *
      * @param officeBuildingNo officeBuildingNo
      */
-    
+
     void deleteOfficeBuildingNo(OfficeBuildingNo officeBuildingNo);
 
-    /** 
-    * @Description: 查找办公室楼号
-    * @Param: [officeBuildingId]
-    * @return: cc.mrbird.febs.common.entity.FebsResponse
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/6 15:56
-    */
+    /**
+     * @Description: 查找办公室楼号
+     * @Param: [officeBuildingId]
+     * @return: cc.mrbird.febs.common.entity.FebsResponse
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/6 15:56
+     */
     Body selectOfficeBuildingNo(Integer officeBuildingId);
 }

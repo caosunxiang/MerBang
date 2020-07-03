@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.OfficeMapper">
     <select id="selectCountByBuildingId" resultType="java.lang.Integer">
-         select count(*)  FROM t_office WHERE office_building = #{officeBuildingId}
+        select count(*) FROM t_office WHERE office_building = #{officeBuildingId}
     </select>
     <select id="selectCountByBuildingForA" resultType="java.lang.Integer">
-         select count(*)  FROM t_office WHERE office_building = #{officeBuildingId} and type='B'
+        select count(*) FROM t_office WHERE office_building = #{officeBuildingId} and type='B'
     </select>
     <select id="selectCountBySharedId" resultType="java.lang.Integer">
-         select count(*)  FROM t_office WHERE shared_office_id = #{sharedOfficeId}
+        select count(*) FROM t_office WHERE shared_office_id = #{sharedOfficeId}
     </select>
     <select id="selectCountBySharedForA" resultType="java.lang.Integer">
-         select count(*)  FROM t_office WHERE shared_office_id = #{sharedOfficeId} and type='B'
+        select count(*) FROM t_office WHERE shared_office_id = #{sharedOfficeId} and type='B'
     </select>
     <select id="selectOffice" resultType="java.util.Map">
         SELECT
@@ -183,44 +183,44 @@
 
     </select>
     <select id="officeDown" resultType="java.util.Map">
-( SELECT
-	IFNULL(b.id,'') id,
-		IFNULL(b.`name`,'')`name`,
-		IFNULL(a.attention_type,'') type
-	FROM
-		t_office_building b
-		LEFT JOIN t_attention a ON a.attention_label = b.id
-	WHERE
-		a.attention_user = #{id}
-		AND a.attention_type='A'
-	) UNION
-	(
-	SELECT
-	IFNULL(b.id,'') id,
-		IFNULL(b.`name`,'')`name`,
-		IFNULL(a.attention_type,'') type
-	FROM
-		t_shared_office b
-		LEFT JOIN t_attention a ON a.attention_label = b.id
-WHERE
-	a.attention_user =  #{id}
-	AND a.attention_type='B')
+        ( SELECT
+        IFNULL(b.id,'') id,
+        IFNULL(b.`name`,'')`name`,
+        IFNULL(a.attention_type,'') type
+        FROM
+        t_office_building b
+        LEFT JOIN t_attention a ON a.attention_label = b.id
+        WHERE
+        a.attention_user = #{id}
+        AND a.attention_type='A'
+        ) UNION
+        (
+        SELECT
+        IFNULL(b.id,'') id,
+        IFNULL(b.`name`,'')`name`,
+        IFNULL(a.attention_type,'') type
+        FROM
+        t_shared_office b
+        LEFT JOIN t_attention a ON a.attention_label = b.id
+        WHERE
+        a.attention_user = #{id}
+        AND a.attention_type='B')
     </select>
     <select id="selectOfficeDetails" resultType="java.util.Map">
         SELECT
-   IFNULL(o.id,'') id,
-	IFNULL(o.floor,'') floor,
-	IFNULL(o.door,'')door,
-	IFNULL(o.area,'')area,
-	IFNULL(o.state,'')state,
-	IFNULL(f.`name`,'')`name`,
-	IFNULL(fo.floor_id,'')fid
-FROM
-	t_office o
-	LEFT JOIN t_floor_to_office fo ON fo.office_id = o.id
-	LEFT JOIN t_floor f ON f.id = fo.floor_id
-	where
-	o.id=#{id}
+        IFNULL(o.id,'') id,
+        IFNULL(o.floor,'') floor,
+        IFNULL(o.door,'')door,
+        IFNULL(o.area,'')area,
+        IFNULL(o.state,'')state,
+        IFNULL(f.`name`,'')`name`,
+        IFNULL(fo.floor_id,'')fid
+        FROM
+        t_office o
+        LEFT JOIN t_floor_to_office fo ON fo.office_id = o.id
+        LEFT JOIN t_floor f ON f.id = fo.floor_id
+        where
+        o.id=#{id}
     </select>
     <select id="selectOfficeInPrice" resultType="java.util.Map">
         SELECT

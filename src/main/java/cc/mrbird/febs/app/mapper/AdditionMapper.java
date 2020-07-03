@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Mapper
+ * Mapper
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 16:18:23
  */
 public interface AdditionMapper extends BaseMapper<Addition> {
-    List<Map<String,Object>>selectAdditionByCostId(@Param("id")Integer id);
+    List<Map<String, Object>> selectAdditionByCostId(@Param("id") Integer id);
 }

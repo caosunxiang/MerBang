@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 16:04:13
@@ -40,7 +40,7 @@ public class ApplyController extends BaseController {
     private final IApplyService applyService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "apply")
-    public String applyIndex(){
+    public String applyIndex() {
         return FebsUtil.view("apply/apply");
     }
 
@@ -98,7 +98,7 @@ public class ApplyController extends BaseController {
     @ControllerEndpoint(operation = "办公室请求", exceptionMessage = "办公室请求获取失败")
     @GetMapping("selectApplyCount")
     @ResponseBody
-    public Body selectApplyCount(Integer id){
+    public Body selectApplyCount(Integer id) {
         return this.applyService.selectApplyCount(id);
     }
 

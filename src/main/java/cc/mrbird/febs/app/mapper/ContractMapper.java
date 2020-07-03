@@ -20,7 +20,7 @@ public interface ContractMapper extends BaseMapper<Contract> {
 
     Map<String, Object> selectContractByConIdAndDoor(@Param("id") Integer id, @Param("door") Integer door);
 
-    Integer selectLatelyContract(@Param("id")Integer id);
+    Integer selectLatelyContract(@Param("id") Integer id);
 
-    Integer selectPassContract(@Param("id")Integer id,@Param("month")Integer month);
+    Integer selectPassContract(@Param("id") Integer id, @Param("month") Integer month);
 }

@@ -61,7 +61,7 @@ public interface ICostOrderService extends IService<CostOrder> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/20 16:02
      */
-    Body insertCostOrder(CostOrder costOrder,Integer id);
+    Body insertCostOrder(CostOrder costOrder, Integer id);
 
     /**
      * @Description: 查询物业账单下的收费账单

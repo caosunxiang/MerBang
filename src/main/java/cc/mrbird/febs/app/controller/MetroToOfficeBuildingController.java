@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:18
@@ -39,7 +39,7 @@ public class MetroToOfficeBuildingController extends BaseController {
     private final IMetroToOfficeBuildingService metroToOfficeBuildingService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "metroToOfficeBuilding")
-    public String metroToOfficeBuildingIndex(){
+    public String metroToOfficeBuildingIndex() {
         return FebsUtil.view("metroToOfficeBuilding/metroToOfficeBuilding");
     }
 
@@ -54,7 +54,9 @@ public class MetroToOfficeBuildingController extends BaseController {
     @ResponseBody
     @RequiresPermissions("metroToOfficeBuilding:list")
     public FebsResponse metroToOfficeBuildingList(QueryRequest request, MetroToOfficeBuilding metroToOfficeBuilding) {
-        Map<String, Object> dataTable = getDataTable(this.metroToOfficeBuildingService.findMetroToOfficeBuildings(request, metroToOfficeBuilding));
+        Map<String, Object> dataTable =
+                getDataTable(this.metroToOfficeBuildingService.findMetroToOfficeBuildings(request,
+                        metroToOfficeBuilding));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +91,10 @@ public class MetroToOfficeBuildingController extends BaseController {
     @PostMapping("metroToOfficeBuilding/excel")
     @ResponseBody
     @RequiresPermissions("metroToOfficeBuilding:export")
-    public void export(QueryRequest queryRequest, MetroToOfficeBuilding metroToOfficeBuilding, HttpServletResponse response) {
-        List<MetroToOfficeBuilding> metroToOfficeBuildings = this.metroToOfficeBuildingService.findMetroToOfficeBuildings(queryRequest, metroToOfficeBuilding).getRecords();
+    public void export(QueryRequest queryRequest, MetroToOfficeBuilding metroToOfficeBuilding,
+                       HttpServletResponse response) {
+        List<MetroToOfficeBuilding> metroToOfficeBuildings =
+                this.metroToOfficeBuildingService.findMetroToOfficeBuildings(queryRequest, metroToOfficeBuilding).getRecords();
         ExcelKit.$Export(MetroToOfficeBuilding.class, response).downXlsx(metroToOfficeBuildings, false);
     }
 }

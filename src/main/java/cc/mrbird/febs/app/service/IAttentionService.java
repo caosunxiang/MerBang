@@ -109,7 +109,7 @@ public interface IAttentionService extends IService<Attention> {
     Body selectAttentionByUserid(Integer userid);
 
     /**
-     * @Description:  查询旗下的房源
+     * @Description: 查询旗下的房源
      * @Param: [id]
      * @return: cc.mrbird.febs.common.utils.json.Body
      * @Author: 冷酷的苹果

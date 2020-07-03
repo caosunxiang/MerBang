@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:07
@@ -24,12 +24,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class HistoryToOfficeBuildingServiceImpl extends ServiceImpl<HistoryToOfficeBuildingMapper, HistoryToOfficeBuilding> implements IHistoryToOfficeBuildingService {
+public class HistoryToOfficeBuildingServiceImpl extends ServiceImpl<HistoryToOfficeBuildingMapper,
+        HistoryToOfficeBuilding> implements IHistoryToOfficeBuildingService {
 
     private final HistoryToOfficeBuildingMapper historyToOfficeBuildingMapper;
 
     @Override
-    public IPage<HistoryToOfficeBuilding> findHistoryToOfficeBuildings(QueryRequest request, HistoryToOfficeBuilding historyToOfficeBuilding) {
+    public IPage<HistoryToOfficeBuilding> findHistoryToOfficeBuildings(QueryRequest request,
+                                                                       HistoryToOfficeBuilding historyToOfficeBuilding) {
         LambdaQueryWrapper<HistoryToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<HistoryToOfficeBuilding> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -38,9 +40,9 @@ public class HistoryToOfficeBuildingServiceImpl extends ServiceImpl<HistoryToOff
 
     @Override
     public List<HistoryToOfficeBuilding> findHistoryToOfficeBuildings(HistoryToOfficeBuilding historyToOfficeBuilding) {
-	    LambdaQueryWrapper<HistoryToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<HistoryToOfficeBuilding> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class HistoryToOfficeBuildingServiceImpl extends ServiceImpl<HistoryToOff
     @Transactional(rollbackFor = Exception.class)
     public void deleteHistoryToOfficeBuilding(HistoryToOfficeBuilding historyToOfficeBuilding) {
         LambdaQueryWrapper<HistoryToOfficeBuilding> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

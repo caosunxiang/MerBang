@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:21
@@ -40,7 +40,7 @@ public class AppLogController extends BaseController {
     private final IAppLogService appLogService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "appLog")
-    public String appLogIndex(){
+    public String appLogIndex() {
         return FebsUtil.view("appLog/appLog");
     }
 
@@ -99,9 +99,9 @@ public class AppLogController extends BaseController {
     @GetMapping("appLogByUserId")
     @ResponseBody
     public Body appLogByUserId(Integer userId, String type, Integer house) {
-        if (userId==null){
-            return Body.newInstance(201,"没有这个用户");
+        if (userId == null) {
+            return Body.newInstance(201, "没有这个用户");
         }
-        return this.appLogService.appLogByUserId(userId,type,house);
+        return this.appLogService.appLogByUserId(userId, type, house);
     }
 }

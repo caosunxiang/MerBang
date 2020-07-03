@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 16:18:23
@@ -46,9 +46,9 @@ public class AdditionServiceImpl extends ServiceImpl<AdditionMapper, Addition> i
 
     @Override
     public List<Addition> findAdditions(Addition addition) {
-	    LambdaQueryWrapper<Addition> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<Addition> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -67,40 +67,40 @@ public class AdditionServiceImpl extends ServiceImpl<AdditionMapper, Addition> i
     @Transactional(rollbackFor = Exception.class)
     public void deleteAddition(Addition addition) {
         LambdaQueryWrapper<Addition> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Body insertAddition(Addition addition) {
-        int count=this.additionMapper.insert(addition);
-        Cost cost=this.costMapper.selectById(addition.getCost());
-        BigDecimal price= cost.getTotalPrices();
-        price=price.add(addition.getPrice());
+        int count = this.additionMapper.insert(addition);
+        Cost cost = this.costMapper.selectById(addition.getCost());
+        BigDecimal price = cost.getTotalPrices();
+        price = price.add(addition.getPrice());
         cost.setTotalPrices(price);
         costMapper.updateById(cost);
-        if (count==1){
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return  Body.newInstance(201,"添加失败");
+        return Body.newInstance(201, "添加失败");
     }
 
     @Override
     public Body delectAddition(Integer id) {
-        int count=this.additionMapper.deleteById(id);
-        if (count==1){
+        int count = this.additionMapper.deleteById(id);
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return  Body.newInstance(201,"删除失败");
+        return Body.newInstance(201, "删除失败");
     }
 
     @Override
     public Body selectAdditionByCostId(Integer costId) {
-        List<Map<String,Object>>list=this.additionMapper.selectAdditionByCostId(costId);
-        if (list.size()>0){
+        List<Map<String, Object>> list = this.additionMapper.selectAdditionByCostId(costId);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有附加项");
+        return Body.newInstance(201, "没有附加项");
     }
 }

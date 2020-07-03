@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 16:04:13
@@ -42,9 +42,9 @@ public class ApplyServiceImpl extends ServiceImpl<ApplyMapper, Apply> implements
 
     @Override
     public List<Apply> findApplys(Apply apply) {
-	    LambdaQueryWrapper<Apply> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<Apply> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class ApplyServiceImpl extends ServiceImpl<ApplyMapper, Apply> implements
     @Transactional(rollbackFor = Exception.class)
     public void deleteApply(Apply apply) {
         LambdaQueryWrapper<Apply> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectApplyCount(Integer id) {
@@ -74,11 +74,11 @@ public class ApplyServiceImpl extends ServiceImpl<ApplyMapper, Apply> implements
 
     @Override
     public Body selectApplyByOffice(Integer id) {
-        List<Map<String,Object>> list=this.applyMapper.selectApplyByOffice(id);
-        if (list.size()>0){
+        List<Map<String, Object>> list = this.applyMapper.selectApplyByOffice(id);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有请求");
+            return Body.newInstance(201, "没有请求");
         }
     }
 }

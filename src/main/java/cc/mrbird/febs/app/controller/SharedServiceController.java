@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 15:53:58
@@ -40,7 +40,7 @@ public class SharedServiceController extends BaseController {
     private final ISharedServiceService sharedServiceService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "sharedService")
-    public String sharedServiceIndex(){
+    public String sharedServiceIndex() {
         return FebsUtil.view("sharedService/sharedService");
     }
 
@@ -55,7 +55,8 @@ public class SharedServiceController extends BaseController {
     @ResponseBody
     @RequiresPermissions("sharedService:list")
     public FebsResponse sharedServiceList(QueryRequest request, SharedService sharedService) {
-        Map<String, Object> dataTable = getDataTable(this.sharedServiceService.findSharedServices(request, sharedService));
+        Map<String, Object> dataTable = getDataTable(this.sharedServiceService.findSharedServices(request,
+                sharedService));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -91,7 +92,8 @@ public class SharedServiceController extends BaseController {
     @ResponseBody
     @RequiresPermissions("sharedService:export")
     public void export(QueryRequest queryRequest, SharedService sharedService, HttpServletResponse response) {
-        List<SharedService> sharedServices = this.sharedServiceService.findSharedServices(queryRequest, sharedService).getRecords();
+        List<SharedService> sharedServices = this.sharedServiceService.findSharedServices(queryRequest,
+                sharedService).getRecords();
         ExcelKit.$Export(SharedService.class, response).downXlsx(sharedServices, false);
     }
 

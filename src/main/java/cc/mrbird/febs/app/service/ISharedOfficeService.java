@@ -62,7 +62,7 @@ public interface ISharedOfficeService extends IService<SharedOffice> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/7 17:15
      */
-    public Body selectSharedOffice(String condition,Integer id, Integer areaLow, Integer areaHigh, Integer priceLow,
+    public Body selectSharedOffice(String condition, Integer id, Integer areaLow, Integer areaHigh, Integer priceLow,
                                    Integer priceHigh, String type, String name, String position,
                                    String userId, String myId, String address, String order, Integer index,
                                    Integer size);

@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.LabelToOfficeMapper">
     <select id="selectOfficeLabel" resultType="java.util.Map">
-   SELECT
-	IFNULL(l.id,'')id,
-	IFNULL(l.`name`,'')`name`,
-	IFNULL(l.hot,'')hot,
-	IFNULL(l.creation_time,'')creation_time,
-	IFNULL(l.state,'')state,
-	IFNULL(o.id,'')oid
-FROM
-	t_office_label l
-	LEFT JOIN ( SELECT * FROM t_label_to_office WHERE office_id = #{id} ) o ON o.office_id = l.id
-	</select>
+        SELECT
+        IFNULL(l.id,'')id,
+        IFNULL(l.`name`,'')`name`,
+        IFNULL(l.hot,'')hot,
+        IFNULL(l.creation_time,'')creation_time,
+        IFNULL(l.state,'')state,
+        IFNULL(o.id,'')oid
+        FROM
+        t_office_label l
+        LEFT JOIN ( SELECT * FROM t_label_to_office WHERE office_id = #{id} ) o ON o.office_id = l.id
+    </select>
 </mapper>

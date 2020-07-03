@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:36
@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class DistrictToOfficeBuilding {
 
     /**
-     *  关联商圈与写字楼
+     * 关联商圈与写字楼
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;

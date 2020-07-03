@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:33
@@ -40,9 +40,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Override
     public List<Admin> findAdmins(Admin admin) {
-	    LambdaQueryWrapper<Admin> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<Admin> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -61,9 +61,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Transactional(rollbackFor = Exception.class)
     public void deleteAdmin(Admin admin) {
         LambdaQueryWrapper<Admin> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body adminParticulars() {

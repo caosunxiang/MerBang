@@ -2,31 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.FloorToOfficeMapper">
     <select id="selectOfficeByfloor" resultType="java.util.Map">
-    SELECT
-	o.* ,
-	IFNULL(l.name,'') username
-FROM
-	t_office o
-	LEFT JOIN t_floor_to_office fto ON o.id = fto.office_id
-	LEFT JOIN t_floor f ON f.id = fto.floor_id
-	LEFT JOIN  t_lessee l ON l.id=o.user_id
-	WHERE
+        SELECT
+        o.* ,
+        IFNULL(l.name,'') username
+        FROM
+        t_office o
+        LEFT JOIN t_floor_to_office fto ON o.id = fto.office_id
+        LEFT JOIN t_floor f ON f.id = fto.floor_id
+        LEFT JOIN t_lessee l ON l.id=o.user_id
+        WHERE
         f.id=#{id}
         and
         o.floor=#{fid}
-</select>
+    </select>
 
     <select id="selectOfficeFloor" resultType="java.util.Map">
         SELECT
-	IFNULL( o.floor, '' ) floor ,
-	SUM(o.area) AS area
-FROM
-	t_office o LEFT JOIN t_floor_to_office fo ON fo.office_id=o.id LEFT JOIN t_floor f ON f.id=fo.floor_id
-WHERE
-	( o.office_building = #{pid} OR o.shared_office_id = #{pid} )
-	AND
-	f.id=#{id}
-GROUP BY
-	o.floor
+        IFNULL( o.floor, '' ) floor ,
+        SUM(o.area) AS area
+        FROM
+        t_office o LEFT JOIN t_floor_to_office fo ON fo.office_id=o.id LEFT JOIN t_floor f ON f.id=fo.floor_id
+        WHERE
+        ( o.office_building = #{pid} OR o.shared_office_id = #{pid} )
+        AND
+        f.id=#{id}
+        GROUP BY
+        o.floor
     </select>
 </mapper>

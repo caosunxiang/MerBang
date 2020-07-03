@@ -145,10 +145,10 @@ public class OfficeBuildingServiceImpl extends ServiceImpl<OfficeBuildingMapper,
     @Transactional(rollbackFor = Exception.class)
     public Body insertOfficeBuilding(String name, String address, String log, String lat, String area,
                                      String price, Integer user) {
-        LambdaQueryWrapper<OfficeBuilding> wrapper=new LambdaQueryWrapper<>();
-        wrapper.eq(OfficeBuilding::getName,name);
-        if (this.officeBuildingMapper.selectList(wrapper).size()>0){
-            return Body.newInstance(201,"不能添加重复姓名");
+        LambdaQueryWrapper<OfficeBuilding> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(OfficeBuilding::getName, name);
+        if (this.officeBuildingMapper.selectList(wrapper).size() > 0) {
+            return Body.newInstance(201, "不能添加重复姓名");
         }
         OfficeBuilding officeBuilding = new OfficeBuilding();
         officeBuilding.setName(name);
@@ -181,12 +181,12 @@ public class OfficeBuildingServiceImpl extends ServiceImpl<OfficeBuildingMapper,
 
     @Override
     public Body uploadOfficeBuilding(MultipartFile file) {
-        if (FileUploadUtils.checkFileSize(file,500,"K")){
+        if (FileUploadUtils.checkFileSize(file, 500, "K")) {
             String picture = FileUploadUtils.fileUpload(file, "officeBuilding");
             System.out.println(picture);
             return Body.newInstance(picture);
         }
-       return Body.newInstance(201,"图片超出限制");
+        return Body.newInstance(201, "图片超出限制");
     }
 
     @Override
@@ -214,8 +214,8 @@ public class OfficeBuildingServiceImpl extends ServiceImpl<OfficeBuildingMapper,
     @Override
     public Body updateOfficeBuildingDetails(OfficeBuilding officeBuilding) {
         officeBuilding.setUpdateTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
-        Integer count=this.officeBuildingMapper.updateById(officeBuilding);
-        if (count==1){
+        Integer count = this.officeBuildingMapper.updateById(officeBuilding);
+        if (count == 1) {
             AppLog appLog = new AppLog();
             appLog.setCreateUser(officeBuilding.getCreateUser());
             appLog.setContent("修改写字楼信息");
@@ -225,6 +225,6 @@ public class OfficeBuildingServiceImpl extends ServiceImpl<OfficeBuildingMapper,
             this.appLogMapper.insert(appLog);
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"修改失败");
+        return Body.newInstance(201, "修改失败");
     }
 }

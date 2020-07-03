@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:16:37
@@ -39,9 +39,9 @@ public class OfficeLabelServiceImpl extends ServiceImpl<OfficeLabelMapper, Offic
 
     @Override
     public List<OfficeLabel> findOfficeLabels(OfficeLabel officeLabel) {
-	    LambdaQueryWrapper<OfficeLabel> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<OfficeLabel> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class OfficeLabelServiceImpl extends ServiceImpl<OfficeLabelMapper, Offic
     @Transactional(rollbackFor = Exception.class)
     public void deleteOfficeLabel(OfficeLabel officeLabel) {
         LambdaQueryWrapper<OfficeLabel> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

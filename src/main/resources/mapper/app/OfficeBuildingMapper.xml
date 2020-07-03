@@ -43,10 +43,10 @@
             AND mp.position= #{position}
         </if>
         <if test="address !=null and address !=''">
-            AND  b.address LIKE CONCAT('%',#{address},'%')
+            AND b.address LIKE CONCAT('%',#{address},'%')
         </if>
         <if test="order != null and order == 'A'.toString()">
-                order by b.price ASC
+            order by b.price ASC
         </if>
         <if test="order != null and order == 'B'.toString()">
             order by b.price desc
@@ -55,24 +55,24 @@
     </select>
     <select id="selectOfficeBuildingUserId" resultType="java.util.Map">
         SELECT
-	b.*,
-	IFNULL( mp.position, '' ) position,
-	IFNULL( bd.`name`, '' ) `business_district_name`,
-	IFNULL( mp.latitude, '' ) mp_latitude,
-	IFNULL( mp.longitude, '' ) mp_longitude,
-	IFNULL( b.picture, '' ) photo
-FROM
-	t_office_building b
-	LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
-	LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
-	LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id = b.id
-	LEFT JOIN t_business_district bd ON bd.business_district_id = dtob.business_district_id
-	LEFT JOIN t_attention t ON t.attention_label = b.id
-	LEFT JOIN a_user u ON u.user_id = t.attention_user
-WHERE
-	1 = 1
-	AND t.attention_user = #{userId}
-	AND t.attention_type='A'
+        b.*,
+        IFNULL( mp.position, '' ) position,
+        IFNULL( bd.`name`, '' ) `business_district_name`,
+        IFNULL( mp.latitude, '' ) mp_latitude,
+        IFNULL( mp.longitude, '' ) mp_longitude,
+        IFNULL( b.picture, '' ) photo
+        FROM
+        t_office_building b
+        LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
+        LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
+        LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id = b.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id = dtob.business_district_id
+        LEFT JOIN t_attention t ON t.attention_label = b.id
+        LEFT JOIN a_user u ON u.user_id = t.attention_user
+        WHERE
+        1 = 1
+        AND t.attention_user = #{userId}
+        AND t.attention_type='A'
         <if test="condition !=null and condition!=''">
             AND (b.`name` LIKE CONCAT('%',#{condition},'%')
             or b.address LIKE CONCAT('%',#{condition},'%'))
@@ -95,7 +95,7 @@ WHERE
             AND mp.position= #{position}
         </if>
         <if test="address !=null and address !=''">
-            AND  b.address LIKE CONCAT('%',#{address},'%')
+            AND b.address LIKE CONCAT('%',#{address},'%')
         </if>
         <if test="order != null and order == 'A'.toString()">
             order by b.price ASC
@@ -107,20 +107,20 @@ WHERE
     </select>
     <select id="selectOfficeBuilding" resultType="java.util.Map">
         SELECT
-	b.*,
-	IFNULL( mp.position, '' ) position,
-	IFNULL( bd.`name`, '' ) `business_district_name`,
-	IFNULL( mp.latitude, '' ) mp_latitude,
-	IFNULL( mp.longitude, '' ) mp_longitude,
-	IFNULL( b.picture, '' ) photo
-FROM
-	t_office_building b
-	LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
-	LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
-	LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id = b.id
-	LEFT JOIN t_business_district bd ON bd.business_district_id = dtob.business_district_id
-WHERE
-	1 = 1
+        b.*,
+        IFNULL( mp.position, '' ) position,
+        IFNULL( bd.`name`, '' ) `business_district_name`,
+        IFNULL( mp.latitude, '' ) mp_latitude,
+        IFNULL( mp.longitude, '' ) mp_longitude,
+        IFNULL( b.picture, '' ) photo
+        FROM
+        t_office_building b
+        LEFT JOIN t_metro_to_office_building mtb ON b.id = mtb.office_building_id
+        LEFT JOIN t_metro_position mp ON mp.id = mtb.metro_position_id
+        LEFT JOIN t_district_to_office_building dtob ON dtob.office_building_id = b.id
+        LEFT JOIN t_business_district bd ON bd.business_district_id = dtob.business_district_id
+        WHERE
+        1 = 1
         <if test="condition !=null and condition!=''">
             AND (b.`name` LIKE CONCAT('%',#{condition},'%')
             or b.address LIKE CONCAT('%',#{condition},'%'))
@@ -143,7 +143,7 @@ WHERE
             AND mp.position= #{position}
         </if>
         <if test="address !=null and address !=''">
-            AND  b.address LIKE CONCAT('%',#{address},'%')
+            AND b.address LIKE CONCAT('%',#{address},'%')
         </if>
         <if test="order != null and order == 'A'.toString()">
             order by b.price ASC

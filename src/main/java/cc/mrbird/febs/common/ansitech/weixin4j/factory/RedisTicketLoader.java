@@ -23,7 +23,7 @@ import org.weixin4j.model.js.TicketType;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈实现ITicketLoader〉
  *
  * @author 冷酷的苹果
@@ -33,11 +33,12 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisTicketLoader implements ITicketLoader {
 
-    private static final Logger LOG= LoggerFactory.getLogger(RedisTicketLoader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RedisTicketLoader.class);
 
     private final String ACCESS_TOKEN_KEY = "ats_wx100000000001";
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
     @Override
     public Ticket get(TicketType ticketType) {
         String key = "";

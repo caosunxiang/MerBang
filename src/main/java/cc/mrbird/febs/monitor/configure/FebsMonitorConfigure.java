@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class FebsMonitorConfigure {
 
     @Bean
-    public HttpTraceRepository inMemoryHttpTraceRepository(){
+    public HttpTraceRepository inMemoryHttpTraceRepository() {
         return new InMemoryHttpTraceRepository();
     }
 }

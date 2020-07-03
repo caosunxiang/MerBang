@@ -98,11 +98,11 @@ public class OfficeController extends BaseController {
     @ControllerEndpoint(operation = "高级搜索办公室", exceptionMessage = "高级搜索办公室失败")
     @GetMapping("selectOffice")
     @ResponseBody
-    public Body selectOffice(String condition, Integer areaLow, Integer areaHigh, String priceLow,Integer id,
+    public Body selectOffice(String condition, Integer areaLow, Integer areaHigh, String priceLow, Integer id,
                              String priceHigh, String fitment, String name, String position, String address,
                              String userId, String myId, String order, Integer index, Integer size) {
         return this.officeService.selectOffice(condition, areaLow, areaHigh,
-                priceLow, id,priceHigh, fitment, name, position, address, userId, myId, order, index, size);
+                priceLow, id, priceHigh, fitment, name, position, address, userId, myId, order, index, size);
     }
 
     @ControllerEndpoint(operation = "上传办公室首页图片", exceptionMessage = "上传办公室首页图片失败")
@@ -157,8 +157,8 @@ public class OfficeController extends BaseController {
     @ControllerEndpoint(operation = "物业页面查询办公室", exceptionMessage = "物业页面查询办公室失败")
     @GetMapping("selectOfficeInCost")
     @ResponseBody
-    public Body selectOfficeInCost(Integer id, Integer uid,String type) {
-        return this.officeService.selectOfficeInCost(id, uid,type);
+    public Body selectOfficeInCost(Integer id, Integer uid, String type) {
+        return this.officeService.selectOfficeInCost(id, uid, type);
     }
 
     @ControllerEndpoint(operation = "删除办公室", exceptionMessage = "物业页面查询办公室失败")

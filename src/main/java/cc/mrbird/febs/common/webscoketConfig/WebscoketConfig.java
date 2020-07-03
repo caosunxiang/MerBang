@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈webscoket配置〉
  *
  * @author 冷酷的苹果
@@ -24,8 +24,8 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
  */
 @Configuration
 public class WebscoketConfig {
-     @Bean
-    public ServerEndpointExporter serverEndpointExporter(){
-         return  new ServerEndpointExporter();
-     }
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
 }

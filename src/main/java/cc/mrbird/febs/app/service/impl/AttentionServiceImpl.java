@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:04
@@ -52,9 +52,9 @@ public class AttentionServiceImpl extends ServiceImpl<AttentionMapper, Attention
 
     @Override
     public List<Attention> findAttentions(Attention attention) {
-	    LambdaQueryWrapper<Attention> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<Attention> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -73,63 +73,63 @@ public class AttentionServiceImpl extends ServiceImpl<AttentionMapper, Attention
     @Transactional(rollbackFor = Exception.class)
     public void deleteAttention(Attention attention) {
         LambdaQueryWrapper<Attention> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
-
-    @Override
-    public Body selectByOfficeBuilding(String phone,Integer id) {
-        List<AUser> list=this.attentionMapper.selectByOfficeBuilding(phone,id);
-        if (list.size()>0){
-            return Body.newInstance(list);
-        }
-        return Body.newInstance(201,"没有人关注");
+        // TODO 设置删除条件
+        this.remove(wrapper);
     }
 
     @Override
-    public Body selectBuildingInLessee(String name,Integer id) {
-        List<Map<String, Object>> list = this.attentionMapper.selectBuildingInLessee(name,id);
+    public Body selectByOfficeBuilding(String phone, Integer id) {
+        List<AUser> list = this.attentionMapper.selectByOfficeBuilding(phone, id);
+        if (list.size() > 0) {
+            return Body.newInstance(list);
+        }
+        return Body.newInstance(201, "没有人关注");
+    }
+
+    @Override
+    public Body selectBuildingInLessee(String name, Integer id) {
+        List<Map<String, Object>> list = this.attentionMapper.selectBuildingInLessee(name, id);
         if (list.size() > 0) {
             for (Map<String, Object> stringObjectMap : list) {
-                Integer buildId =  Integer.parseInt((String) stringObjectMap.get("id"));
-                Integer count=officeMapper.selectCountByBuildingId(buildId);
-                stringObjectMap.put("count",count);
+                Integer buildId = Integer.parseInt((String) stringObjectMap.get("id"));
+                Integer count = officeMapper.selectCountByBuildingId(buildId);
+                stringObjectMap.put("count", count);
             }
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有相关记录");
+            return Body.newInstance(201, "没有相关记录");
         }
     }
 
     @Override
     public Body selectUserByType(String type, Integer id) {
-        List<Map<String,Object>>list=attentionMapper.selectUserByType(type,id);
-        if (list.size()>0){
+        List<Map<String, Object>> list = attentionMapper.selectUserByType(type, id);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有管理员");
+        return Body.newInstance(201, "没有管理员");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Body delectUser(Integer userid, Integer id) {
-            Attention attention=this.attentionMapper.selectById(id);
-            this.attentionMapper.deleteById(id);
-            AppLog appLog = new AppLog();
-            appLog.setCreateUser(userid);
-            appLog.setContent("删除管理员信息");
-            appLog.setCreateTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
-            appLog.setRemark(attention.getAttentionType());
-            appLog.setHouse⁯(attention.getAttentionLabel());
-            this.appLogMapper.insert(appLog);
-        return Body.newInstance(201,"操作成功");
+        Attention attention = this.attentionMapper.selectById(id);
+        this.attentionMapper.deleteById(id);
+        AppLog appLog = new AppLog();
+        appLog.setCreateUser(userid);
+        appLog.setContent("删除管理员信息");
+        appLog.setCreateTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
+        appLog.setRemark(attention.getAttentionType());
+        appLog.setHouse⁯(attention.getAttentionLabel());
+        this.appLogMapper.insert(appLog);
+        return Body.newInstance(201, "操作成功");
     }
 
     @Override
     public Body insertAttention(Attention attention, Integer id) {
         attention.setCreateTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
-        Integer count=this.attentionMapper.insert(attention);
-        if (count==1){
+        Integer count = this.attentionMapper.insert(attention);
+        if (count == 1) {
             AppLog appLog = new AppLog();
             appLog.setCreateUser(id);
             appLog.setContent("添加管理员信息");
@@ -138,22 +138,22 @@ public class AttentionServiceImpl extends ServiceImpl<AttentionMapper, Attention
             appLog.setHouse⁯(attention.getAttentionLabel());
             this.appLogMapper.insert(appLog);
         }
-        return Body.newInstance(201,"操作成功");
+        return Body.newInstance(201, "操作成功");
     }
 
     @Override
     public Body selectAttentionByUserid(Integer userid) {
-        LambdaQueryWrapper<Attention>wrapper=new LambdaQueryWrapper<>();
-        List<Attention>list=this.attentionMapper.selectList(wrapper);
-        if (list.size()>0){
+        LambdaQueryWrapper<Attention> wrapper = new LambdaQueryWrapper<>();
+        List<Attention> list = this.attentionMapper.selectList(wrapper);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有查询到相关房源");
+        return Body.newInstance(201, "没有查询到相关房源");
     }
 
     @Override
     public Body selectHouseInSet(Integer id) {
-        List<Map<String,Object>>list=this.attentionMapper.selectHouseInSet(id);
+        List<Map<String, Object>> list = this.attentionMapper.selectHouseInSet(id);
         return Body.newInstance(list);
     }
 }

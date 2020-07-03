@@ -36,7 +36,7 @@ public class FebsMetricsEndpoint {
 
     private void collectNames(Set<String> names, MeterRegistry registry) {
         if (registry instanceof CompositeMeterRegistry) {
-            ((CompositeMeterRegistry)registry).getRegistries().forEach((member) -> this.collectNames(names, member));
+            ((CompositeMeterRegistry) registry).getRegistries().forEach((member) -> this.collectNames(names, member));
         } else {
             registry.getMeters().stream().map(this::getName).forEach(names::add);
         }
@@ -60,7 +60,8 @@ public class FebsMetricsEndpoint {
                 Set<String> var10000 = availableTags.remove(t.getKey());
             });
             Meter.Id meterId = meters.iterator().next().getId();
-            return new FebsMetricResponse(requiredMetricName, meterId.getDescription(), meterId.getBaseUnit(), this.asList(samples, Sample::new), this.asList(availableTags, AvailableTag::new));
+            return new FebsMetricResponse(requiredMetricName, meterId.getDescription(), meterId.getBaseUnit(),
+                    this.asList(samples, Sample::new), this.asList(availableTags, AvailableTag::new));
         }
     }
 
@@ -78,11 +79,15 @@ public class FebsMetricsEndpoint {
     }
 
     private Collection<Meter> findFirstMatchingMeters(MeterRegistry registry, String name, Iterable<Tag> tags) {
-        return registry instanceof CompositeMeterRegistry ? this.findFirstMatchingMeters((CompositeMeterRegistry)registry, name, tags) : registry.find(name).tags(tags).meters();
+        return registry instanceof CompositeMeterRegistry ?
+                this.findFirstMatchingMeters((CompositeMeterRegistry) registry, name, tags) :
+                registry.find(name).tags(tags).meters();
     }
 
-    private Collection<Meter> findFirstMatchingMeters(CompositeMeterRegistry composite, String name, Iterable<Tag> tags) {
-        return composite.getRegistries().stream().map((registry) -> this.findFirstMatchingMeters(registry, name, tags)).filter((matching) -> !matching.isEmpty()).findFirst().orElse(Collections.emptyList());
+    private Collection<Meter> findFirstMatchingMeters(CompositeMeterRegistry composite, String name,
+                                                      Iterable<Tag> tags) {
+        return composite.getRegistries().stream().map((registry) -> this.findFirstMatchingMeters(registry, name,
+                tags)).filter((matching) -> !matching.isEmpty()).findFirst().orElse(Collections.emptyList());
     }
 
     private Map<Statistic, Double> getSamples(Collection<Meter> meters) {
@@ -93,7 +98,8 @@ public class FebsMetricsEndpoint {
 
     private void mergeMeasurements(Map<Statistic, Double> samples, Meter meter) {
         meter.measure().forEach((measurement) -> {
-            Double var10000 = samples.merge(measurement.getStatistic(), measurement.getValue(), this.mergeFunction(measurement.getStatistic()));
+            Double var10000 = samples.merge(measurement.getStatistic(), measurement.getValue(),
+                    this.mergeFunction(measurement.getStatistic()));
         });
     }
 
@@ -173,7 +179,8 @@ public class FebsMetricsEndpoint {
         private final List<Sample> measurements;
         private final List<AvailableTag> availableTags;
 
-        FebsMetricResponse(String name, String description, String baseUnit, List<Sample> measurements, List<AvailableTag> availableTags) {
+        FebsMetricResponse(String name, String description, String baseUnit, List<Sample> measurements,
+                           List<AvailableTag> availableTags) {
             this.name = name;
             this.description = description;
             this.baseUnit = baseUnit;

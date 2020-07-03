@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 10:16:51
@@ -40,7 +40,7 @@ public class UserToBuildingController extends BaseController {
     private final IUserToBuildingService userToBuildingService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "userToBuilding")
-    public String userToBuildingIndex(){
+    public String userToBuildingIndex() {
         return FebsUtil.view("userToBuilding/userToBuilding");
     }
 
@@ -55,7 +55,8 @@ public class UserToBuildingController extends BaseController {
     @ResponseBody
     @RequiresPermissions("userToBuilding:list")
     public FebsResponse userToBuildingList(QueryRequest request, UserToBuilding userToBuilding) {
-        Map<String, Object> dataTable = getDataTable(this.userToBuildingService.findUserToBuildings(request, userToBuilding));
+        Map<String, Object> dataTable = getDataTable(this.userToBuildingService.findUserToBuildings(request,
+                userToBuilding));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -91,11 +92,12 @@ public class UserToBuildingController extends BaseController {
     @ResponseBody
     @RequiresPermissions("userToBuilding:export")
     public void export(QueryRequest queryRequest, UserToBuilding userToBuilding, HttpServletResponse response) {
-        List<UserToBuilding> userToBuildings = this.userToBuildingService.findUserToBuildings(queryRequest, userToBuilding).getRecords();
+        List<UserToBuilding> userToBuildings = this.userToBuildingService.findUserToBuildings(queryRequest,
+                userToBuilding).getRecords();
         ExcelKit.$Export(UserToBuilding.class, response).downXlsx(userToBuildings, false);
     }
 
-//    @ControllerEndpoint(operation = "租户页面查询写字楼", exceptionMessage = "租户页面查询写字楼失败")
+    //    @ControllerEndpoint(operation = "租户页面查询写字楼", exceptionMessage = "租户页面查询写字楼失败")
 //    @GetMapping("selectBuildingInLessee")
 //    @ResponseBody
     public Body selectBuildingInLessee(String name) {

@@ -61,5 +61,5 @@ public interface IServiceToSharedService extends IService<ServiceToShared> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/15 16:14
      */
-    Body insertServiceToShared(List<String> String, Integer sharedId,Integer userid);
+    Body insertServiceToShared(List<String> String, Integer sharedId, Integer userid);
 }

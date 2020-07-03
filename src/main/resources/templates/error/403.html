@@ -29,12 +29,14 @@
 <script data-th-inline="javascript" type="text/javascript">
     layui.use(['jquery'], function () {
         var $ = layui.jquery,
-            ctx = [[@{/}]],
+            ctx = [[@{
+            /}]],
             $view = $('#febs-error-403');
-        $view.on('click', 'button', function () {
-            window.location.href = ctx + 'index';
-        });
-    });
+            $view.on('click', 'button', function () {
+                window.location.href = ctx + 'index';
+            });
+        }
+    );
 </script>
 </body>
 </html>

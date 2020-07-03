@@ -107,8 +107,8 @@ public class OrderController extends BaseController {
     @PostMapping("insertOrderDetails")
     @ResponseBody
     public Body insertOrderDetails(String payer, String date, BigDecimal peice, String picture, String remark,
-                                   Integer id,Integer contractId) {
-        return this.orderService.insertOrderDetails(payer, date, peice, picture, remark, id,contractId);
+                                   Integer id, Integer contractId) {
+        return this.orderService.insertOrderDetails(payer, date, peice, picture, remark, id, contractId);
     }
 
     /**

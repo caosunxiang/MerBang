@@ -61,7 +61,7 @@ public interface IAboutToBuildingService extends IService<AboutToBuilding> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/12 13:55
      */
-    Body insertAbout(AboutToBuilding aboutToBuilding,Integer userid);
+    Body insertAbout(AboutToBuilding aboutToBuilding, Integer userid);
 
     /**
      * @Description: 查询指定写字楼的详情
@@ -73,11 +73,11 @@ public interface IAboutToBuildingService extends IService<AboutToBuilding> {
     Body selectAboutToBuilding(Integer id);
 
     /**
-    * @Description:
-    * @Param: [aboutToBuilding]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/14 14:54
-    */
-    Body updateDetails(AboutToBuilding aboutToBuilding,Integer userid);
+     * @Description:
+     * @Param: [aboutToBuilding]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/14 14:54
+     */
+    Body updateDetails(AboutToBuilding aboutToBuilding, Integer userid);
 }

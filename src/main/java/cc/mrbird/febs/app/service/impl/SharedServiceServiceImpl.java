@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 15:53:58
@@ -40,9 +40,9 @@ public class SharedServiceServiceImpl extends ServiceImpl<SharedServiceMapper, S
 
     @Override
     public List<SharedService> findSharedServices(SharedService sharedService) {
-	    LambdaQueryWrapper<SharedService> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<SharedService> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -61,17 +61,17 @@ public class SharedServiceServiceImpl extends ServiceImpl<SharedServiceMapper, S
     @Transactional(rollbackFor = Exception.class)
     public void deleteSharedService(SharedService sharedService) {
         LambdaQueryWrapper<SharedService> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectSharedService() {
-        LambdaQueryWrapper<SharedService> wrapper=new LambdaQueryWrapper<>();
-        List<SharedService> sharedServices=this.sharedServiceMapper.selectList(wrapper);
-        if (sharedServices.size()>0){
+        LambdaQueryWrapper<SharedService> wrapper = new LambdaQueryWrapper<>();
+        List<SharedService> sharedServices = this.sharedServiceMapper.selectList(wrapper);
+        if (sharedServices.size() > 0) {
             return Body.newInstance(sharedServices);
         }
-        return Body.newInstance(201,"尚未添加");
+        return Body.newInstance(201, "尚未添加");
     }
 }

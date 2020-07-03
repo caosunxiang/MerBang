@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-26 09:53:33
@@ -39,7 +39,7 @@ public class CollectSharedOfficeController extends BaseController {
     private final ICollectSharedOfficeService collectSharedOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "collectSharedOffice")
-    public String collectSharedOfficeIndex(){
+    public String collectSharedOfficeIndex() {
         return FebsUtil.view("collectSharedOffice/collectSharedOffice");
     }
 
@@ -54,7 +54,8 @@ public class CollectSharedOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("collectSharedOffice:list")
     public FebsResponse collectSharedOfficeList(QueryRequest request, CollectSharedOffice collectSharedOffice) {
-        Map<String, Object> dataTable = getDataTable(this.collectSharedOfficeService.findCollectSharedOffices(request, collectSharedOffice));
+        Map<String, Object> dataTable = getDataTable(this.collectSharedOfficeService.findCollectSharedOffices(request
+                , collectSharedOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +90,10 @@ public class CollectSharedOfficeController extends BaseController {
     @PostMapping("collectSharedOffice/excel")
     @ResponseBody
     @RequiresPermissions("collectSharedOffice:export")
-    public void export(QueryRequest queryRequest, CollectSharedOffice collectSharedOffice, HttpServletResponse response) {
-        List<CollectSharedOffice> collectSharedOffices = this.collectSharedOfficeService.findCollectSharedOffices(queryRequest, collectSharedOffice).getRecords();
+    public void export(QueryRequest queryRequest, CollectSharedOffice collectSharedOffice,
+                       HttpServletResponse response) {
+        List<CollectSharedOffice> collectSharedOffices =
+                this.collectSharedOfficeService.findCollectSharedOffices(queryRequest, collectSharedOffice).getRecords();
         ExcelKit.$Export(CollectSharedOffice.class, response).downXlsx(collectSharedOffices, false);
     }
 }

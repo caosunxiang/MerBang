@@ -64,13 +64,13 @@ public interface IApplyService extends IService<Apply> {
      */
     Body selectApplyCount(Integer id);
 
-    /** 
-    * @Description: 查询指定办公室的请求
-    * @Param: [id]
-    * @return: cc.mrbird.febs.common.entity.FebsResponse
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/8 16:43
-    */
+    /**
+     * @Description: 查询指定办公室的请求
+     * @Param: [id]
+     * @return: cc.mrbird.febs.common.entity.FebsResponse
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/8 16:43
+     */
     Body selectApplyByOffice(Integer id);
 
 }

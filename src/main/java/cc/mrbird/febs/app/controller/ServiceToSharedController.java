@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 15:54:00
@@ -42,7 +42,7 @@ public class ServiceToSharedController extends BaseController {
     private final IServiceToSharedService serviceToSharedService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "serviceToShared")
-    public String serviceToSharedIndex(){
+    public String serviceToSharedIndex() {
         return FebsUtil.view("serviceToShared/serviceToShared");
     }
 
@@ -57,7 +57,8 @@ public class ServiceToSharedController extends BaseController {
     @ResponseBody
     @RequiresPermissions("serviceToShared:list")
     public FebsResponse serviceToSharedList(QueryRequest request, ServiceToShared serviceToShared) {
-        Map<String, Object> dataTable = getDataTable(this.serviceToSharedService.findServiceToShareds(request, serviceToShared));
+        Map<String, Object> dataTable = getDataTable(this.serviceToSharedService.findServiceToShareds(request,
+                serviceToShared));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -93,7 +94,8 @@ public class ServiceToSharedController extends BaseController {
     @ResponseBody
     @RequiresPermissions("serviceToShared:export")
     public void export(QueryRequest queryRequest, ServiceToShared serviceToShared, HttpServletResponse response) {
-        List<ServiceToShared> serviceToShareds = this.serviceToSharedService.findServiceToShareds(queryRequest, serviceToShared).getRecords();
+        List<ServiceToShared> serviceToShareds = this.serviceToSharedService.findServiceToShareds(queryRequest,
+                serviceToShared).getRecords();
         ExcelKit.$Export(ServiceToShared.class, response).downXlsx(serviceToShareds, false);
     }
 
@@ -102,6 +104,6 @@ public class ServiceToSharedController extends BaseController {
     @ResponseBody
     public Body insertServiceToShared(String serviceId, Integer sharedId, Integer userid) {
         List<String> list = Arrays.asList(serviceId);
-        return this.serviceToSharedService.insertServiceToShared(list,sharedId,userid);
+        return this.serviceToSharedService.insertServiceToShared(list, sharedId, userid);
     }
 }

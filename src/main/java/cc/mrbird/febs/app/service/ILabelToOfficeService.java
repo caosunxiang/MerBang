@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:12
@@ -18,7 +18,7 @@ public interface ILabelToOfficeService extends IService<LabelToOffice> {
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request       QueryRequest
      * @param labelToOffice labelToOffice
      * @return IPage<LabelToOffice>
      */
@@ -54,7 +54,7 @@ public interface ILabelToOfficeService extends IService<LabelToOffice> {
     void deleteLabelToOffice(LabelToOffice labelToOffice);
 
     /**
-     * @Description:  查询已经选择的标签
+     * @Description: 查询已经选择的标签
      * @Param: [officeBuildingId]
      * @return: cc.mrbird.febs.common.utils.json.Body
      * @Author: 冷酷的苹果

@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:39
@@ -40,7 +40,7 @@ public class LabelToOfficeBuildingController extends BaseController {
     private final ILabelToOfficeBuildingService labelToOfficeBuildingService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "labelToOfficeBuilding")
-    public String labelToOfficeBuildingIndex(){
+    public String labelToOfficeBuildingIndex() {
         return FebsUtil.view("labelToOfficeBuilding/labelToOfficeBuilding");
     }
 
@@ -55,7 +55,9 @@ public class LabelToOfficeBuildingController extends BaseController {
     @ResponseBody
     @RequiresPermissions("labelToOfficeBuilding:list")
     public FebsResponse labelToOfficeBuildingList(QueryRequest request, LabelToOfficeBuilding labelToOfficeBuilding) {
-        Map<String, Object> dataTable = getDataTable(this.labelToOfficeBuildingService.findLabelToOfficeBuildings(request, labelToOfficeBuilding));
+        Map<String, Object> dataTable =
+                getDataTable(this.labelToOfficeBuildingService.findLabelToOfficeBuildings(request,
+                        labelToOfficeBuilding));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -90,8 +92,10 @@ public class LabelToOfficeBuildingController extends BaseController {
     @PostMapping("labelToOfficeBuilding/excel")
     @ResponseBody
     @RequiresPermissions("labelToOfficeBuilding:export")
-    public void export(QueryRequest queryRequest, LabelToOfficeBuilding labelToOfficeBuilding, HttpServletResponse response) {
-        List<LabelToOfficeBuilding> labelToOfficeBuildings = this.labelToOfficeBuildingService.findLabelToOfficeBuildings(queryRequest, labelToOfficeBuilding).getRecords();
+    public void export(QueryRequest queryRequest, LabelToOfficeBuilding labelToOfficeBuilding,
+                       HttpServletResponse response) {
+        List<LabelToOfficeBuilding> labelToOfficeBuildings =
+                this.labelToOfficeBuildingService.findLabelToOfficeBuildings(queryRequest, labelToOfficeBuilding).getRecords();
         ExcelKit.$Export(LabelToOfficeBuilding.class, response).downXlsx(labelToOfficeBuildings, false);
     }
 
@@ -99,7 +103,7 @@ public class LabelToOfficeBuildingController extends BaseController {
     @PostMapping("insertLabelAndOfficeBuilding")
     @ResponseBody
     public Body insertLabelAndSharedOffice(Integer officeBuildingId, String labelId, Integer id) {
-        return this.labelToOfficeBuildingService.insertLabelAndOfficeBuilding(officeBuildingId,labelId,id);
+        return this.labelToOfficeBuildingService.insertLabelAndOfficeBuilding(officeBuildingId, labelId, id);
     }
 
     @ControllerEndpoint(operation = "查找已经选择的标签", exceptionMessage = "查找已经选择的标签失败")

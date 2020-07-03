@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 15:54:00
@@ -35,6 +35,7 @@ public class ServiceToSharedServiceImpl extends ServiceImpl<ServiceToSharedMappe
     private final ServiceToSharedMapper serviceToSharedMapper;
 
     private final AppLogMapper appLogMapper;
+
     @Override
     public IPage<ServiceToShared> findServiceToShareds(QueryRequest request, ServiceToShared serviceToShared) {
         LambdaQueryWrapper<ServiceToShared> queryWrapper = new LambdaQueryWrapper<>();
@@ -45,9 +46,9 @@ public class ServiceToSharedServiceImpl extends ServiceImpl<ServiceToSharedMappe
 
     @Override
     public List<ServiceToShared> findServiceToShareds(ServiceToShared serviceToShared) {
-	    LambdaQueryWrapper<ServiceToShared> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<ServiceToShared> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -66,14 +67,14 @@ public class ServiceToSharedServiceImpl extends ServiceImpl<ServiceToSharedMappe
     @Transactional(rollbackFor = Exception.class)
     public void deleteServiceToShared(ServiceToShared serviceToShared) {
         LambdaQueryWrapper<ServiceToShared> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
-    public Body insertServiceToShared(List<String> serviceId, Integer sharedId,Integer userid) {
+    public Body insertServiceToShared(List<String> serviceId, Integer sharedId, Integer userid) {
         for (String i : serviceId) {
-            ServiceToShared serviceToShared=new ServiceToShared();
+            ServiceToShared serviceToShared = new ServiceToShared();
             serviceToShared.setServiceId(Integer.parseInt(i));
             serviceToShared.setSharedId(sharedId);
             this.serviceToSharedMapper.insert(serviceToShared);

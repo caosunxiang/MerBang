@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:14
@@ -39,7 +39,7 @@ public class MetroToSharedOfficeController extends BaseController {
     private final IMetroToSharedOfficeService metroToSharedOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "metroToSharedOffice")
-    public String metroToSharedOfficeIndex(){
+    public String metroToSharedOfficeIndex() {
         return FebsUtil.view("metroToSharedOffice/metroToSharedOffice");
     }
 
@@ -54,7 +54,8 @@ public class MetroToSharedOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("metroToSharedOffice:list")
     public FebsResponse metroToSharedOfficeList(QueryRequest request, MetroToSharedOffice metroToSharedOffice) {
-        Map<String, Object> dataTable = getDataTable(this.metroToSharedOfficeService.findMetroToSharedOffices(request, metroToSharedOffice));
+        Map<String, Object> dataTable = getDataTable(this.metroToSharedOfficeService.findMetroToSharedOffices(request
+                , metroToSharedOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +90,10 @@ public class MetroToSharedOfficeController extends BaseController {
     @PostMapping("metroToSharedOffice/excel")
     @ResponseBody
     @RequiresPermissions("metroToSharedOffice:export")
-    public void export(QueryRequest queryRequest, MetroToSharedOffice metroToSharedOffice, HttpServletResponse response) {
-        List<MetroToSharedOffice> metroToSharedOffices = this.metroToSharedOfficeService.findMetroToSharedOffices(queryRequest, metroToSharedOffice).getRecords();
+    public void export(QueryRequest queryRequest, MetroToSharedOffice metroToSharedOffice,
+                       HttpServletResponse response) {
+        List<MetroToSharedOffice> metroToSharedOffices =
+                this.metroToSharedOfficeService.findMetroToSharedOffices(queryRequest, metroToSharedOffice).getRecords();
         ExcelKit.$Export(MetroToSharedOffice.class, response).downXlsx(metroToSharedOffices, false);
     }
 }

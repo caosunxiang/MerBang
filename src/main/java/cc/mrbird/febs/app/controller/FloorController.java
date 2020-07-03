@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 13:40:43
@@ -40,7 +40,7 @@ public class FloorController extends BaseController {
     private final IFloorService floorService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "floor")
-    public String floorIndex(){
+    public String floorIndex() {
         return FebsUtil.view("floor/floor");
     }
 
@@ -114,6 +114,6 @@ public class FloorController extends BaseController {
     @GetMapping("selectFloorToId")
     @ResponseBody
     public Body selectFloorToId(Integer pid, String state) {
-        return this.floorService.selectFloorToId(pid,state);
+        return this.floorService.selectFloorToId(pid, state);
     }
 }

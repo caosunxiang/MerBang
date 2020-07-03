@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-15 14:45:20
@@ -34,6 +34,7 @@ public class SharedOfficeLabelServiceImpl extends ServiceImpl<SharedOfficeLabelM
     private final SharedOfficeLabelMapper sharedOfficeLabelMapper;
 
     private final AppLogMapper appLogMapper;
+
     @Override
     public IPage<SharedOfficeLabel> findSharedOfficeLabels(QueryRequest request, SharedOfficeLabel sharedOfficeLabel) {
         LambdaQueryWrapper<SharedOfficeLabel> queryWrapper = new LambdaQueryWrapper<>();
@@ -44,9 +45,9 @@ public class SharedOfficeLabelServiceImpl extends ServiceImpl<SharedOfficeLabelM
 
     @Override
     public List<SharedOfficeLabel> findSharedOfficeLabels(SharedOfficeLabel sharedOfficeLabel) {
-	    LambdaQueryWrapper<SharedOfficeLabel> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<SharedOfficeLabel> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -65,9 +66,9 @@ public class SharedOfficeLabelServiceImpl extends ServiceImpl<SharedOfficeLabelM
     @Transactional(rollbackFor = Exception.class)
     public void deleteSharedOfficeLabel(SharedOfficeLabel sharedOfficeLabel) {
         LambdaQueryWrapper<SharedOfficeLabel> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectSharedOfficeLabel() {
@@ -76,20 +77,20 @@ public class SharedOfficeLabelServiceImpl extends ServiceImpl<SharedOfficeLabelM
         if (list.size() > 0) {
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有相关信息");
+            return Body.newInstance(201, "没有相关信息");
         }
     }
 
     @Override
     public Body insertSharedOfficeLabel(String name, Integer userId) {
-        SharedOfficeLabel sharedOffice=new SharedOfficeLabel();
-        sharedOffice.setCreationTime(DateUtil.getDateFormat(new Date(),DateUtil.FULL_TIME_SPLIT_PATTERN));
+        SharedOfficeLabel sharedOffice = new SharedOfficeLabel();
+        sharedOffice.setCreationTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
         sharedOffice.setName(name);
-        Integer count=this.sharedOfficeLabelMapper.insert(sharedOffice);
-        if (count==1){
+        Integer count = this.sharedOfficeLabelMapper.insert(sharedOffice);
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"添加失败");
+        return Body.newInstance(201, "添加失败");
     }
 
 }

@@ -61,14 +61,16 @@ public class GeneratorController extends BaseController {
     @GetMapping("tables/info")
     @RequiresPermissions("generator:view")
     public FebsResponse tablesInfo(String tableName, String datasource, QueryRequest request) {
-        Map<String, Object> dataTable = getDataTable(generatorService.getTables(tableName, request, GeneratorConstant.DATABASE_TYPE, datasource));
+        Map<String, Object> dataTable = getDataTable(generatorService.getTables(tableName, request,
+                GeneratorConstant.DATABASE_TYPE, datasource));
         return new FebsResponse().success().data(dataTable);
     }
 
     @GetMapping
     @RequiresPermissions("generator:generate")
     @ControllerEndpoint(exceptionMessage = "代码生成失败")
-    public void generate(@NotBlank(message = "{required}") String name, String remark, String datasource, HttpServletResponse response) throws Exception {
+    public void generate(@NotBlank(message = "{required}") String name, String remark, String datasource,
+                         HttpServletResponse response) throws Exception {
         GeneratorConfig generatorConfig = generatorConfigService.findGeneratorConfig();
         if (generatorConfig == null) {
             throw new FebsException("代码生成配置为空");

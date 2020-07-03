@@ -63,7 +63,7 @@ public class RedisTokenLoader implements ITokenLoader {
         Weixin weixin = new Weixin();
         ITokenLoader loader = new DefaultTokenLoader();
         try {
-           loader.refresh(weixin.base().token());
+            loader.refresh(weixin.base().token());
         } catch (WeixinException e) {
             e.printStackTrace();
         }

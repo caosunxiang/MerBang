@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-18 09:55:16
@@ -40,9 +40,9 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
 
     @Override
     public List<Invoice> findInvoices(Invoice invoice) {
-	    LambdaQueryWrapper<Invoice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<Invoice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -61,37 +61,37 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
     @Transactional(rollbackFor = Exception.class)
     public void deleteInvoice(Invoice invoice) {
         LambdaQueryWrapper<Invoice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectInvoice(Integer lesseeId) {
-        LambdaQueryWrapper<Invoice> wrapper=new LambdaQueryWrapper<>();
-        wrapper.eq(Invoice::getLesseeId,lesseeId);
+        LambdaQueryWrapper<Invoice> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Invoice::getLesseeId, lesseeId);
         Invoice invoice
-                =this.invoiceMapper.selectOne(wrapper);
-        if (invoice!=null){
+                = this.invoiceMapper.selectOne(wrapper);
+        if (invoice != null) {
             return Body.newInstance(invoice);
         }
-        return Body.newInstance(201,"查找开票信息");
+        return Body.newInstance(201, "查找开票信息");
     }
 
     @Override
     public Body insertInvoice(Invoice invoice) {
-        int count=this.invoiceMapper.insert(invoice);
-        if (count==1){
+        int count = this.invoiceMapper.insert(invoice);
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"新增失败");
+        return Body.newInstance(201, "新增失败");
     }
 
     @Override
     public Body updateInvoiceDetails(Invoice invoice) {
-        int count=this.invoiceMapper.updateById(invoice);
-        if (count==1){
+        int count = this.invoiceMapper.updateById(invoice);
+        if (count == 1) {
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"修改失败");
+        return Body.newInstance(201, "修改失败");
     }
 }

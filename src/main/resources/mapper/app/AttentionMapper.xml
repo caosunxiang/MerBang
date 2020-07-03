@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.AttentionMapper">
     <select id="selectCountByOffice" resultType="java.lang.Integer">
-    SELECT COUNT(*) FROM t_attention WHERE DATE_SUB(NOW(), INTERVAL 30 DAY) <![CDATA[<=]]> date(create_time) and  attention_label = #{userid};
-</select>
+        SELECT COUNT(*) FROM t_attention WHERE DATE_SUB(NOW(), INTERVAL 30 DAY) <![CDATA[<=]]> date(create_time) and
+        attention_label = #{userid};
+    </select>
     <select id="selectByOfficeBuilding" resultType="cc.mrbird.febs.app.entity.AUser">
         SELECT
         u.*
@@ -36,44 +37,44 @@
         </if>
     </select>
     <select id="selectUserByType" resultType="java.util.Map">
-SELECT
-	IFNULL( t.attention_id, '' ) id,
-	IFNULL( u.user_name, '' ) username,
-	IFNULL( u.phone, '' ) phone,
-	IFNULL( u.head, '' ) head,
-	IFNULL( u.user_id, '' ) userid
-FROM
-	t_attention t
-	LEFT JOIN a_user u ON u.user_id = t.attention_user
-WHERE
-	t.attention_label = #{id}
-	AND t.attention_type = #{type}
+        SELECT
+        IFNULL( t.attention_id, '' ) id,
+        IFNULL( u.user_name, '' ) username,
+        IFNULL( u.phone, '' ) phone,
+        IFNULL( u.head, '' ) head,
+        IFNULL( u.user_id, '' ) userid
+        FROM
+        t_attention t
+        LEFT JOIN a_user u ON u.user_id = t.attention_user
+        WHERE
+        t.attention_label = #{id}
+        AND t.attention_type = #{type}
     </select>
     <select id="selectHouseInSet" resultType="java.util.Map">
-(SELECT
-	IFNULL(t.attention_label,'')id,
-	IFNULL(b.`name`,'')`name`,
-	IFNULL(b.picture,'')picture,
-	IFNULL( t.attention_type, '' ) type
-FROM
-	t_attention t
-	LEFT JOIN t_office_building b ON b.id = t.attention_label
-WHERE
-	t.attention_type = 'A'
-	AND t.attention_user = #{id})
-	UNION all
-	(SELECT
-	IFNULL(t.attention_label,'')id,
-	IFNULL(b.`name`,'')`name`,
-	IFNULL(b.picture,'')picture,
+        (SELECT
+        IFNULL(t.attention_label,'')id,
+        IFNULL(b.`name`,'')`name`,
+        IFNULL(b.picture,'')picture,
+        IFNULL( t.attention_type, '' ) type
+        FROM
+        t_attention t
+        LEFT JOIN t_office_building b ON b.id = t.attention_label
+        WHERE
+        t.attention_type = 'A'
+        AND t.attention_user = #{id})
+        UNION all
+        (SELECT
+        IFNULL(t.attention_label,'')id,
+        IFNULL(b.`name`,'')`name`,
+        IFNULL(b.picture,'')picture,
 
 
-	IFNULL( t.attention_type, '' ) type
-FROM
-	t_attention t
-	LEFT JOIN t_shared_office b ON b.id = t.attention_label
-WHERE
-	t.attention_type = 'B'
-	AND t.attention_user = #{id});
+        IFNULL( t.attention_type, '' ) type
+        FROM
+        t_attention t
+        LEFT JOIN t_shared_office b ON b.id = t.attention_label
+        WHERE
+        t.attention_type = 'B'
+        AND t.attention_user = #{id});
     </select>
 </mapper>

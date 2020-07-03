@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:10
@@ -41,7 +41,7 @@ public class OfficeBuildingNoController extends BaseController {
     private final IOfficeBuildingNoService officeBuildingNoService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "officeBuildingNo")
-    public String officeBuildingNoIndex(){
+    public String officeBuildingNoIndex() {
         return FebsUtil.view("officeBuildingNo/officeBuildingNo");
     }
 
@@ -56,7 +56,8 @@ public class OfficeBuildingNoController extends BaseController {
     @ResponseBody
     @RequiresPermissions("officeBuildingNo:list")
     public FebsResponse officeBuildingNoList(QueryRequest request, OfficeBuildingNo officeBuildingNo) {
-        Map<String, Object> dataTable = getDataTable(this.officeBuildingNoService.findOfficeBuildingNos(request, officeBuildingNo));
+        Map<String, Object> dataTable = getDataTable(this.officeBuildingNoService.findOfficeBuildingNos(request,
+                officeBuildingNo));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -92,7 +93,8 @@ public class OfficeBuildingNoController extends BaseController {
     @ResponseBody
     @RequiresPermissions("officeBuildingNo:export")
     public void export(QueryRequest queryRequest, OfficeBuildingNo officeBuildingNo, HttpServletResponse response) {
-        List<OfficeBuildingNo> officeBuildingNos = this.officeBuildingNoService.findOfficeBuildingNos(queryRequest, officeBuildingNo).getRecords();
+        List<OfficeBuildingNo> officeBuildingNos = this.officeBuildingNoService.findOfficeBuildingNos(queryRequest,
+                officeBuildingNo).getRecords();
         ExcelKit.$Export(OfficeBuildingNo.class, response).downXlsx(officeBuildingNos, false);
     }
 

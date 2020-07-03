@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:53
@@ -18,7 +18,7 @@ public interface IOfficeToPictureService extends IService<OfficeToPicture> {
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request         QueryRequest
      * @param officeToPicture officeToPicture
      * @return IPage<OfficeToPicture>
      */
@@ -52,6 +52,7 @@ public interface IOfficeToPictureService extends IService<OfficeToPicture> {
      * @param officeToPicture officeToPicture
      */
     void deleteOfficeToPicture(OfficeToPicture officeToPicture);
+
     /**
      * @Description: 上传办公室的具体照片
      * @Param: []

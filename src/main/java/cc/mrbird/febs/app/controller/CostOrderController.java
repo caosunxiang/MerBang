@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 16:18:25
@@ -40,7 +40,7 @@ public class CostOrderController extends BaseController {
     private final ICostOrderService costOrderService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "costOrder")
-    public String costOrderIndex(){
+    public String costOrderIndex() {
         return FebsUtil.view("costOrder/costOrder");
     }
 
@@ -94,26 +94,28 @@ public class CostOrderController extends BaseController {
         List<CostOrder> costOrders = this.costOrderService.findCostOrders(queryRequest, costOrder).getRecords();
         ExcelKit.$Export(CostOrder.class, response).downXlsx(costOrders, false);
     }
-/** 
-* @Description: 
-* @Param: [costOrder, id]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/20 16:36
-*/
+
+    /**
+     * @Description:
+     * @Param: [costOrder, id]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/20 16:36
+     */
     @ControllerEndpoint(operation = "添加物业费收款账单", exceptionMessage = "添加物业费收款账单失败")
     @PostMapping("insertCostOrder")
     @ResponseBody
     public Body insertCostOrder(CostOrder costOrder, Integer id) {
-        return this.costOrderService.insertCostOrder(costOrder,id);
+        return this.costOrderService.insertCostOrder(costOrder, id);
     }
-/** 
-* @Description:
-* @Param: [id]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/20 16:36
-*/
+
+    /**
+     * @Description:
+     * @Param: [id]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/20 16:36
+     */
     @ControllerEndpoint(operation = "查找物业费下的收费账单", exceptionMessage = "查找物业费下的收费账单失败")
     @GetMapping("selectCostOrderByCostId")
     @ResponseBody

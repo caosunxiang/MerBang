@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-18 14:04:02
@@ -42,9 +42,9 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
 
     @Override
     public List<Contract> findContracts(Contract contract) {
-	    LambdaQueryWrapper<Contract> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<Contract> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -63,25 +63,25 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
     @Transactional(rollbackFor = Exception.class)
     public void deleteContract(Contract contract) {
         LambdaQueryWrapper<Contract> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
-    public Body selectContract(String condition, String id,Integer door) {
-        List<Map<String,Object>> list=this.contractMapper.selectContract(condition,id,door);
-        if (list.size()>0){
+    public Body selectContract(String condition, String id, Integer door) {
+        List<Map<String, Object>> list = this.contractMapper.selectContract(condition, id, door);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有数据");
+        return Body.newInstance(201, "没有数据");
     }
 
     @Override
     public Body selectContractByConIdAndDoor(Integer id, Integer door) {
-        Map<String,Object>list=this.contractMapper.selectContractByConIdAndDoor(id,door);
-        if (list.size()>0){
+        Map<String, Object> list = this.contractMapper.selectContractByConIdAndDoor(id, door);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"查询失败");
+        return Body.newInstance(201, "查询失败");
     }
 }

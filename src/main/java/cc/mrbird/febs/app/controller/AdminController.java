@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:33
@@ -40,7 +40,7 @@ public class AdminController extends BaseController {
     private final IAdminService adminService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "admin")
-    public String adminIndex(){
+    public String adminIndex() {
         return FebsUtil.view("admin/admin");
     }
 
@@ -98,7 +98,7 @@ public class AdminController extends BaseController {
     @ControllerEndpoint(operation = "查看系统详情", exceptionMessage = "查看系统详情失败")
     @GetMapping("adminParticulars")
     @ResponseBody
-    public Body adminParticulars(){
+    public Body adminParticulars() {
         return this.adminService.adminParticulars();
     }
 }

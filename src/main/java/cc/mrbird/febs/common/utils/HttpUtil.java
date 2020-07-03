@@ -21,8 +21,9 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
+
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈http请求类〉
  *
  * @author 冷酷的苹果
@@ -33,6 +34,7 @@ public class HttpUtil {
     public static final String DEFAULT_CHARSET = "utf-8";
 
     public static final Log logger = LogFactory.getLog(HttpUtil.class);
+
     public static String doGet(String baseUrl, Map<String, String> paramMap) {
         StringBuffer queryString = new StringBuffer();
         for (String param : paramMap.keySet()) {
@@ -60,8 +62,8 @@ public class HttpUtil {
         String result = "";
         BufferedReader in = null;
         try {
-            String urlNameString =baseUrl;
-            if(param!=null){
+            String urlNameString = baseUrl;
+            if (param != null) {
                 urlNameString = baseUrl + "?" + param;
             }
             logger.info("http请求：" + urlNameString);
@@ -112,7 +114,7 @@ public class HttpUtil {
     }
 
     public static String doGet(String baseUrl) {
-        return doGet(baseUrl,"");
+        return doGet(baseUrl, "");
     }
 
     /**

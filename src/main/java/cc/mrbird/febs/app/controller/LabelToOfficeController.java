@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:12
@@ -40,7 +40,7 @@ public class LabelToOfficeController extends BaseController {
     private final ILabelToOfficeService labelToOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "labelToOffice")
-    public String labelToOfficeIndex(){
+    public String labelToOfficeIndex() {
         return FebsUtil.view("labelToOffice/labelToOffice");
     }
 
@@ -55,7 +55,8 @@ public class LabelToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("labelToOffice:list")
     public FebsResponse labelToOfficeList(QueryRequest request, LabelToOffice labelToOffice) {
-        Map<String, Object> dataTable = getDataTable(this.labelToOfficeService.findLabelToOffices(request, labelToOffice));
+        Map<String, Object> dataTable = getDataTable(this.labelToOfficeService.findLabelToOffices(request,
+                labelToOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -91,7 +92,8 @@ public class LabelToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("labelToOffice:export")
     public void export(QueryRequest queryRequest, LabelToOffice labelToOffice, HttpServletResponse response) {
-        List<LabelToOffice> labelToOffices = this.labelToOfficeService.findLabelToOffices(queryRequest, labelToOffice).getRecords();
+        List<LabelToOffice> labelToOffices = this.labelToOfficeService.findLabelToOffices(queryRequest,
+                labelToOffice).getRecords();
         ExcelKit.$Export(LabelToOffice.class, response).downXlsx(labelToOffices, false);
     }
 

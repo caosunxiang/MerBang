@@ -55,6 +55,7 @@ public class OfficeServiceImpl extends ServiceImpl<OfficeMapper, Office> impleme
     private final LabelToOfficeBuildingMapper labelToOfficeBuildingMapper;
 
     private final LabelToSharedOfficeMapper labelToSharedOfficeMapper;
+
     @Override
     public IPage<Office> findOffices(QueryRequest request, Office office) {
         LambdaQueryWrapper<Office> queryWrapper = new LambdaQueryWrapper<>();
@@ -91,41 +92,48 @@ public class OfficeServiceImpl extends ServiceImpl<OfficeMapper, Office> impleme
     }
 
     @Override
-    public Body selectOffice(String condition, Integer areaLow, Integer areaHigh, String priceLow,Integer id,
+    public Body selectOffice(String condition, Integer areaLow, Integer areaHigh, String priceLow, Integer id,
                              String priceHigh, String fitment, String name, String position, String address,
                              String userId, String myId, String order, Integer index,
                              Integer size) {
         List<Map<String, Object>> list;
         if (StringUtils.isEmpty(userId) && StringUtils.isEmpty(myId)) {
-            list = this.officeMapper.selectOffice(condition, id ,areaLow, areaHigh,
-                    priceLow, priceHigh, fitment, name, position, address, order );
+            list = this.officeMapper.selectOffice(condition, id, areaLow, areaHigh,
+                    priceLow, priceHigh, fitment, name, position, address, order);
         } else if (!StringUtils.isEmpty(userId) && StringUtils.isEmpty(myId)) {
-            list = this.officeMapper.selectOfficeUserId(condition,id, areaLow, areaHigh,
+            list = this.officeMapper.selectOfficeUserId(condition, id, areaLow, areaHigh,
                     priceLow, priceHigh, fitment, name, position, address, userId, order);
         } else {
-            list = this.officeMapper.selectOfficeMyId(condition, id,areaLow, areaHigh,
+            list = this.officeMapper.selectOfficeMyId(condition, id, areaLow, areaHigh,
                     priceLow, priceHigh, fitment, name, position, address, myId, order);
         }
         Page<Map<String, Object>> page = new Page<>(index, size, list.size());
         if (list.size() > 0) {
             for (Map<String, Object> stringObjectMap : list) {
                 Integer month = attentionMapper.selectCountByOffice((Integer) stringObjectMap.get("id"));
-                if (StringUtils.isEmpty(stringObjectMap.get("name"))&&!StringUtils.isEmpty(stringObjectMap.get("officeBuilding"))){
-                    OfficeBuilding officeBuilding=officeBuildingMapper.selectById((Integer)stringObjectMap.get("officeBuilding"));
-                    List<Map<String,Object>>mapList=this.labelToOfficeBuildingMapper.selectBuildLabel((Integer) stringObjectMap.get("officeBuilding"));
-                    stringObjectMap.put("label",mapList);
-                    if (StringUtils.isEmpty(stringObjectMap.get("address"))){
-                        stringObjectMap.put("address",officeBuilding.getAddress());
+                if (StringUtils.isEmpty(stringObjectMap.get("name")) && !StringUtils.isEmpty(stringObjectMap.get(
+                        "officeBuilding"))) {
+                    OfficeBuilding officeBuilding = officeBuildingMapper.selectById((Integer) stringObjectMap.get(
+                            "officeBuilding"));
+                    List<Map<String, Object>> mapList =
+                            this.labelToOfficeBuildingMapper.selectBuildLabel((Integer) stringObjectMap.get(
+                                    "officeBuilding"));
+                    stringObjectMap.put("label", mapList);
+                    if (StringUtils.isEmpty(stringObjectMap.get("address"))) {
+                        stringObjectMap.put("address", officeBuilding.getAddress());
                     }
-                    stringObjectMap.put("name",officeBuilding.getName());
-                }else if (StringUtils.isEmpty(stringObjectMap.get("name"))&&!StringUtils.isEmpty(stringObjectMap.get("sharedOfficeId"))){
-                    SharedOffice sharedOffice=sharedOfficeMapper.selectById((Integer)stringObjectMap.get("sharedOfficeId"));
-                    List<Map<String,Object>>mapList=this.labelToSharedOfficeMapper.selectSharedLabel((Integer) stringObjectMap.get("sharedOfficeId"));
-                    stringObjectMap.put("label",mapList);
-                    if (StringUtils.isEmpty(stringObjectMap.get("address"))){
-                        stringObjectMap.put("address",sharedOffice.getAddress());
+                    stringObjectMap.put("name", officeBuilding.getName());
+                } else if (StringUtils.isEmpty(stringObjectMap.get("name")) && !StringUtils.isEmpty(stringObjectMap.get("sharedOfficeId"))) {
+                    SharedOffice sharedOffice = sharedOfficeMapper.selectById((Integer) stringObjectMap.get(
+                            "sharedOfficeId"));
+                    List<Map<String, Object>> mapList =
+                            this.labelToSharedOfficeMapper.selectSharedLabel((Integer) stringObjectMap.get(
+                                    "sharedOfficeId"));
+                    stringObjectMap.put("label", mapList);
+                    if (StringUtils.isEmpty(stringObjectMap.get("address"))) {
+                        stringObjectMap.put("address", sharedOffice.getAddress());
                     }
-                    stringObjectMap.put("name",sharedOffice.getName());
+                    stringObjectMap.put("name", sharedOffice.getName());
                 }
                 stringObjectMap.put("month", month);
             }
@@ -160,14 +168,14 @@ public class OfficeServiceImpl extends ServiceImpl<OfficeMapper, Office> impleme
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Body insertOffice(String data,Integer id) {
-        List<InsertOffice> list = JSONObject.parseArray(data,InsertOffice.class);
-        Office office=new Office();
+    public Body insertOffice(String data, Integer id) {
+        List<InsertOffice> list = JSONObject.parseArray(data, InsertOffice.class);
+        Office office = new Office();
         for (InsertOffice insertOffice : list) {
-            if (insertOffice.getPidType().equals("A")){
+            if (insertOffice.getPidType().equals("A")) {
                 office.setOfficeBuilding(insertOffice.getPid());
                 office.setName(officeBuildingMapper.selectById(insertOffice.getPid()).getName());
-            }else {
+            } else {
                 office.setSharedOfficeId(insertOffice.getPid());
                 office.setName(sharedOfficeMapper.selectById(insertOffice.getPid()).getName());
             }
@@ -184,8 +192,8 @@ public class OfficeServiceImpl extends ServiceImpl<OfficeMapper, Office> impleme
             attention.setAttentionLabel(office.getId());
             attention.setAttentionType("C");
             this.attentionMapper.insert(attention);
-            if (insertOffice.getFloorid()!=null) {
-                FloorToOffice floorToOffice=new FloorToOffice();
+            if (insertOffice.getFloorid() != null) {
+                FloorToOffice floorToOffice = new FloorToOffice();
                 floorToOffice.setOfficeId(office.getId());
                 floorToOffice.setFloorId(insertOffice.getFloorid());
                 this.floorToOfficeMapper.insert(floorToOffice);
@@ -203,30 +211,30 @@ public class OfficeServiceImpl extends ServiceImpl<OfficeMapper, Office> impleme
 
     @Override
     public Body selectPidType(Integer id) {
-        List<Map<String ,Object>>list=this.officeMapper.officeDown(id);
-        if (list.size()>0){
+        List<Map<String, Object>> list = this.officeMapper.officeDown(id);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"尚未有你管理的房源");
+        return Body.newInstance(201, "尚未有你管理的房源");
     }
 
     @Override
     public Body selectOfficeDetails(Integer id) {
-        List<Map<String ,Object>> list=this.officeMapper.selectOfficeDetails(id);
-        if (list.size()>0){
-            return  Body.newInstance(list);
+        List<Map<String, Object>> list = this.officeMapper.selectOfficeDetails(id);
+        if (list.size() > 0) {
+            return Body.newInstance(list);
         }
-        return Body.newInstance(201,"查询失败");
+        return Body.newInstance(201, "查询失败");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Body updateOfficeDetails(Office office,Integer userid) {
+    public Body updateOfficeDetails(Office office, Integer userid) {
         office.setUpdateTime(DateUtil.getDateFormat(new Date(), DateUtil.FULL_TIME_SPLIT_PATTERN));
-        Integer count=this.officeMapper.updateById(office);
-        if (count==1){
-            if (office.getFid()!=null) {
-                FloorToOffice floorToOffice=new FloorToOffice();
+        Integer count = this.officeMapper.updateById(office);
+        if (count == 1) {
+            if (office.getFid() != null) {
+                FloorToOffice floorToOffice = new FloorToOffice();
                 floorToOffice.setFloorId(office.getFloorid());
                 floorToOffice.setId(office.getFid());
                 this.floorToOfficeMapper.updateById(floorToOffice);
@@ -240,36 +248,36 @@ public class OfficeServiceImpl extends ServiceImpl<OfficeMapper, Office> impleme
             this.appLogMapper.insert(appLog);
             return Body.BODY_200;
         }
-        return Body.newInstance(201,"修改失败");
+        return Body.newInstance(201, "修改失败");
     }
 
     @Override
     public Body selectOfficeById(Integer id) {
         Office office
-                =this.officeMapper.selectById(id);
-        if (office!=null){
+                = this.officeMapper.selectById(id);
+        if (office != null) {
             return Body.newInstance(office);
         }
-        return Body.newInstance(201,"查询失败");
+        return Body.newInstance(201, "查询失败");
     }
 
     @Override
     public Body selectOfficeInPrice(Integer pid, String door, Integer id) {
-        List<Map<String,Object>> list=this.officeMapper.selectOfficeInPrice(pid,door,id);
+        List<Map<String, Object>> list = this.officeMapper.selectOfficeInPrice(pid, door, id);
         return Body.newInstance(list);
     }
 
     @Override
-    public Body selectOfficeInCost(Integer id,Integer uid,String type) {
-        List<Map<String,Object>> list=this.officeMapper.selectOfficeInCost(id,uid,type);
+    public Body selectOfficeInCost(Integer id, Integer uid, String type) {
+        List<Map<String, Object>> list = this.officeMapper.selectOfficeInCost(id, uid, type);
         return Body.newInstance(list);
     }
 
     @Override
     public Body deleteOffice(Integer officeId) {
-        Map<String,Object>map=lesseeMapper.selectVerifyOffice(officeId);
-        if (map==null){
-            return Body.newInstance(201,"尚未清除租户，无法删除");
+        Map<String, Object> map = lesseeMapper.selectVerifyOffice(officeId);
+        if (map == null) {
+            return Body.newInstance(201, "尚未清除租户，无法删除");
         }
         this.officeMapper.deleteById(officeId);
         return Body.BODY_200;

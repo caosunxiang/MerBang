@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import javax.validation.constraints.NotBlank;
 
 /**
- *  Entity
+ * Entity
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 13:40:43

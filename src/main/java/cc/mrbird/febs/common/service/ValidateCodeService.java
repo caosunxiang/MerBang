@@ -38,11 +38,11 @@ public class ValidateCodeService {
         setHeader(response, code.getType());
 
         Captcha captcha = createCaptcha(code);
-        redisService.set(FebsConstant.CODE_PREFIX  + key, StringUtils.lowerCase(captcha.text()), code.getTime());
+        redisService.set(FebsConstant.CODE_PREFIX + key, StringUtils.lowerCase(captcha.text()), code.getTime());
         captcha.out(response.getOutputStream());
     }
 
-    
+
     public void check(String key, String value) throws FebsException {
         Object codeInRedis = redisService.get(FebsConstant.CODE_PREFIX + key);
         if (StringUtils.isBlank(value)) {

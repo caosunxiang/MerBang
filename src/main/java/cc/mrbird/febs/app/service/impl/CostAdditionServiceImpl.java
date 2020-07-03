@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-19 16:18:18
@@ -40,9 +40,9 @@ public class CostAdditionServiceImpl extends ServiceImpl<CostAdditionMapper, Cos
 
     @Override
     public List<CostAddition> findCostAdditions(CostAddition costAddition) {
-	    LambdaQueryWrapper<CostAddition> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<CostAddition> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -61,40 +61,40 @@ public class CostAdditionServiceImpl extends ServiceImpl<CostAdditionMapper, Cos
     @Transactional(rollbackFor = Exception.class)
     public void deleteCostAddition(CostAddition costAddition) {
         LambdaQueryWrapper<CostAddition> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body insertCostAddition(CostAddition costAddition, Integer userid) {
         costAddition.setCreateUser(userid);
-        int count=this.costAdditionMapper.insert(costAddition);
-        if (count==1){
-            return  Body.BODY_200;
+        int count = this.costAdditionMapper.insert(costAddition);
+        if (count == 1) {
+            return Body.BODY_200;
         }
-        return Body.newInstance(201,"查询错误");
+        return Body.newInstance(201, "查询错误");
     }
 
 
     @Override
     public Body selectCostAdditionaAll() {
-        LambdaQueryWrapper<CostAddition>wrapper=new LambdaQueryWrapper<>();
-        List<CostAddition>list=this.costAdditionMapper.selectList(wrapper);
-        if (list.size()>0){
+        LambdaQueryWrapper<CostAddition> wrapper = new LambdaQueryWrapper<>();
+        List<CostAddition> list = this.costAdditionMapper.selectList(wrapper);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有设置");
+        return Body.newInstance(201, "没有设置");
     }
 
     @Override
     public Body selectCostAdditionaByPid(Integer pid) {
-        LambdaQueryWrapper<CostAddition>wrapper=new LambdaQueryWrapper<>();
-        wrapper.eq(CostAddition::getPid,pid);
-        List<CostAddition>list=this.costAdditionMapper.selectList(wrapper);
-        if (list.size()>0){
+        LambdaQueryWrapper<CostAddition> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(CostAddition::getPid, pid);
+        List<CostAddition> list = this.costAdditionMapper.selectList(wrapper);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有设置");
+        return Body.newInstance(201, "没有设置");
     }
 
     @Override

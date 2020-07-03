@@ -37,7 +37,7 @@ public interface ILogService extends IService<SystemLog> {
      *
      * @param point     切点
      * @param method    Method
-     * @param ip   ip
+     * @param ip        ip
      * @param operation 操作内容
      * @param start     开始时间
      */

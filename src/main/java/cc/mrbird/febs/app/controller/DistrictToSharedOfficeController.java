@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:08
@@ -39,7 +39,7 @@ public class DistrictToSharedOfficeController extends BaseController {
     private final IDistrictToSharedOfficeService districtToSharedOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "districtToSharedOffice")
-    public String districtToSharedOfficeIndex(){
+    public String districtToSharedOfficeIndex() {
         return FebsUtil.view("districtToSharedOffice/districtToSharedOffice");
     }
 
@@ -53,8 +53,11 @@ public class DistrictToSharedOfficeController extends BaseController {
     @GetMapping("districtToSharedOffice/list")
     @ResponseBody
     @RequiresPermissions("districtToSharedOffice:list")
-    public FebsResponse districtToSharedOfficeList(QueryRequest request, DistrictToSharedOffice districtToSharedOffice) {
-        Map<String, Object> dataTable = getDataTable(this.districtToSharedOfficeService.findDistrictToSharedOffices(request, districtToSharedOffice));
+    public FebsResponse districtToSharedOfficeList(QueryRequest request,
+                                                   DistrictToSharedOffice districtToSharedOffice) {
+        Map<String, Object> dataTable =
+                getDataTable(this.districtToSharedOfficeService.findDistrictToSharedOffices(request,
+                        districtToSharedOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +92,10 @@ public class DistrictToSharedOfficeController extends BaseController {
     @PostMapping("districtToSharedOffice/excel")
     @ResponseBody
     @RequiresPermissions("districtToSharedOffice:export")
-    public void export(QueryRequest queryRequest, DistrictToSharedOffice districtToSharedOffice, HttpServletResponse response) {
-        List<DistrictToSharedOffice> districtToSharedOffices = this.districtToSharedOfficeService.findDistrictToSharedOffices(queryRequest, districtToSharedOffice).getRecords();
+    public void export(QueryRequest queryRequest, DistrictToSharedOffice districtToSharedOffice,
+                       HttpServletResponse response) {
+        List<DistrictToSharedOffice> districtToSharedOffices =
+                this.districtToSharedOfficeService.findDistrictToSharedOffices(queryRequest, districtToSharedOffice).getRecords();
         ExcelKit.$Export(DistrictToSharedOffice.class, response).downXlsx(districtToSharedOffices, false);
     }
 }

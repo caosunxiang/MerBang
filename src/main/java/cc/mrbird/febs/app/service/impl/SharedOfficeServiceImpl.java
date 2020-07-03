@@ -99,13 +99,14 @@ public class SharedOfficeServiceImpl extends ServiceImpl<SharedOfficeMapper, Sha
         Page<Map<String, Object>> page = new Page<>(0, 10, list.size());
         if (list.size() > 0) {
             for (Map<String, Object> stringObjectMap : list) {
-                if (!StringUtils.isEmpty(stringObjectMap.get("officeBuilding"))){
-                    OfficeBuilding officeBuilding=officeBuildingMapper.selectById((Integer)stringObjectMap.get("officeBuilding"));
-                    if (StringUtils.isEmpty(stringObjectMap.get("name"))){
-                        stringObjectMap.put("name",officeBuilding.getName());
+                if (!StringUtils.isEmpty(stringObjectMap.get("officeBuilding"))) {
+                    OfficeBuilding officeBuilding = officeBuildingMapper.selectById((Integer) stringObjectMap.get(
+                            "officeBuilding"));
+                    if (StringUtils.isEmpty(stringObjectMap.get("name"))) {
+                        stringObjectMap.put("name", officeBuilding.getName());
                     }
-                    if (StringUtils.isEmpty(stringObjectMap.get("address"))){
-                        stringObjectMap.put("address",officeBuilding.getAddress());
+                    if (StringUtils.isEmpty(stringObjectMap.get("address"))) {
+                        stringObjectMap.put("address", officeBuilding.getAddress());
                     }
                 }
                 double log = Double.parseDouble((String) stringObjectMap.get("log"));

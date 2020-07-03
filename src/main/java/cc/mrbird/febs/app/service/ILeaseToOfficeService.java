@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *  Service接口
+ * Service接口
  *
  * @author 冷酷的苹果
  * @date 2020-05-14 15:23:01
@@ -20,7 +20,7 @@ public interface ILeaseToOfficeService extends IService<LeaseToOffice> {
     /**
      * 查询（分页）
      *
-     * @param request QueryRequest
+     * @param request       QueryRequest
      * @param leaseToOffice leaseToOffice
      * @return IPage<LeaseToOffice>
      */
@@ -56,7 +56,6 @@ public interface ILeaseToOfficeService extends IService<LeaseToOffice> {
     void deleteLeaseToOffice(LeaseToOffice leaseToOffice);
 
 
-
     /**
      * @Description: 添加办公室的详细情况
      * @Param: [leaseToOffice]
@@ -76,11 +75,11 @@ public interface ILeaseToOfficeService extends IService<LeaseToOffice> {
     Body selectLeaseToOffice(Integer id);
 
     /**
-     * @Description:   修改办公室
+     * @Description: 修改办公室
      * @Param: [leaseToOffice]
      * @return: cc.mrbird.febs.common.utils.json.Body
      * @Author: 冷酷的苹果
      * @Date: 2020/5/14 14:54
      */
-    Body updateDetails(LeaseToOffice leaseToOffice,Integer userid);
+    Body updateDetails(LeaseToOffice leaseToOffice, Integer userid);
 }

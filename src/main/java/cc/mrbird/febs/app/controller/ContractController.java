@@ -95,31 +95,31 @@ public class ContractController extends BaseController {
         ExcelKit.$Export(Contract.class, response).downXlsx(contracts, false);
     }
 
-    /** 
-    * @Description: 
-    * @Param: [condition, id]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/18 18:02
-    */
+    /**
+     * @Description:
+     * @Param: [condition, id]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 18:02
+     */
     @ControllerEndpoint(operation = "查找租金信息", exceptionMessage = "查找租金信息失败")
     @GetMapping("selectContract")
     @ResponseBody
-    public Body selectContract(String condition, String id,Integer door) {
-        return this.contractService.selectContract(condition, id,door);
+    public Body selectContract(String condition, String id, Integer door) {
+        return this.contractService.selectContract(condition, id, door);
     }
 
-    /** 
-    * @Description:
-    * @Param: [id, door]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/19 11:15
-    */
+    /**
+     * @Description:
+     * @Param: [id, door]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/19 11:15
+     */
     @ControllerEndpoint(operation = "查找租金详情", exceptionMessage = "查找租金详情失败")
     @GetMapping("selectContractByConIdAndDoor")
     @ResponseBody
-    public Body selectContractByConIdAndDoor(Integer id,Integer door){
-        return this.contractService.selectContractByConIdAndDoor(id,door);
+    public Body selectContractByConIdAndDoor(Integer id, Integer door) {
+        return this.contractService.selectContractByConIdAndDoor(id, door);
     }
 }

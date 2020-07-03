@@ -20,7 +20,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:18:10
@@ -42,9 +42,9 @@ public class OfficeBuildingNoServiceImpl extends ServiceImpl<OfficeBuildingNoMap
 
     @Override
     public List<OfficeBuildingNo> findOfficeBuildingNos(OfficeBuildingNo officeBuildingNo) {
-	    LambdaQueryWrapper<OfficeBuildingNo> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<OfficeBuildingNo> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -63,18 +63,18 @@ public class OfficeBuildingNoServiceImpl extends ServiceImpl<OfficeBuildingNoMap
     @Transactional(rollbackFor = Exception.class)
     public void deleteOfficeBuildingNo(OfficeBuildingNo officeBuildingNo) {
         LambdaQueryWrapper<OfficeBuildingNo> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 
     @Override
     public Body selectOfficeBuildingNo(Integer officeBuildingId) {
-        LambdaQueryWrapper<OfficeBuildingNo> wrapper=new LambdaQueryWrapper<>();
-        List<OfficeBuildingNo> list= this.officeBuildingNoMapper.selectList(wrapper);
-        if (list.size()>0) {
+        LambdaQueryWrapper<OfficeBuildingNo> wrapper = new LambdaQueryWrapper<>();
+        List<OfficeBuildingNo> list = this.officeBuildingNoMapper.selectList(wrapper);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有楼号记录");
+            return Body.newInstance(201, "没有楼号记录");
         }
     }
 }

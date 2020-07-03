@@ -22,7 +22,8 @@ public class SortUtil {
      * @param defaultOrder      默认排序规则
      * @param camelToUnderscore 是否开启驼峰转下划线
      */
-    public static void handlePageSort(QueryRequest request, Page<?> page, String defaultSort, String defaultOrder, boolean camelToUnderscore) {
+    public static void handlePageSort(QueryRequest request, Page<?> page, String defaultSort, String defaultOrder,
+                                      boolean camelToUnderscore) {
         page.setCurrent(request.getPageNum());
         page.setSize(request.getPageSize());
         String sortField = request.getField();
@@ -80,7 +81,8 @@ public class SortUtil {
      * @param defaultOrder      默认排序规则
      * @param camelToUnderscore 是否开启驼峰转下划线
      */
-    public static void handleWrapperSort(QueryRequest request, QueryWrapper<?> wrapper, String defaultSort, String defaultOrder, boolean camelToUnderscore) {
+    public static void handleWrapperSort(QueryRequest request, QueryWrapper<?> wrapper, String defaultSort,
+                                         String defaultOrder, boolean camelToUnderscore) {
         String sortField = request.getField();
         if (camelToUnderscore) {
             sortField = FebsUtil.camelToUnderscore(sortField);

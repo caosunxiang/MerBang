@@ -90,10 +90,10 @@ public class AUserServiceImpl extends ServiceImpl<AUserMapper, AUser> implements
     }
 
     @Override
-    public SnsAccessToken scanQRCode(String code,String userid) {
+    public SnsAccessToken scanQRCode(String code, String userid) {
         try {
-            Weixin weixin =new Weixin();
-            SnsAccessToken snsAccessToken=weixin.sns().getSnsOAuth2AccessToken(code);
+            Weixin weixin = new Weixin();
+            SnsAccessToken snsAccessToken = weixin.sns().getSnsOAuth2AccessToken(code);
             WebSocket websocket = new WebSocket();
             Map<String, Object> msg = new HashMap<>();
             msg.put("touser", userid);
@@ -116,23 +116,23 @@ public class AUserServiceImpl extends ServiceImpl<AUserMapper, AUser> implements
     @Transactional(rollbackFor = Exception.class)
     public Body signInORLogin(AUser user) {
         Map<SFunction<AUser, ?>, Object> map = new HashMap();
-        if (StringUtils.isEmpty(user.getOpenid())){
+        if (StringUtils.isEmpty(user.getOpenid())) {
             map.put(AUser::getPhone, user.getPhone());
-            map.put(AUser::getPassword,user.getPassword());
-        }else {
+            map.put(AUser::getPassword, user.getPassword());
+        } else {
             map.put(AUser::getOpenid, user.getOpenid());
         }
         LambdaQueryWrapper<AUser> wrapper = new LambdaQueryWrapper();
         wrapper.allEq(map);
         AUser aUser = this.baseMapper.selectOne(wrapper);
-        if (aUser == null&&StringUtils.isEmpty(user.getOpenid())) {
-           LambdaQueryWrapper<AUser> wrapper1=new LambdaQueryWrapper<>();
-           wrapper1.eq(AUser::getPhone,user.getPhone());
-            wrapper1.eq(AUser::getPassword,user.getPassword());
-            AUser user1 =this.aUserMapper.selectOne(wrapper1);
-            if (user1==null){
-                return Body.newInstance(201,"密码输入错误");
-            }else {
+        if (aUser == null && StringUtils.isEmpty(user.getOpenid())) {
+            LambdaQueryWrapper<AUser> wrapper1 = new LambdaQueryWrapper<>();
+            wrapper1.eq(AUser::getPhone, user.getPhone());
+            wrapper1.eq(AUser::getPassword, user.getPassword());
+            AUser user1 = this.aUserMapper.selectOne(wrapper1);
+            if (user1 == null) {
+                return Body.newInstance(201, "密码输入错误");
+            } else {
                 Integer count = this.getBaseMapper().insert(user);
                 if (count == 1) {
                     return Body.newInstance(user);
@@ -140,14 +140,14 @@ public class AUserServiceImpl extends ServiceImpl<AUserMapper, AUser> implements
                     return Body.newInstance(201, "登入失败，请联系管理员");
                 }
             }
-        } else if (aUser == null&&!StringUtils.isEmpty(user.getOpenid())){
+        } else if (aUser == null && !StringUtils.isEmpty(user.getOpenid())) {
             Integer count = this.getBaseMapper().insert(user);
             if (count == 1) {
                 return Body.newInstance(user);
             } else {
                 return Body.newInstance(201, "登入失败，请联系管理员");
             }
-        }else {
+        } else {
             return Body.newInstance(aUser);
         }
 
@@ -246,7 +246,7 @@ public class AUserServiceImpl extends ServiceImpl<AUserMapper, AUser> implements
     public Body QRCode(String data) {
         String url = null;
         try {
-            url= QRCodeUtil.encode(data, null,"C:/Users/Administrator/Pictures", false);
+            url = QRCodeUtil.encode(data, null, "C:/Users/Administrator/Pictures", false);
         } catch (Exception e) {
             e.printStackTrace();
         }

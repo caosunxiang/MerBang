@@ -73,12 +73,12 @@ public interface IFloorService extends IService<Floor> {
      */
     Body insertFloor(Floor floor);
 
-    /** 
-    * @Description: 根据类型和上级id查询其下楼栋
-    * @Param: []
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/14 10:27
-    */
-    Body selectFloorToId(Integer pid,String state);
+    /**
+     * @Description: 根据类型和上级id查询其下楼栋
+     * @Param: []
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/14 10:27
+     */
+    Body selectFloorToId(Integer pid, String state);
 }

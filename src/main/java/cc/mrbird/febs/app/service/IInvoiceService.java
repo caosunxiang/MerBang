@@ -65,20 +65,20 @@ public interface IInvoiceService extends IService<Invoice> {
     Body selectInvoice(Integer lesseeId);
 
     /**
-    * @Description: 新增开票信息
-    * @Param: [invoice]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/18 10:11
-    */
+     * @Description: 新增开票信息
+     * @Param: [invoice]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 10:11
+     */
     Body insertInvoice(Invoice invoice);
 
     /**
-    * @Description: 修改开票信息
-    * @Param: [invoice]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/18 10:11
-    */
+     * @Description: 修改开票信息
+     * @Param: [invoice]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 10:11
+     */
     Body updateInvoiceDetails(Invoice invoice);
 }

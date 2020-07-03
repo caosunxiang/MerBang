@@ -65,7 +65,7 @@ public interface IAUserService extends IService<AUser> {
      * @Author: 冷酷的苹果
      * @Date: 2020/4/21 17:09
      */
-    SnsAccessToken scanQRCode(String code,String userid);
+    SnsAccessToken scanQRCode(String code, String userid);
 
     /**
      * @Description: 获取用户信息
@@ -146,38 +146,41 @@ public interface IAUserService extends IService<AUser> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/18 8:33
      */
-    Body weChatEmpty(Integer userId,String openid);
+    Body weChatEmpty(Integer userId, String openid);
 
-    /** 
-    * @Description: 修改密码
-    * @Param: [userId, pwd]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/5/18 9:07
-    */
-    Body resetPasswords(Integer userId,String pwd);
-/** 
-* @Description: 首页查询最近的账单
-* @Param: [id]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/22 10:45
-*/
+    /**
+     * @Description: 修改密码
+     * @Param: [userId, pwd]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/18 9:07
+     */
+    Body resetPasswords(Integer userId, String pwd);
+
+    /**
+     * @Description: 首页查询最近的账单
+     * @Param: [id]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/22 10:45
+     */
     Body homeStatisticsLately(Integer id);
-/** 
-* @Description: 首页查询过期的账单
-* @Param: [id, month]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/22 10:46
-*/
-    Body homeStatisticsPass(Integer id ,Integer month);
-/** 
-* @Description: 生成二维码
-* @Param: [data]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/6/2 13:29
-*/
+
+    /**
+     * @Description: 首页查询过期的账单
+     * @Param: [id, month]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/22 10:46
+     */
+    Body homeStatisticsPass(Integer id, Integer month);
+
+    /**
+     * @Description: 生成二维码
+     * @Param: [data]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/6/2 13:29
+     */
     Body QRCode(String data);
 }

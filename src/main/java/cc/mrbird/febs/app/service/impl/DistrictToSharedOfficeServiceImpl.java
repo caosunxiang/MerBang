@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:08
@@ -25,12 +25,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class DistrictToSharedOfficeServiceImpl extends ServiceImpl<DistrictToSharedOfficeMapper, DistrictToSharedOffice> implements IDistrictToSharedOfficeService {
+public class DistrictToSharedOfficeServiceImpl extends ServiceImpl<DistrictToSharedOfficeMapper,
+        DistrictToSharedOffice> implements IDistrictToSharedOfficeService {
 
     private final DistrictToSharedOfficeMapper districtToSharedOfficeMapper;
 
     @Override
-    public IPage<DistrictToSharedOffice> findDistrictToSharedOffices(QueryRequest request, DistrictToSharedOffice districtToSharedOffice) {
+    public IPage<DistrictToSharedOffice> findDistrictToSharedOffices(QueryRequest request,
+                                                                     DistrictToSharedOffice districtToSharedOffice) {
         LambdaQueryWrapper<DistrictToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<DistrictToSharedOffice> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -39,9 +41,9 @@ public class DistrictToSharedOfficeServiceImpl extends ServiceImpl<DistrictToSha
 
     @Override
     public List<DistrictToSharedOffice> findDistrictToSharedOffices(DistrictToSharedOffice districtToSharedOffice) {
-	    LambdaQueryWrapper<DistrictToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<DistrictToSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class DistrictToSharedOfficeServiceImpl extends ServiceImpl<DistrictToSha
     @Transactional(rollbackFor = Exception.class)
     public void deleteDistrictToSharedOffice(DistrictToSharedOffice districtToSharedOffice) {
         LambdaQueryWrapper<DistrictToSharedOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

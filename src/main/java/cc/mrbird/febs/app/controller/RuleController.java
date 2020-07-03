@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-18 09:55:18
@@ -40,7 +40,7 @@ public class RuleController extends BaseController {
     private final IRuleService ruleService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "rule")
-    public String ruleIndex(){
+    public String ruleIndex() {
         return FebsUtil.view("rule/rule");
     }
 
@@ -99,14 +99,14 @@ public class RuleController extends BaseController {
     @PostMapping("insertRule")
     @ResponseBody
     public Body insertRule(Rule rule, Integer userid, Integer house) {
-        return this.ruleService.insertRule(rule,userid,house);
+        return this.ruleService.insertRule(rule, userid, house);
     }
 
     @ControllerEndpoint(operation = "修改收租规则", exceptionMessage = "修改收租规则失败")
     @PostMapping("updateRuleDetails")
     @ResponseBody
     public Body updateRuleDetails(Rule rule, Integer userid, Integer house) {
-        return this.ruleService.updateRuleDetails(rule,userid,house);
+        return this.ruleService.updateRuleDetails(rule, userid, house);
     }
 
     @ControllerEndpoint(operation = "根据租户id查找收租规则", exceptionMessage = "根据租户id查找收租规则失败")

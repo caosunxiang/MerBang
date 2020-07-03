@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-08 10:08:20
@@ -39,7 +39,7 @@ public class UserToOfficeController extends BaseController {
     private final IUserToOfficeService userToOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "userToOffice")
-    public String userToOfficeIndex(){
+    public String userToOfficeIndex() {
         return FebsUtil.view("userToOffice/userToOffice");
     }
 
@@ -90,7 +90,8 @@ public class UserToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("userToOffice:export")
     public void export(QueryRequest queryRequest, UserToOffice userToOffice, HttpServletResponse response) {
-        List<UserToOffice> userToOffices = this.userToOfficeService.findUserToOffices(queryRequest, userToOffice).getRecords();
+        List<UserToOffice> userToOffices =
+                this.userToOfficeService.findUserToOffices(queryRequest, userToOffice).getRecords();
         ExcelKit.$Export(UserToOffice.class, response).downXlsx(userToOffices, false);
     }
 }

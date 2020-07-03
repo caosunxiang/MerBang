@@ -106,8 +106,8 @@ public class CostAdditionController extends BaseController {
     @ControllerEndpoint(operation = "添加CostAddition", exceptionMessage = "添加Excel失败")
     @PostMapping("insertCostAddition")
     @ResponseBody
-    public Body insertCostAddition(CostAddition costAddition,Integer userid) {
-        return this.costAdditionService.insertCostAddition(costAddition,userid);
+    public Body insertCostAddition(CostAddition costAddition, Integer userid) {
+        return this.costAdditionService.insertCostAddition(costAddition, userid);
     }
 
     /**
@@ -143,13 +143,15 @@ public class CostAdditionController extends BaseController {
     @ResponseBody
     public Body updateCostAdditionaName(CostAddition costAddition) {
         return this.costAdditionService.updateCostAdditionaName(costAddition);
-    }/** 
-    * @Description: 删除收款选项
-    * @Param: [id]
-    * @return: cc.mrbird.febs.common.utils.json.Body
-    * @Author: 冷酷的苹果
-    * @Date: 2020/6/1 18:00
-    */
+    }
+
+    /**
+     * @Description: 删除收款选项
+     * @Param: [id]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/6/1 18:00
+     */
     @ControllerEndpoint(operation = "删除收款选项", exceptionMessage = "删除收款失败")
     @PostMapping("deleteCost")
     @ResponseBody

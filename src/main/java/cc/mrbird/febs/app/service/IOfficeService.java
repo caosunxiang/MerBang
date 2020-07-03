@@ -64,7 +64,7 @@ public interface IOfficeService extends IService<Office> {
      * @Author: 冷酷的苹果
      * @Date: 2020/5/7 13:16
      */
-    Body selectOffice(String condition, Integer areaLow, Integer areaHigh, String priceLow,Integer id,
+    Body selectOffice(String condition, Integer areaLow, Integer areaHigh, String priceLow, Integer id,
                       String priceHigh, String fitment, String name, String position, String address,
                       String userId, String myId, String order, Integer index,
                       Integer size);
@@ -131,20 +131,22 @@ public interface IOfficeService extends IService<Office> {
      * @Date: 2020/5/28 19:13
      */
     Body selectOfficeInPrice(Integer pid, String door, Integer id);
-/** 
-* @Description: 物业费页面查找办公室
-* @Param: [id]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/5/29 17:47
-*/
-    Body selectOfficeInCost(Integer id,Integer uid,String type);
-/** 
-* @Description: 删除办公室
-* @Param: [officeId]
-* @return: cc.mrbird.febs.common.utils.json.Body
-* @Author: 冷酷的苹果
-* @Date: 2020/6/1 11:13
-*/
+
+    /**
+     * @Description: 物业费页面查找办公室
+     * @Param: [id]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/5/29 17:47
+     */
+    Body selectOfficeInCost(Integer id, Integer uid, String type);
+
+    /**
+     * @Description: 删除办公室
+     * @Param: [officeId]
+     * @return: cc.mrbird.febs.common.utils.json.Body
+     * @Author: 冷酷的苹果
+     * @Date: 2020/6/1 11:13
+     */
     Body deleteOffice(Integer officeId);
 }

@@ -36,10 +36,12 @@ public class ShiroRealm extends AuthorizingRealm {
     public void setMenuService(IMenuService menuService) {
         this.menuService = menuService;
     }
+
     @Autowired
     public void setUserService(IUserService userService) {
         this.userService = userService;
     }
+
     @Autowired
     public void setRoleService(IRoleService roleService) {
         this.roleService = roleService;
@@ -85,7 +87,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
         // 通过用户名到数据库查询用户信息
         User user = this.userService.findByName(username);
-        
+
         if (user == null || !StringUtils.equals(password, user.getPassword())) {
             throw new IncorrectCredentialsException("用户名或密码错误！");
         }

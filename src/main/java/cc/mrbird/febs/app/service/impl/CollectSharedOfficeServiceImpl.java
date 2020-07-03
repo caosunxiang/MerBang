@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.List;
 
 /**
- *  Service实现
+ * Service实现
  *
  * @author 冷酷的苹果
  * @date 2020-05-26 09:53:33
@@ -30,7 +30,8 @@ public class CollectSharedOfficeServiceImpl extends ServiceImpl<CollectSharedOff
     private final CollectSharedOfficeMapper collectSharedOfficeMapper;
 
     @Override
-    public IPage<CollectSharedOffice> findCollectSharedOffices(QueryRequest request, CollectSharedOffice collectSharedOffice) {
+    public IPage<CollectSharedOffice> findCollectSharedOffices(QueryRequest request,
+                                                               CollectSharedOffice collectSharedOffice) {
         LambdaQueryWrapper<CollectSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
         // TODO 设置查询条件
         Page<CollectSharedOffice> page = new Page<>(request.getPageNum(), request.getPageSize());
@@ -39,9 +40,9 @@ public class CollectSharedOfficeServiceImpl extends ServiceImpl<CollectSharedOff
 
     @Override
     public List<CollectSharedOffice> findCollectSharedOffices(CollectSharedOffice collectSharedOffice) {
-	    LambdaQueryWrapper<CollectSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
-		// TODO 设置查询条件
-		return this.baseMapper.selectList(queryWrapper);
+        LambdaQueryWrapper<CollectSharedOffice> queryWrapper = new LambdaQueryWrapper<>();
+        // TODO 设置查询条件
+        return this.baseMapper.selectList(queryWrapper);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class CollectSharedOfficeServiceImpl extends ServiceImpl<CollectSharedOff
     @Transactional(rollbackFor = Exception.class)
     public void deleteCollectSharedOffice(CollectSharedOffice collectSharedOffice) {
         LambdaQueryWrapper<CollectSharedOffice> wrapper = new LambdaQueryWrapper<>();
-	    // TODO 设置删除条件
-	    this.remove(wrapper);
-	}
+        // TODO 设置删除条件
+        this.remove(wrapper);
+    }
 }

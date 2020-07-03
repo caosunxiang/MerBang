@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-07 16:30:33
@@ -39,7 +39,7 @@ public class DistrictToOfficeController extends BaseController {
     private final IDistrictToOfficeService districtToOfficeService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "districtToOffice")
-    public String districtToOfficeIndex(){
+    public String districtToOfficeIndex() {
         return FebsUtil.view("districtToOffice/districtToOffice");
     }
 
@@ -54,7 +54,8 @@ public class DistrictToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("districtToOffice:list")
     public FebsResponse districtToOfficeList(QueryRequest request, DistrictToOffice districtToOffice) {
-        Map<String, Object> dataTable = getDataTable(this.districtToOfficeService.findDistrictToOffices(request, districtToOffice));
+        Map<String, Object> dataTable = getDataTable(this.districtToOfficeService.findDistrictToOffices(request,
+                districtToOffice));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -90,7 +91,8 @@ public class DistrictToOfficeController extends BaseController {
     @ResponseBody
     @RequiresPermissions("districtToOffice:export")
     public void export(QueryRequest queryRequest, DistrictToOffice districtToOffice, HttpServletResponse response) {
-        List<DistrictToOffice> districtToOffices = this.districtToOfficeService.findDistrictToOffices(queryRequest, districtToOffice).getRecords();
+        List<DistrictToOffice> districtToOffices = this.districtToOfficeService.findDistrictToOffices(queryRequest,
+                districtToOffice).getRecords();
         ExcelKit.$Export(DistrictToOffice.class, response).downXlsx(districtToOffices, false);
     }
 }

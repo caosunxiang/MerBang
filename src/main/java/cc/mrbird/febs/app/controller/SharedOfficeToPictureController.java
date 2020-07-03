@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:58
@@ -40,7 +40,7 @@ public class SharedOfficeToPictureController extends BaseController {
     private final ISharedOfficeToPictureService sharedOfficeToPictureService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "sharedOfficeToPicture")
-    public String sharedOfficeToPictureIndex(){
+    public String sharedOfficeToPictureIndex() {
         return FebsUtil.view("sharedOfficeToPicture/sharedOfficeToPicture");
     }
 
@@ -55,7 +55,9 @@ public class SharedOfficeToPictureController extends BaseController {
     @ResponseBody
     @RequiresPermissions("sharedOfficeToPicture:list")
     public FebsResponse sharedOfficeToPictureList(QueryRequest request, SharedOfficeToPicture sharedOfficeToPicture) {
-        Map<String, Object> dataTable = getDataTable(this.sharedOfficeToPictureService.findSharedOfficeToPictures(request, sharedOfficeToPicture));
+        Map<String, Object> dataTable =
+                getDataTable(this.sharedOfficeToPictureService.findSharedOfficeToPictures(request,
+                        sharedOfficeToPicture));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -90,8 +92,10 @@ public class SharedOfficeToPictureController extends BaseController {
     @PostMapping("sharedOfficeToPicture/excel")
     @ResponseBody
     @RequiresPermissions("sharedOfficeToPicture:export")
-    public void export(QueryRequest queryRequest, SharedOfficeToPicture sharedOfficeToPicture, HttpServletResponse response) {
-        List<SharedOfficeToPicture> sharedOfficeToPictures = this.sharedOfficeToPictureService.findSharedOfficeToPictures(queryRequest, sharedOfficeToPicture).getRecords();
+    public void export(QueryRequest queryRequest, SharedOfficeToPicture sharedOfficeToPicture,
+                       HttpServletResponse response) {
+        List<SharedOfficeToPicture> sharedOfficeToPictures =
+                this.sharedOfficeToPictureService.findSharedOfficeToPictures(queryRequest, sharedOfficeToPicture).getRecords();
         ExcelKit.$Export(SharedOfficeToPicture.class, response).downXlsx(sharedOfficeToPictures, false);
     }
 
@@ -99,7 +103,7 @@ public class SharedOfficeToPictureController extends BaseController {
     @PostMapping("uploadSharedOfficeIntroduce")
     @ResponseBody
     public Body uploadSharedOfficeIntroduce(String picture, Integer userId, Integer sharedOffice, String introduce) {
-        return this.sharedOfficeToPictureService.uploadIntroduce(picture,userId,sharedOffice,introduce);
+        return this.sharedOfficeToPictureService.uploadIntroduce(picture, userId, sharedOffice, introduce);
     }
 
     @ControllerEndpoint(operation = "查询指定楼照片", exceptionMessage = "查询指定共享办公照片失败")

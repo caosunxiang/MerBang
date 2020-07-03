@@ -104,9 +104,10 @@ public class OfficeBuildingController extends BaseController {
     @ResponseBody
     public Body selectOfficeBuilding(String condition, Integer areaLow, Integer areaHigh, String priceLow,
                                      String priceHigh, String fitment, String name, String position,
-                                     String userId, String myId, String address,String order, Integer index, Integer size) {
+                                     String userId, String myId, String address, String order, Integer index,
+                                     Integer size) {
         return this.officeBuildingService.selectOfficeBuilding(condition, areaLow, areaHigh,
-                priceLow, priceHigh, fitment, name, position, userId, myId, address,order, index, size);
+                priceLow, priceHigh, fitment, name, position, userId, myId, address, order, index, size);
     }
 
     @ControllerEndpoint(operation = "查询指定写字楼消息", exceptionMessage = "查询指定写字楼消息失败")
@@ -122,7 +123,7 @@ public class OfficeBuildingController extends BaseController {
     public Body insertOfficeBuilding(String name, String address, String log, String lat, String area,
                                      String price, Integer user) {
         if (StringUtils.isEmpty(name) || StringUtils.isEmpty(address) || StringUtils.isEmpty(log) ||
-                StringUtils.isEmpty(lat) || StringUtils.isEmpty(area) || StringUtils.isEmpty(price)||user==null) {
+                StringUtils.isEmpty(lat) || StringUtils.isEmpty(area) || StringUtils.isEmpty(price) || user == null) {
             return Body.BODY_451;
         }
         return this.officeBuildingService.insertOfficeBuilding(name, address, log, lat, area, price, user);
@@ -138,14 +139,14 @@ public class OfficeBuildingController extends BaseController {
     @ControllerEndpoint(operation = "上传写字楼首页图片", exceptionMessage = "上传写字楼首页图片失败")
     @PostMapping("uploadOfficeBuildingHomePage")
     @ResponseBody
-    public Body uploadOfficeHomePage(Integer officeBuildingId,String picture,Integer userId) {
-        return this.officeBuildingService.uploadOfficeHomePage(officeBuildingId,picture,userId);
+    public Body uploadOfficeHomePage(Integer officeBuildingId, String picture, Integer userId) {
+        return this.officeBuildingService.uploadOfficeHomePage(officeBuildingId, picture, userId);
     }
 
     @ControllerEndpoint(operation = "修改写字楼详情", exceptionMessage = "修改写字楼详情失败")
     @PostMapping("updateOfficeBuildingDetails")
     @ResponseBody
     public Body updateOfficeBuildingDetails(OfficeBuilding officeBuilding) {
-return this.officeBuildingService.updateOfficeBuildingDetails(officeBuilding);
+        return this.officeBuildingService.updateOfficeBuildingDetails(officeBuilding);
     }
 }

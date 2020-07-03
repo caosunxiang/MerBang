@@ -2,20 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.app.mapper.CostMapper">
     <select id="costStatistics" resultType="java.util.Map">
-SELECT
-	IFNULL(ca.cost_addition_id,'')id,
-	IFNULL(ca.`name`,'')`name`,
-	IFNULL(a.start_time,'')`star`,
-	IFNULL(a.end_time,'')`end`,
-	IFNULL(a.price,'')`price`,
-	IFNULL(ca.pid,'')pid
-FROM
-	t_cost c
-	LEFT JOIN t_addition a ON a.cost = c.cost_id
-	LEFT JOIN t_cost_addition ca ON ca.cost_addition_id = a.cost_addition
-	WHERE
-	a.cost=#{id}
-</select>
+        SELECT
+        IFNULL(ca.cost_addition_id,'')id,
+        IFNULL(ca.`name`,'')`name`,
+        IFNULL(a.start_time,'')`star`,
+        IFNULL(a.end_time,'')`end`,
+        IFNULL(a.price,'')`price`,
+        IFNULL(ca.pid,'')pid
+        FROM
+        t_cost c
+        LEFT JOIN t_addition a ON a.cost = c.cost_id
+        LEFT JOIN t_cost_addition ca ON ca.cost_addition_id = a.cost_addition
+        WHERE
+        a.cost=#{id}
+    </select>
     <select id="selectCost" resultType="java.util.Map">
         SELECT
         IFNULL(l.`name`,'')`name`,
@@ -33,7 +33,7 @@ FROM
         LEFT JOIN t_user_to_office t ON o.id = t.ofiice_id
         LEFT JOIN t_lessee l ON l.user_id = t.user_id
         LEFT JOIN t_office_building b ON b.id=o.office_building
-        LEFT JOIN t_shared_office s  ON o.shared_office_id=s.id
+        LEFT JOIN t_shared_office s ON o.shared_office_id=s.id
         WHERE
         1=1
         <if test="condition !=null and condition!=''">
@@ -60,18 +60,18 @@ FROM
     </select>
 
     <select id="selectPassCost" resultType="java.lang.Integer">
-SELECT
-	COUNT(*)
-FROM
-	t_attention a
-	LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_cost c ON c.office=o.id
-WHERE
-	a.attention_type = 'C'
-	AND a.attention_user = #{id}
-	AND c.type=1
-	AND PERIOD_DIFF(
-	date_format(now(), '%Y%m'),
-	date_format(c.collection_time, '%Y%m')
-) = #{month};
+        SELECT
+        COUNT(*)
+        FROM
+        t_attention a
+        LEFT JOIN t_office o ON a.attention_label = o.id LEFT JOIN t_cost c ON c.office=o.id
+        WHERE
+        a.attention_type = 'C'
+        AND a.attention_user = #{id}
+        AND c.type=1
+        AND PERIOD_DIFF(
+        date_format(now(), '%Y%m'),
+        date_format(c.collection_time, '%Y%m')
+        ) = #{month};
     </select>
 </mapper>

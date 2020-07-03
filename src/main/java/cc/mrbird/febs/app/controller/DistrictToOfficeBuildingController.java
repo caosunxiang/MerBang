@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Controller
+ * Controller
  *
  * @author 冷酷的苹果
  * @date 2020-05-06 09:17:36
@@ -39,7 +39,7 @@ public class DistrictToOfficeBuildingController extends BaseController {
     private final IDistrictToOfficeBuildingService districtToOfficeBuildingService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "districtToOfficeBuilding")
-    public String districtToOfficeBuildingIndex(){
+    public String districtToOfficeBuildingIndex() {
         return FebsUtil.view("districtToOfficeBuilding/districtToOfficeBuilding");
     }
 
@@ -53,8 +53,11 @@ public class DistrictToOfficeBuildingController extends BaseController {
     @GetMapping("districtToOfficeBuilding/list")
     @ResponseBody
     @RequiresPermissions("districtToOfficeBuilding:list")
-    public FebsResponse districtToOfficeBuildingList(QueryRequest request, DistrictToOfficeBuilding districtToOfficeBuilding) {
-        Map<String, Object> dataTable = getDataTable(this.districtToOfficeBuildingService.findDistrictToOfficeBuildings(request, districtToOfficeBuilding));
+    public FebsResponse districtToOfficeBuildingList(QueryRequest request,
+                                                     DistrictToOfficeBuilding districtToOfficeBuilding) {
+        Map<String, Object> dataTable =
+                getDataTable(this.districtToOfficeBuildingService.findDistrictToOfficeBuildings(request,
+                        districtToOfficeBuilding));
         return new FebsResponse().success().data(dataTable);
     }
 
@@ -89,8 +92,11 @@ public class DistrictToOfficeBuildingController extends BaseController {
     @PostMapping("districtToOfficeBuilding/excel")
     @ResponseBody
     @RequiresPermissions("districtToOfficeBuilding:export")
-    public void export(QueryRequest queryRequest, DistrictToOfficeBuilding districtToOfficeBuilding, HttpServletResponse response) {
-        List<DistrictToOfficeBuilding> districtToOfficeBuildings = this.districtToOfficeBuildingService.findDistrictToOfficeBuildings(queryRequest, districtToOfficeBuilding).getRecords();
+    public void export(QueryRequest queryRequest, DistrictToOfficeBuilding districtToOfficeBuilding,
+                       HttpServletResponse response) {
+        List<DistrictToOfficeBuilding> districtToOfficeBuildings =
+                this.districtToOfficeBuildingService.findDistrictToOfficeBuildings(queryRequest,
+                        districtToOfficeBuilding).getRecords();
         ExcelKit.$Export(DistrictToOfficeBuilding.class, response).downXlsx(districtToOfficeBuildings, false);
     }
 }

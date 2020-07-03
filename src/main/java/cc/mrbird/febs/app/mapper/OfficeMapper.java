@@ -62,11 +62,13 @@ public interface OfficeMapper extends BaseMapper<Office> {
                                                       @Param("order") String order);
 
 
-    public List<Map<String, Object>> officeDown(@Param("id")Integer id);
+    public List<Map<String, Object>> officeDown(@Param("id") Integer id);
 
     public List<Map<String, Object>> selectOfficeDetails(@Param("id") Integer id);
 
-    public List<Map<String, Object>>  selectOfficeInPrice(@Param("pid") Integer pid ,@Param("door")String door,@Param("id")Integer id);
+    public List<Map<String, Object>> selectOfficeInPrice(@Param("pid") Integer pid, @Param("door") String door,
+                                                         @Param("id") Integer id);
 
-    public List<Map<String, Object>>  selectOfficeInCost(@Param("id")Integer id,@Param("uid")Integer uid,@Param("type")String type);
+    public List<Map<String, Object>> selectOfficeInCost(@Param("id") Integer id, @Param("uid") Integer uid, @Param(
+            "type") String type);
 }

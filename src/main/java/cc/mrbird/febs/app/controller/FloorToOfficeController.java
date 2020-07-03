@@ -107,6 +107,6 @@ public class FloorToOfficeController extends BaseController {
     @GetMapping("selectOfficeFloor")
     @ResponseBody
     public Body selectOfficeFloor(Integer pid, Integer id) {
-        return this.floorToOfficeService.selectOfficeFloor(pid,id);
+        return this.floorToOfficeService.selectOfficeFloor(pid, id);
     }
 }

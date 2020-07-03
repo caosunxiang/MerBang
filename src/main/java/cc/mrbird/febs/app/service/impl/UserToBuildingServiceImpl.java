@@ -74,13 +74,13 @@ public class UserToBuildingServiceImpl extends ServiceImpl<UserToBuildingMapper,
         List<Map<String, Object>> list = this.userToBuildingMapper.selectBuildingInLessee(name);
         if (list.size() > 0) {
             for (Map<String, Object> stringObjectMap : list) {
-                Integer id =  Integer.parseInt((String) stringObjectMap.get("id"));
-                Integer count=officeMapper.selectCountByBuildingId(id);
-                stringObjectMap.put("count",count);
+                Integer id = Integer.parseInt((String) stringObjectMap.get("id"));
+                Integer count = officeMapper.selectCountByBuildingId(id);
+                stringObjectMap.put("count", count);
             }
             return Body.newInstance(list);
         } else {
-            return Body.newInstance(201,"没有相关记录");
+            return Body.newInstance(201, "没有相关记录");
         }
     }
 }

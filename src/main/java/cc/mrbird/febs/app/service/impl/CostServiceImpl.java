@@ -69,7 +69,7 @@ public class CostServiceImpl extends ServiceImpl<CostMapper, Cost> implements IC
     @Override
     public Body InsertCost(Cost cost) {
         cost.setTotalPrices(cost.getPrice());
-       cost.setType(1);
+        cost.setType(1);
         int count = this.costMapper.insert(cost);
         if (count == 1) {
             return Body.BODY_200;
@@ -80,28 +80,28 @@ public class CostServiceImpl extends ServiceImpl<CostMapper, Cost> implements IC
     @Override
     public Body selectCostByCostId(Integer id) {
         Cost cost = this.costMapper.selectById(id);
-        if (cost!=null){
+        if (cost != null) {
             return Body.newInstance(cost);
         } else {
-            return Body.newInstance(201,"查找失败");
+            return Body.newInstance(201, "查找失败");
         }
     }
 
     @Override
     public Body costStatistics(Integer costId) {
-        List<Map<String,Object>>list=this.costMapper.costStatistics(costId);
-        if (list.size()>0){
+        List<Map<String, Object>> list = this.costMapper.costStatistics(costId);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"没有附加款项");
+        return Body.newInstance(201, "没有附加款项");
     }
 
     @Override
-    public Body selectCost(String condition,Integer id,String door) {
-        List<Map<String,Object>> list=this.costMapper.selectCost(condition,id,door);
-        if (list.size()>0){
+    public Body selectCost(String condition, Integer id, String door) {
+        List<Map<String, Object>> list = this.costMapper.selectCost(condition, id, door);
+        if (list.size() > 0) {
             return Body.newInstance(list);
         }
-        return Body.newInstance(201,"查找失败");
+        return Body.newInstance(201, "查找失败");
     }
 }
